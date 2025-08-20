@@ -15,6 +15,7 @@
     "valibot": "^1.1.0"
   },
   "scripts": {
-    "rebuild:grammer": "antlr4 -Dlanguage=TypeScript ./grammar/MMSLex.g4 -o ./src && antlr4 -Dlanguage=TypeScript ./grammar/MMSParse.g4 -lib ./src/grammar -o ./src"
+    "rebuild:grammer": "antlr4 -Dlanguage=TypeScript ./grammar/MMSLex.g4 -o ./src && antlr4 -Dlanguage=TypeScript ./grammar/MMSParse.g4 -lib ./src/grammar -o ./src",
+    "start": "bun src/index.ts"
   }
 }

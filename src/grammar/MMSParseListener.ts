@@ -4,6 +4,7 @@ import {ParseTreeListener} from "antlr4";
 
 
 import { StatementContext } from "./MMSParse.js";
+import { NamespaceStatementContext } from "./MMSParse.js";
 import { FileContext } from "./MMSParse.js";
 import { DensityStatementContext } from "./MMSParse.js";
 import { DensityNoiseDeclarationContext } from "./MMSParse.js";
@@ -12,6 +13,9 @@ import { DensityXZScaleLineContext } from "./MMSParse.js";
 import { DensityYScaleLineContext } from "./MMSParse.js";
 import { DensityNoiseStatementContext } from "./MMSParse.js";
 import { ReferenceContext } from "./MMSParse.js";
+import { NoiseFirstOctaveLineContext } from "./MMSParse.js";
+import { NoiseAmplitudesContext } from "./MMSParse.js";
+import { NoiseStatementContext } from "./MMSParse.js";
 
 
 /**
@@ -29,6 +33,16 @@ export default class MMSParseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitStatement?: (ctx: StatementContext) => void;
+	/**
+	 * Enter a parse tree produced by `MMSParse.namespaceStatement`.
+	 * @param ctx the parse tree
+	 */
+	enterNamespaceStatement?: (ctx: NamespaceStatementContext) => void;
+	/**
+	 * Exit a parse tree produced by `MMSParse.namespaceStatement`.
+	 * @param ctx the parse tree
+	 */
+	exitNamespaceStatement?: (ctx: NamespaceStatementContext) => void;
 	/**
 	 * Enter a parse tree produced by `MMSParse.file`.
 	 * @param ctx the parse tree
@@ -109,5 +123,35 @@ export default class MMSParseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitReference?: (ctx: ReferenceContext) => void;
+	/**
+	 * Enter a parse tree produced by `MMSParse.noiseFirstOctaveLine`.
+	 * @param ctx the parse tree
+	 */
+	enterNoiseFirstOctaveLine?: (ctx: NoiseFirstOctaveLineContext) => void;
+	/**
+	 * Exit a parse tree produced by `MMSParse.noiseFirstOctaveLine`.
+	 * @param ctx the parse tree
+	 */
+	exitNoiseFirstOctaveLine?: (ctx: NoiseFirstOctaveLineContext) => void;
+	/**
+	 * Enter a parse tree produced by `MMSParse.noiseAmplitudes`.
+	 * @param ctx the parse tree
+	 */
+	enterNoiseAmplitudes?: (ctx: NoiseAmplitudesContext) => void;
+	/**
+	 * Exit a parse tree produced by `MMSParse.noiseAmplitudes`.
+	 * @param ctx the parse tree
+	 */
+	exitNoiseAmplitudes?: (ctx: NoiseAmplitudesContext) => void;
+	/**
+	 * Enter a parse tree produced by `MMSParse.noiseStatement`.
+	 * @param ctx the parse tree
+	 */
+	enterNoiseStatement?: (ctx: NoiseStatementContext) => void;
+	/**
+	 * Exit a parse tree produced by `MMSParse.noiseStatement`.
+	 * @param ctx the parse tree
+	 */
+	exitNoiseStatement?: (ctx: NoiseStatementContext) => void;
 }
 

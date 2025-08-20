@@ -17,8 +17,9 @@ public class DensityFunctions extends Parser {
 		new PredictionContextCache();
 	public static final int
 		DensityFunctionStart=1, Keyword_Noise=2, Keyword_Constant=3, Keyword_XZScale=4, 
-		Keyword_YScale=5, Identifier=6, Whitespace=7, Float=8, Integer=9, BlockStart=10, 
-		BlockEnd=11, NewLine=12, Colon=13;
+		Keyword_YScale=5, Keyword_FirstOctave=6, Keyword_Amplitudes=7, Keyword_Namespace=8, 
+		Whitespace=9, Float=10, Integer=11, BlockStart=12, BlockEnd=13, NewLine=14, 
+		Colon=15, SquareOpen=16, SquareClose=17, Comma=18, Comment=19, Identifier=20;
 	public static final int
 		RULE_densityStatement = 0, RULE_densityNoiseDeclaration = 1, RULE_densityNoiseLine = 2, 
 		RULE_densityXZScaleLine = 3, RULE_densityYScaleLine = 4, RULE_densityNoiseStatement = 5, 
@@ -34,15 +35,17 @@ public class DensityFunctions extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'density'", "'noise'", "'constant'", "'xz_scale'", "'y_scale'", 
-			null, null, null, null, "'{'", null, null, "':'"
+			"'first_octave'", "'amplitudes'", "'namespace'", null, null, null, "'{'", 
+			null, null, "':'", "'['", "']'", "','"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "DensityFunctionStart", "Keyword_Noise", "Keyword_Constant", "Keyword_XZScale", 
-			"Keyword_YScale", "Identifier", "Whitespace", "Float", "Integer", "BlockStart", 
-			"BlockEnd", "NewLine", "Colon"
+			"Keyword_YScale", "Keyword_FirstOctave", "Keyword_Amplitudes", "Keyword_Namespace", 
+			"Whitespace", "Float", "Integer", "BlockStart", "BlockEnd", "NewLine", 
+			"Colon", "SquareOpen", "SquareClose", "Comma", "Comment", "Identifier"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -466,24 +469,24 @@ public class DensityFunctions extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\17H\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26H\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\3\2\3\3\3\3\3\3\3\3\3\4"+
 		"\3\4\3\4\7\4\32\n\4\f\4\16\4\35\13\4\3\5\3\5\3\5\7\5\"\n\5\f\5\16\5%\13"+
 		"\5\3\6\3\6\3\6\7\6*\n\6\f\6\16\6-\13\6\3\7\3\7\3\7\3\7\7\7\63\n\7\f\7"+
 		"\16\7\66\13\7\3\7\3\7\3\7\3\7\3\7\7\7=\n\7\f\7\16\7@\13\7\3\7\3\7\3\b"+
-		"\3\b\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\3\3\2\n\13\2E\2\20\3\2\2\2\4\22"+
+		"\3\b\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\3\3\2\f\r\2E\2\20\3\2\2\2\4\22"+
 		"\3\2\2\2\6\26\3\2\2\2\b\36\3\2\2\2\n&\3\2\2\2\f.\3\2\2\2\16C\3\2\2\2\20"+
-		"\21\5\f\7\2\21\3\3\2\2\2\22\23\7\3\2\2\23\24\7\17\2\2\24\25\7\4\2\2\25"+
-		"\5\3\2\2\2\26\27\7\4\2\2\27\33\5\16\b\2\30\32\7\16\2\2\31\30\3\2\2\2\32"+
+		"\21\5\f\7\2\21\3\3\2\2\2\22\23\7\3\2\2\23\24\7\21\2\2\24\25\7\4\2\2\25"+
+		"\5\3\2\2\2\26\27\7\4\2\2\27\33\5\16\b\2\30\32\7\20\2\2\31\30\3\2\2\2\32"+
 		"\35\3\2\2\2\33\31\3\2\2\2\33\34\3\2\2\2\34\7\3\2\2\2\35\33\3\2\2\2\36"+
-		"\37\7\6\2\2\37#\t\2\2\2 \"\7\16\2\2! \3\2\2\2\"%\3\2\2\2#!\3\2\2\2#$\3"+
-		"\2\2\2$\t\3\2\2\2%#\3\2\2\2&\'\7\7\2\2\'+\t\2\2\2(*\7\16\2\2)(\3\2\2\2"+
-		"*-\3\2\2\2+)\3\2\2\2+,\3\2\2\2,\13\3\2\2\2-+\3\2\2\2./\5\4\3\2/\60\7\b"+
-		"\2\2\60\64\7\f\2\2\61\63\7\16\2\2\62\61\3\2\2\2\63\66\3\2\2\2\64\62\3"+
+		"\37\7\6\2\2\37#\t\2\2\2 \"\7\20\2\2! \3\2\2\2\"%\3\2\2\2#!\3\2\2\2#$\3"+
+		"\2\2\2$\t\3\2\2\2%#\3\2\2\2&\'\7\7\2\2\'+\t\2\2\2(*\7\20\2\2)(\3\2\2\2"+
+		"*-\3\2\2\2+)\3\2\2\2+,\3\2\2\2,\13\3\2\2\2-+\3\2\2\2./\5\4\3\2/\60\7\26"+
+		"\2\2\60\64\7\16\2\2\61\63\7\20\2\2\62\61\3\2\2\2\63\66\3\2\2\2\64\62\3"+
 		"\2\2\2\64\65\3\2\2\2\65\67\3\2\2\2\66\64\3\2\2\2\678\5\6\4\289\5\b\5\2"+
-		"9:\5\n\6\2:>\3\2\2\2;=\7\16\2\2<;\3\2\2\2=@\3\2\2\2><\3\2\2\2>?\3\2\2"+
-		"\2?A\3\2\2\2@>\3\2\2\2AB\7\r\2\2B\r\3\2\2\2CD\7\b\2\2DE\7\17\2\2EF\7\b"+
-		"\2\2F\17\3\2\2\2\7\33#+\64>";
+		"9:\5\n\6\2:>\3\2\2\2;=\7\20\2\2<;\3\2\2\2=@\3\2\2\2><\3\2\2\2>?\3\2\2"+
+		"\2?A\3\2\2\2@>\3\2\2\2AB\7\17\2\2B\r\3\2\2\2CD\7\26\2\2DE\7\21\2\2EF\7"+
+		"\26\2\2F\17\3\2\2\2\7\33#+\64>";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

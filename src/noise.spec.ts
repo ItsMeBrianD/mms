@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import { parseExpression } from "./noise";
-import { Listener } from "./visitor";
+import { DensityFunctionListener } from "./visitors/DensityFunctionListener";
 import { ParseTreeWalker } from "antlr4";
 
 describe("Density Functions", () => {
@@ -17,7 +17,7 @@ describe("Density Functions", () => {
           `Test@${tree.exception?.offendingToken?.line}:${tree.exception?.offendingToken?.column}-${tree.exception?.offendingToken?.stop}`,
         );
       } else {
-        const listener = new Listener();
+        const listener = new DensityFunctionListener();
         new ParseTreeWalker().walk(listener, tree);
         expect(listener.densityFunctions.size).toBe(1);
         expect(listener.densityFunctions.get("MyNoise")).toEqual({
@@ -45,7 +45,7 @@ describe("Density Functions", () => {
               `Test@${tree.exception?.offendingToken?.line}:${tree.exception?.offendingToken?.column}-${tree.exception?.offendingToken?.stop}`,
             );
           } else {
-            const listener = new Listener();
+            const listener = new DensityFunctionListener();
             new ParseTreeWalker().walk(listener, tree);
             expect(listener.densityFunctions.size).toBe(2);
             expect(listener.densityFunctions.get("MyNoise")).toEqual({

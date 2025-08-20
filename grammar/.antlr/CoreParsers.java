@@ -17,8 +17,9 @@ public class CoreParsers extends Parser {
 		new PredictionContextCache();
 	public static final int
 		DensityFunctionStart=1, Keyword_Noise=2, Keyword_Constant=3, Keyword_XZScale=4, 
-		Keyword_YScale=5, Identifier=6, Whitespace=7, Float=8, Integer=9, BlockStart=10, 
-		BlockEnd=11, NewLine=12, Colon=13;
+		Keyword_YScale=5, Keyword_FirstOctave=6, Keyword_Amplitudes=7, Keyword_Namespace=8, 
+		Whitespace=9, Float=10, Integer=11, BlockStart=12, BlockEnd=13, NewLine=14, 
+		Colon=15, SquareOpen=16, SquareClose=17, Comma=18, Comment=19, Identifier=20;
 	public static final int
 		RULE_reference = 0;
 	private static String[] makeRuleNames() {
@@ -31,15 +32,17 @@ public class CoreParsers extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'density'", "'noise'", "'constant'", "'xz_scale'", "'y_scale'", 
-			null, null, null, null, "'{'", null, null, "':'"
+			"'first_octave'", "'amplitudes'", "'namespace'", null, null, null, "'{'", 
+			null, null, "':'", "'['", "']'", "','"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "DensityFunctionStart", "Keyword_Noise", "Keyword_Constant", "Keyword_XZScale", 
-			"Keyword_YScale", "Identifier", "Whitespace", "Float", "Integer", "BlockStart", 
-			"BlockEnd", "NewLine", "Colon"
+			"Keyword_YScale", "Keyword_FirstOctave", "Keyword_Amplitudes", "Keyword_Namespace", 
+			"Whitespace", "Float", "Integer", "BlockStart", "BlockEnd", "NewLine", 
+			"Colon", "SquareOpen", "SquareClose", "Comma", "Comment", "Identifier"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -131,9 +134,9 @@ public class CoreParsers extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\17\t\4\2\t\2\3\2"+
-		"\3\2\3\2\3\2\3\2\2\2\3\2\2\2\2\7\2\4\3\2\2\2\4\5\7\b\2\2\5\6\7\17\2\2"+
-		"\6\7\7\b\2\2\7\3\3\2\2\2\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26\t\4\2\t\2\3\2"+
+		"\3\2\3\2\3\2\3\2\2\2\3\2\2\2\2\7\2\4\3\2\2\2\4\5\7\26\2\2\5\6\7\21\2\2"+
+		"\6\7\7\26\2\2\7\3\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

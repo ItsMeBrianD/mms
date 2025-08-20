@@ -1,10 +1,12 @@
 parser grammar MMSParse;
 
-import DensityFunctions;
+import DensityFunctions, Noise;
 options {
 	tokenVocab = MMSLex;
 }
 
-statement: densityStatement;
+statement: densityStatement | noiseStatement;
 
-file: (statement | NewLine | Whitespace)* EOF;
+namespaceStatement: Keyword_Namespace Identifier;
+
+file: namespaceStatement NewLine+ (statement | NewLine | Whitespace)* EOF;
