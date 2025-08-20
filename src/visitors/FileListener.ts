@@ -1,12 +1,7 @@
 import {
-  NoiseFirstOctaveLineContext,
-  NoiseAmplitudesContext,
-  type NoiseStatementContext,
   FileContext,
 } from "../grammar/MMSParse";
 import MMSParseListener from "../grammar/MMSParseListener";
-import { extractNumber } from "./extracts/extractNumber";
-import { extractNumbers } from "./extracts/extractNumbers";
 import type { DataExportListener } from "./types";
 
 declare module "../grammar/MMSParse" {}

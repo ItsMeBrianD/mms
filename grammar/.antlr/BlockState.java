@@ -1,4 +1,4 @@
-// Generated from /Users/brian/code/personal/mms/grammar/CoreParsers.g4 by ANTLR 4.9.2
+// Generated from /Users/brian/code/personal/mms/grammar/BlockState.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class CoreParsers extends Parser {
+public class BlockState extends Parser {
 	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -32,10 +32,11 @@ public class CoreParsers extends Parser {
 		Colon=49, RoundOpen=50, RoundClose=51, SquareOpen=52, SquareClose=53, 
 		Comma=54, Comment=55, Not=56, Quote=57, Identifier=58;
 	public static final int
-		RULE_reference = 0, RULE_verticalAnchor = 1, RULE_referenceArray = 2;
+		RULE_blockProperties = 0, RULE_blockState = 1, RULE_reference = 2, RULE_verticalAnchor = 3, 
+		RULE_referenceArray = 4;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"reference", "verticalAnchor", "referenceArray"
+			"blockProperties", "blockState", "reference", "verticalAnchor", "referenceArray"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -109,7 +110,7 @@ public class CoreParsers extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "CoreParsers.g4"; }
+	public String getGrammarFileName() { return "BlockState.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -120,21 +121,134 @@ public class CoreParsers extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public CoreParsers(TokenStream input) {
+	public BlockState(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
+	public static class BlockPropertiesContext extends ParserRuleContext {
+		public TerminalNode BlockStart() { return getToken(BlockState.BlockStart, 0); }
+		public TerminalNode BlockEnd() { return getToken(BlockState.BlockEnd, 0); }
+		public List<TerminalNode> NewLine() { return getTokens(BlockState.NewLine); }
+		public TerminalNode NewLine(int i) {
+			return getToken(BlockState.NewLine, i);
+		}
+		public BlockPropertiesContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_blockProperties; }
+	}
+
+	public final BlockPropertiesContext blockProperties() throws RecognitionException {
+		BlockPropertiesContext _localctx = new BlockPropertiesContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_blockProperties);
+		int _la;
+		try {
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(10);
+			match(BlockStart);
+			setState(14);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(11);
+					match(NewLine);
+					}
+					} 
+				}
+				setState(16);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+			}
+			setState(20);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==NewLine) {
+				{
+				{
+				setState(17);
+				match(NewLine);
+				}
+				}
+				setState(22);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(23);
+			match(BlockEnd);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class BlockStateContext extends ParserRuleContext {
+		public ReferenceContext reference() {
+			return getRuleContext(ReferenceContext.class,0);
+		}
+		public BlockPropertiesContext blockProperties() {
+			return getRuleContext(BlockPropertiesContext.class,0);
+		}
+		public BlockStateContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_blockState; }
+	}
+
+	public final BlockStateContext blockState() throws RecognitionException {
+		BlockStateContext _localctx = new BlockStateContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_blockState);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(25);
+			reference();
+			setState(27);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==BlockStart) {
+				{
+				setState(26);
+				blockProperties();
+				}
+			}
+
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static class ReferenceContext extends ParserRuleContext {
-		public List<TerminalNode> Quote() { return getTokens(CoreParsers.Quote); }
+		public List<TerminalNode> Quote() { return getTokens(BlockState.Quote); }
 		public TerminalNode Quote(int i) {
-			return getToken(CoreParsers.Quote, i);
+			return getToken(BlockState.Quote, i);
 		}
-		public List<TerminalNode> Identifier() { return getTokens(CoreParsers.Identifier); }
+		public List<TerminalNode> Identifier() { return getTokens(BlockState.Identifier); }
 		public TerminalNode Identifier(int i) {
-			return getToken(CoreParsers.Identifier, i);
+			return getToken(BlockState.Identifier, i);
 		}
-		public TerminalNode Colon() { return getToken(CoreParsers.Colon, 0); }
+		public TerminalNode Colon() { return getToken(BlockState.Colon, 0); }
 		public ReferenceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -143,19 +257,19 @@ public class CoreParsers extends Parser {
 
 	public final ReferenceContext reference() throws RecognitionException {
 		ReferenceContext _localctx = new ReferenceContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_reference);
+		enterRule(_localctx, 4, RULE_reference);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(6);
+			setState(29);
 			match(Quote);
-			setState(7);
+			setState(30);
 			match(Identifier);
-			setState(8);
+			setState(31);
 			match(Colon);
-			setState(9);
+			setState(32);
 			match(Identifier);
-			setState(10);
+			setState(33);
 			match(Quote);
 			}
 		}
@@ -171,10 +285,10 @@ public class CoreParsers extends Parser {
 	}
 
 	public static class VerticalAnchorContext extends ParserRuleContext {
-		public TerminalNode Integer() { return getToken(CoreParsers.Integer, 0); }
-		public TerminalNode Keyword_Absolute() { return getToken(CoreParsers.Keyword_Absolute, 0); }
-		public TerminalNode Keyword_AboveBottom() { return getToken(CoreParsers.Keyword_AboveBottom, 0); }
-		public TerminalNode Keyword_BelowTop() { return getToken(CoreParsers.Keyword_BelowTop, 0); }
+		public TerminalNode Integer() { return getToken(BlockState.Integer, 0); }
+		public TerminalNode Keyword_Absolute() { return getToken(BlockState.Keyword_Absolute, 0); }
+		public TerminalNode Keyword_AboveBottom() { return getToken(BlockState.Keyword_AboveBottom, 0); }
+		public TerminalNode Keyword_BelowTop() { return getToken(BlockState.Keyword_BelowTop, 0); }
 		public VerticalAnchorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -183,12 +297,12 @@ public class CoreParsers extends Parser {
 
 	public final VerticalAnchorContext verticalAnchor() throws RecognitionException {
 		VerticalAnchorContext _localctx = new VerticalAnchorContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_verticalAnchor);
+		enterRule(_localctx, 6, RULE_verticalAnchor);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(12);
+			setState(35);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Keyword_Absolute) | (1L << Keyword_AboveBottom) | (1L << Keyword_BelowTop))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -198,7 +312,7 @@ public class CoreParsers extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(13);
+			setState(36);
 			match(Integer);
 			}
 		}
@@ -214,21 +328,21 @@ public class CoreParsers extends Parser {
 	}
 
 	public static class ReferenceArrayContext extends ParserRuleContext {
-		public TerminalNode SquareOpen() { return getToken(CoreParsers.SquareOpen, 0); }
+		public TerminalNode SquareOpen() { return getToken(BlockState.SquareOpen, 0); }
 		public List<ReferenceContext> reference() {
 			return getRuleContexts(ReferenceContext.class);
 		}
 		public ReferenceContext reference(int i) {
 			return getRuleContext(ReferenceContext.class,i);
 		}
-		public TerminalNode SquareClose() { return getToken(CoreParsers.SquareClose, 0); }
-		public List<TerminalNode> NewLine() { return getTokens(CoreParsers.NewLine); }
+		public TerminalNode SquareClose() { return getToken(BlockState.SquareClose, 0); }
+		public List<TerminalNode> NewLine() { return getTokens(BlockState.NewLine); }
 		public TerminalNode NewLine(int i) {
-			return getToken(CoreParsers.NewLine, i);
+			return getToken(BlockState.NewLine, i);
 		}
-		public List<TerminalNode> Comma() { return getTokens(CoreParsers.Comma); }
+		public List<TerminalNode> Comma() { return getTokens(BlockState.Comma); }
 		public TerminalNode Comma(int i) {
-			return getToken(CoreParsers.Comma, i);
+			return getToken(BlockState.Comma, i);
 		}
 		public ReferenceArrayContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -238,119 +352,119 @@ public class CoreParsers extends Parser {
 
 	public final ReferenceArrayContext referenceArray() throws RecognitionException {
 		ReferenceArrayContext _localctx = new ReferenceArrayContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_referenceArray);
+		enterRule(_localctx, 8, RULE_referenceArray);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(15);
+			setState(38);
 			match(SquareOpen);
-			setState(19);
+			setState(42);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==NewLine) {
 				{
 				{
-				setState(16);
+				setState(39);
 				match(NewLine);
 				}
 				}
-				setState(21);
+				setState(44);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(22);
-			reference();
-			setState(26);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					{
-					setState(23);
-					match(NewLine);
-					}
-					} 
-				}
-				setState(28);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
-			}
-			setState(39);
-			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					{
-					{
-					setState(29);
-					match(Comma);
-					setState(33);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-					while (_la==NewLine) {
-						{
-						{
-						setState(30);
-						match(NewLine);
-						}
-						}
-						setState(35);
-						_errHandler.sync(this);
-						_la = _input.LA(1);
-					}
-					setState(36);
-					reference();
-					}
-					} 
-				}
-				setState(41);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
-			}
 			setState(45);
+			reference();
+			setState(49);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(42);
+					setState(46);
 					match(NewLine);
 					}
 					} 
 				}
-				setState(47);
+				setState(51);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			}
-			setState(49);
+			setState(62);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(52);
+					match(Comma);
+					setState(56);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+					while (_la==NewLine) {
+						{
+						{
+						setState(53);
+						match(NewLine);
+						}
+						}
+						setState(58);
+						_errHandler.sync(this);
+						_la = _input.LA(1);
+					}
+					setState(59);
+					reference();
+					}
+					} 
+				}
+				setState(64);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
+			}
+			setState(68);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(65);
+					match(NewLine);
+					}
+					} 
+				}
+				setState(70);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+			}
+			setState(72);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==Comma) {
 				{
-				setState(48);
+				setState(71);
 				match(Comma);
 				}
 			}
 
-			setState(54);
+			setState(77);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==NewLine) {
 				{
 				{
-				setState(51);
+				setState(74);
 				match(NewLine);
 				}
 				}
-				setState(56);
+				setState(79);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(57);
+			setState(80);
 			match(SquareClose);
 			}
 		}
@@ -366,23 +480,28 @@ public class CoreParsers extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3<>\4\2\t\2\4\3\t\3"+
-		"\4\4\t\4\3\2\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\4\3\4\7\4\24\n\4\f\4\16"+
-		"\4\27\13\4\3\4\3\4\7\4\33\n\4\f\4\16\4\36\13\4\3\4\3\4\7\4\"\n\4\f\4\16"+
-		"\4%\13\4\3\4\7\4(\n\4\f\4\16\4+\13\4\3\4\7\4.\n\4\f\4\16\4\61\13\4\3\4"+
-		"\5\4\64\n\4\3\4\7\4\67\n\4\f\4\16\4:\13\4\3\4\3\4\3\4\2\2\5\2\4\6\2\3"+
-		"\3\2\"$\2A\2\b\3\2\2\2\4\16\3\2\2\2\6\21\3\2\2\2\b\t\7;\2\2\t\n\7<\2\2"+
-		"\n\13\7\63\2\2\13\f\7<\2\2\f\r\7;\2\2\r\3\3\2\2\2\16\17\t\2\2\2\17\20"+
-		"\7/\2\2\20\5\3\2\2\2\21\25\7\66\2\2\22\24\7\62\2\2\23\22\3\2\2\2\24\27"+
-		"\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\30\3\2\2\2\27\25\3\2\2\2\30\34"+
-		"\5\2\2\2\31\33\7\62\2\2\32\31\3\2\2\2\33\36\3\2\2\2\34\32\3\2\2\2\34\35"+
-		"\3\2\2\2\35)\3\2\2\2\36\34\3\2\2\2\37#\78\2\2 \"\7\62\2\2! \3\2\2\2\""+
-		"%\3\2\2\2#!\3\2\2\2#$\3\2\2\2$&\3\2\2\2%#\3\2\2\2&(\5\2\2\2\'\37\3\2\2"+
-		"\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*/\3\2\2\2+)\3\2\2\2,.\7\62\2\2-,\3\2"+
-		"\2\2.\61\3\2\2\2/-\3\2\2\2/\60\3\2\2\2\60\63\3\2\2\2\61/\3\2\2\2\62\64"+
-		"\78\2\2\63\62\3\2\2\2\63\64\3\2\2\2\648\3\2\2\2\65\67\7\62\2\2\66\65\3"+
-		"\2\2\2\67:\3\2\2\28\66\3\2\2\289\3\2\2\29;\3\2\2\2:8\3\2\2\2;<\7\67\2"+
-		"\2<\7\3\2\2\2\t\25\34#)/\638";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3<U\4\2\t\2\4\3\t\3"+
+		"\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\7\2\17\n\2\f\2\16\2\22\13\2\3\2\7\2\25"+
+		"\n\2\f\2\16\2\30\13\2\3\2\3\2\3\3\3\3\5\3\36\n\3\3\4\3\4\3\4\3\4\3\4\3"+
+		"\4\3\5\3\5\3\5\3\6\3\6\7\6+\n\6\f\6\16\6.\13\6\3\6\3\6\7\6\62\n\6\f\6"+
+		"\16\6\65\13\6\3\6\3\6\7\69\n\6\f\6\16\6<\13\6\3\6\7\6?\n\6\f\6\16\6B\13"+
+		"\6\3\6\7\6E\n\6\f\6\16\6H\13\6\3\6\5\6K\n\6\3\6\7\6N\n\6\f\6\16\6Q\13"+
+		"\6\3\6\3\6\3\6\2\2\7\2\4\6\b\n\2\3\3\2\"$\2Y\2\f\3\2\2\2\4\33\3\2\2\2"+
+		"\6\37\3\2\2\2\b%\3\2\2\2\n(\3\2\2\2\f\20\7\60\2\2\r\17\7\62\2\2\16\r\3"+
+		"\2\2\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21\26\3\2\2\2\22\20\3"+
+		"\2\2\2\23\25\7\62\2\2\24\23\3\2\2\2\25\30\3\2\2\2\26\24\3\2\2\2\26\27"+
+		"\3\2\2\2\27\31\3\2\2\2\30\26\3\2\2\2\31\32\7\61\2\2\32\3\3\2\2\2\33\35"+
+		"\5\6\4\2\34\36\5\2\2\2\35\34\3\2\2\2\35\36\3\2\2\2\36\5\3\2\2\2\37 \7"+
+		";\2\2 !\7<\2\2!\"\7\63\2\2\"#\7<\2\2#$\7;\2\2$\7\3\2\2\2%&\t\2\2\2&\'"+
+		"\7/\2\2\'\t\3\2\2\2(,\7\66\2\2)+\7\62\2\2*)\3\2\2\2+.\3\2\2\2,*\3\2\2"+
+		"\2,-\3\2\2\2-/\3\2\2\2.,\3\2\2\2/\63\5\6\4\2\60\62\7\62\2\2\61\60\3\2"+
+		"\2\2\62\65\3\2\2\2\63\61\3\2\2\2\63\64\3\2\2\2\64@\3\2\2\2\65\63\3\2\2"+
+		"\2\66:\78\2\2\679\7\62\2\28\67\3\2\2\29<\3\2\2\2:8\3\2\2\2:;\3\2\2\2;"+
+		"=\3\2\2\2<:\3\2\2\2=?\5\6\4\2>\66\3\2\2\2?B\3\2\2\2@>\3\2\2\2@A\3\2\2"+
+		"\2AF\3\2\2\2B@\3\2\2\2CE\7\62\2\2DC\3\2\2\2EH\3\2\2\2FD\3\2\2\2FG\3\2"+
+		"\2\2GJ\3\2\2\2HF\3\2\2\2IK\78\2\2JI\3\2\2\2JK\3\2\2\2KO\3\2\2\2LN\7\62"+
+		"\2\2ML\3\2\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PR\3\2\2\2QO\3\2\2\2RS\7\67"+
+		"\2\2S\13\3\2\2\2\f\20\26\35,\63:@FJO";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

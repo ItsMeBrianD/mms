@@ -46,3 +46,7 @@ results.noise.entries().forEach(([key, value]) => {
 })
 
 
+
+console.log("---")
+
+console.log(JSON.stringify(Object.fromEntries(results.surface_rules.rules.entries()), null, 2))
