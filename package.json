@@ -1,0 +1,20 @@
+{
+  "name": "mms",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "antlr4": "^4.13.2",
+    "prettier": "^3.6.2",
+    "tree-sitter": "^0.25.0",
+    "valibot": "^1.1.0"
+  },
+  "scripts": {
+    "rebuild:grammer": "antlr4 -Dlanguage=TypeScript ./grammar/MMSLex.g4 -o ./src && antlr4 -Dlanguage=TypeScript ./grammar/MMSParse.g4 -lib ./src/grammar -o ./src"
+  }
+}

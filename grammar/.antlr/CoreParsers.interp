@@ -1,0 +1,38 @@
+token literal names:
+null
+'density'
+'noise'
+'constant'
+'xz_scale'
+'y_scale'
+null
+null
+null
+null
+'{'
+null
+null
+':'
+
+token symbolic names:
+null
+DensityFunctionStart
+Keyword_Noise
+Keyword_Constant
+Keyword_XZScale
+Keyword_YScale
+Identifier
+Whitespace
+Float
+Integer
+BlockStart
+BlockEnd
+NewLine
+Colon
+
+rule names:
+reference
+
+
+atn:
+[3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 15, 9, 4, 2, 9, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 2, 2, 3, 2, 2, 2, 2, 7, 2, 4, 3, 2, 2, 2, 4, 5, 7, 8, 2, 2, 5, 6, 7, 15, 2, 2, 6, 7, 7, 8, 2, 2, 7, 3, 3, 2, 2, 2, 2]
