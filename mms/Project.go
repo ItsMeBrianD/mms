@@ -6,7 +6,7 @@ import (
 
 	antlr "github.com/antlr4-go/antlr/v4"
 	"github.com/itsmebriand/mms/mms/grammars"
-	"github.com/itsmebriand/mms/walkers/surface_rules"
+	"github.com/itsmebriand/mms/mms/surface_rules"
 )
 
 type Project struct {
