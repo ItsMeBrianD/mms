@@ -34,7 +34,8 @@ type SequenceRule struct {
 func (r SequenceRule) Type() RuleType { return SequenceRuleType }
 
 type SurfaceReferenceRule struct {
-	Ref string
+	Namespace string
+	Name      string
 }
 
 func (r SurfaceReferenceRule) Type() RuleType { return ReferenceRuleType }
@@ -52,6 +53,7 @@ type SurfaceRuleSerializer struct {
 func (l *SurfaceRuleSerializer) Flush() error {
 	for namespace, rules := range l.NamespaceRules {
 		os.Mkdir("mms_build/"+namespace+"/_debug/surface_rules", 0755)
+		fmt.Printf("Namespace %s has %d rules\n", namespace, len(rules))
 		for name, rule := range rules {
 			file, err := os.OpenFile("mms_build/"+namespace+"/_debug/surface_rules/"+name+".json", os.O_CREATE|os.O_WRONLY, 0644)
 			if err != nil {

@@ -44,12 +44,6 @@ func (s *BaseMMSParserListener) EnterSurfaceDeclaration(ctx *SurfaceDeclarationC
 // ExitSurfaceDeclaration is called when production surfaceDeclaration is exited.
 func (s *BaseMMSParserListener) ExitSurfaceDeclaration(ctx *SurfaceDeclarationContext) {}
 
-// EnterSurfaceInline is called when production surfaceInline is entered.
-func (s *BaseMMSParserListener) EnterSurfaceInline(ctx *SurfaceInlineContext) {}
-
-// ExitSurfaceInline is called when production surfaceInline is exited.
-func (s *BaseMMSParserListener) ExitSurfaceInline(ctx *SurfaceInlineContext) {}
-
 // EnterSurfaceDefinition is called when production surfaceDefinition is entered.
 func (s *BaseMMSParserListener) EnterSurfaceDefinition(ctx *SurfaceDefinitionContext) {}
 

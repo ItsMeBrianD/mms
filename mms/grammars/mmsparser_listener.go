@@ -19,9 +19,6 @@ type MMSParserListener interface {
 	// EnterSurfaceDeclaration is called when entering the surfaceDeclaration production.
 	EnterSurfaceDeclaration(c *SurfaceDeclarationContext)
 
-	// EnterSurfaceInline is called when entering the surfaceInline production.
-	EnterSurfaceInline(c *SurfaceInlineContext)
-
 	// EnterSurfaceDefinition is called when entering the surfaceDefinition production.
 	EnterSurfaceDefinition(c *SurfaceDefinitionContext)
 
@@ -57,9 +54,6 @@ type MMSParserListener interface {
 
 	// ExitSurfaceDeclaration is called when exiting the surfaceDeclaration production.
 	ExitSurfaceDeclaration(c *SurfaceDeclarationContext)
-
-	// ExitSurfaceInline is called when exiting the surfaceInline production.
-	ExitSurfaceInline(c *SurfaceInlineContext)
 
 	// ExitSurfaceDefinition is called when exiting the surfaceDefinition production.
 	ExitSurfaceDefinition(c *SurfaceDefinitionContext)

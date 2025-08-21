@@ -1,0 +1,13 @@
+{
+  "sequence": [
+    {
+      "block": "minecraft:stone"
+    },
+    {
+      "block": "minecraft:grass"
+    },
+    {
+      "block": "minecraft:air"
+    }
+  ]
+}

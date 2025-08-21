@@ -1,6 +1,6 @@
 namespace demo;
 
-surface mySurface {
-    rule myRule block minecraft:stone
-    rule myRule2 block minecraft:grass
+surface {
+    rule MultiRule block minecraft:stone
+    rule MultiRule2 block minecraft:grass
 }

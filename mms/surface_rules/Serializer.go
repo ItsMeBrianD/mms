@@ -7,8 +7,8 @@ import (
 	"github.com/itsmebriand/mms/mms/grammars"
 )
 
-func (l *SurfaceRuleSerializer) ExitNamespaceDeclaration(ctx *grammars.NamespaceDeclarationContext) {
-	namespace := ctx.Identifier().GetText()
+func (l *SurfaceRuleSerializer) ExitMmsFile(ctx *grammars.MmsFileContext) {
+	namespace := ctx.NamespaceDeclaration().Identifier().GetText()
 
 	if _, ok := l.NamespaceRules[namespace]; !ok {
 		l.NamespaceRules[namespace] = make(map[string]Rule)
@@ -16,13 +16,18 @@ func (l *SurfaceRuleSerializer) ExitNamespaceDeclaration(ctx *grammars.Namespace
 
 	for k, v := range l.rulesByName {
 		l.NamespaceRules[namespace][k] = v
+		l.rulesByName = make(map[string]Rule)
 	}
 }
 
 func (l *SurfaceRuleSerializer) ExitSurfaceRuleReference(ctx *grammars.SurfaceRuleReferenceContext) {
 	if _, ok := ctx.GetParent().(*grammars.SurfaceRule_SequenceContext); ok {
+		identifiers := ctx.Reference().AllIdentifier()
+		namespace := identifiers[0].GetText()
+		ruleName := identifiers[1].GetText()
 		rule := SurfaceReferenceRule{
-			Ref: ctx.Identifier().GetText(),
+			Namespace: namespace,
+			Name:      ruleName,
 		}
 		l.ruleStack = append(l.ruleStack, rule)
 	}
@@ -65,22 +70,26 @@ func (l *SurfaceRuleSerializer) ExitSurfaceRuleDeclaration(ctx *grammars.Surface
 	}
 }
 
-func ReplaceRefs(rulesByName map[string]Rule, sequence SequenceRule) SequenceRule {
+func ReplaceRefs(rulesByNamespace map[string]map[string]Rule, sequence SequenceRule) SequenceRule {
 	for i, rule := range sequence.Sequence {
 		if rule.Type() == ReferenceRuleType {
-			sequence.Sequence[i] = rulesByName[rule.(SurfaceReferenceRule).Ref]
+			namespace := rule.(SurfaceReferenceRule).Namespace
+			name := rule.(SurfaceReferenceRule).Name
+			sequence.Sequence[i] = rulesByNamespace[namespace][name]
 		} else if rule.Type() == SequenceRuleType {
-			sequence.Sequence[i] = ReplaceRefs(rulesByName, rule.(SequenceRule))
+			sequence.Sequence[i] = ReplaceRefs(rulesByNamespace, rule.(SequenceRule))
 		}
 	}
 	return sequence
 }
 
 func (l *SurfaceRuleSerializer) Finalize() {
-	for name, rule := range l.rulesByName {
-		if rule.Type() == SequenceRuleType {
-			replaced := ReplaceRefs(l.rulesByName, rule.(SequenceRule))
-			l.rulesByName[name] = replaced
+	for _, rules := range l.NamespaceRules {
+		for name, rule := range rules {
+			if rule.Type() == SequenceRuleType {
+				replaced := ReplaceRefs(l.NamespaceRules, rule.(SequenceRule))
+				rules[name] = replaced
+			}
 		}
 	}
 }

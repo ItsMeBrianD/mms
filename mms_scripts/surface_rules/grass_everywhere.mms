@@ -1,5 +1,5 @@
 namespace demo;
 
-surface mySurface {
+surface {
     rule SimpleGrass block minecraft:grass
 }

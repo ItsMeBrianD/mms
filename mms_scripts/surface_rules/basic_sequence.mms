@@ -1,7 +1,7 @@
-namespace demo;
+namespace surface_rules;
 
-surface mySurface {
-    rule myRule sequence [
+surface {
+    rule SurfaceSequenceRule sequence [
         block minecraft:stone
         block minecraft:grass
         block minecraft:air

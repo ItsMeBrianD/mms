@@ -43,18 +43,24 @@ func (p *Project) Parse() error {
 		files = append(files, p.Root)
 	}
 
-	trees := make(map[string][]grammars.IMmsFileContext, 0)
+	namespaces := make(map[string][]grammars.IMmsFileContext, 0)
 
 	for _, file := range files {
 		data, err := os.ReadFile(file)
 		if err != nil {
 			return err
 		}
-		p.ParseFile(string(data))
+		ctx, err := p.ParseFile(string(data))
+		if err != nil {
+			return err
+		}
+		namespace := ctx.NamespaceDeclaration().Identifier().GetText()
+		namespaces[namespace] = append(namespaces[namespace], ctx)
+
 	}
 
 	os.Mkdir("mms_build", 0755)
-	for namespace := range trees {
+	for namespace := range namespaces {
 		os.RemoveAll("mms_build/" + namespace)
 		os.Mkdir("mms_build/"+namespace, 0755)
 		os.Mkdir("mms_build/"+namespace+"/_debug", 0755)
@@ -64,22 +70,22 @@ func (p *Project) Parse() error {
 	return nil
 }
 
-func (p *Project) ParseFile(content string) error {
+func (p *Project) ParseFile(content string) (*grammars.MmsFileContext, error) {
 	stream := antlr.NewInputStream(content)
 	if stream == nil {
-		return errors.New("failed to create input stream")
+		return nil, errors.New("failed to create input stream")
 	}
 	lexer := grammars.NewMMSLexer(stream)
 	if lexer == nil {
-		return errors.New("failed to create lexer")
+		return nil, errors.New("failed to create lexer")
 	}
 	p.parser.SetTokenStream(antlr.NewCommonTokenStream(lexer, 0))
 
 	tree := p.parser.MmsFile()
 	if tree == nil {
-		return errors.New("failed to parse file")
+		return nil, errors.New("failed to parse file")
 	}
 
-	return nil
+	return tree.(*grammars.MmsFileContext), nil
 
 }

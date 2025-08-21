@@ -25,15 +25,14 @@ public class MMS_SurfaceRules extends Parser {
 		CurlyOpen=25, CurlyClose=26, RoundOpen=27, RoundClose=28, Bang=29, Colon=30, 
 		SemiColon=31, Identifier=32;
 	public static final int
-		RULE_surfaceDeclaration = 0, RULE_surfaceInline = 1, RULE_surfaceDefinition = 2, 
-		RULE_surfaceRuleReference = 3, RULE_surfaceRuleDeclaration = 4, RULE_surfaceRule = 5, 
-		RULE_surfaceRule_Conditional = 6, RULE_surfaceRule_Block = 7, RULE_surfaceRule_Sequence = 8, 
-		RULE_reference = 9;
+		RULE_surfaceDeclaration = 0, RULE_surfaceDefinition = 1, RULE_surfaceRuleReference = 2, 
+		RULE_surfaceRuleDeclaration = 3, RULE_surfaceRule = 4, RULE_surfaceRule_Conditional = 5, 
+		RULE_surfaceRule_Block = 6, RULE_surfaceRule_Sequence = 7, RULE_reference = 8;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"surfaceDeclaration", "surfaceInline", "surfaceDefinition", "surfaceRuleReference", 
-			"surfaceRuleDeclaration", "surfaceRule", "surfaceRule_Conditional", "surfaceRule_Block", 
-			"surfaceRule_Sequence", "reference"
+			"surfaceDeclaration", "surfaceDefinition", "surfaceRuleReference", "surfaceRuleDeclaration", 
+			"surfaceRule", "surfaceRule_Conditional", "surfaceRule_Block", "surfaceRule_Sequence", 
+			"reference"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -113,7 +112,6 @@ public class MMS_SurfaceRules extends Parser {
 
 	public static class SurfaceDeclarationContext extends ParserRuleContext {
 		public TerminalNode Keyword_Surface() { return getToken(MMS_SurfaceRules.Keyword_Surface, 0); }
-		public TerminalNode Identifier() { return getToken(MMS_SurfaceRules.Identifier, 0); }
 		public SurfaceDefinitionContext surfaceDefinition() {
 			return getRuleContext(SurfaceDefinitionContext.class,0);
 		}
@@ -129,45 +127,9 @@ public class MMS_SurfaceRules extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20);
+			setState(18);
 			match(Keyword_Surface);
-			setState(21);
-			match(Identifier);
-			setState(22);
-			surfaceDefinition();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class SurfaceInlineContext extends ParserRuleContext {
-		public TerminalNode Keyword_Surface() { return getToken(MMS_SurfaceRules.Keyword_Surface, 0); }
-		public SurfaceDefinitionContext surfaceDefinition() {
-			return getRuleContext(SurfaceDefinitionContext.class,0);
-		}
-		public SurfaceInlineContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_surfaceInline; }
-	}
-
-	public final SurfaceInlineContext surfaceInline() throws RecognitionException {
-		SurfaceInlineContext _localctx = new SurfaceInlineContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_surfaceInline);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(24);
-			match(Keyword_Surface);
-			setState(25);
+			setState(19);
 			surfaceDefinition();
 			}
 		}
@@ -203,56 +165,56 @@ public class MMS_SurfaceRules extends Parser {
 
 	public final SurfaceDefinitionContext surfaceDefinition() throws RecognitionException {
 		SurfaceDefinitionContext _localctx = new SurfaceDefinitionContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_surfaceDefinition);
+		enterRule(_localctx, 2, RULE_surfaceDefinition);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(27);
+			setState(21);
 			match(CurlyOpen);
-			setState(29); 
+			setState(23); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(28);
+				setState(22);
 				match(NL);
 				}
 				}
-				setState(31); 
+				setState(25); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==NL );
-			setState(41);
+			setState(35);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==Keyword_Rule) {
 				{
 				{
-				setState(33);
+				setState(27);
 				surfaceRuleDeclaration();
-				setState(35); 
+				setState(29); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(34);
+					setState(28);
 					match(NL);
 					}
 					}
-					setState(37); 
+					setState(31); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==NL );
 				}
 				}
-				setState(43);
+				setState(37);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(44);
+			setState(38);
 			match(CurlyClose);
 			}
 		}
@@ -270,7 +232,9 @@ public class MMS_SurfaceRules extends Parser {
 	public static class SurfaceRuleReferenceContext extends ParserRuleContext {
 		public TerminalNode Keyword_Rule() { return getToken(MMS_SurfaceRules.Keyword_Rule, 0); }
 		public TerminalNode RoundOpen() { return getToken(MMS_SurfaceRules.RoundOpen, 0); }
-		public TerminalNode Identifier() { return getToken(MMS_SurfaceRules.Identifier, 0); }
+		public ReferenceContext reference() {
+			return getRuleContext(ReferenceContext.class,0);
+		}
 		public TerminalNode RoundClose() { return getToken(MMS_SurfaceRules.RoundClose, 0); }
 		public SurfaceRuleReferenceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -280,17 +244,17 @@ public class MMS_SurfaceRules extends Parser {
 
 	public final SurfaceRuleReferenceContext surfaceRuleReference() throws RecognitionException {
 		SurfaceRuleReferenceContext _localctx = new SurfaceRuleReferenceContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_surfaceRuleReference);
+		enterRule(_localctx, 4, RULE_surfaceRuleReference);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
+			setState(40);
 			match(Keyword_Rule);
-			setState(47);
+			setState(41);
 			match(RoundOpen);
-			setState(48);
-			match(Identifier);
-			setState(49);
+			setState(42);
+			reference();
+			setState(43);
 			match(RoundClose);
 			}
 		}
@@ -319,15 +283,15 @@ public class MMS_SurfaceRules extends Parser {
 
 	public final SurfaceRuleDeclarationContext surfaceRuleDeclaration() throws RecognitionException {
 		SurfaceRuleDeclarationContext _localctx = new SurfaceRuleDeclarationContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_surfaceRuleDeclaration);
+		enterRule(_localctx, 6, RULE_surfaceRuleDeclaration);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(45);
 			match(Keyword_Rule);
-			setState(52);
+			setState(46);
 			match(Identifier);
-			setState(53);
+			setState(47);
 			surfaceRule();
 			}
 		}
@@ -360,29 +324,29 @@ public class MMS_SurfaceRules extends Parser {
 
 	public final SurfaceRuleContext surfaceRule() throws RecognitionException {
 		SurfaceRuleContext _localctx = new SurfaceRuleContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_surfaceRule);
+		enterRule(_localctx, 8, RULE_surfaceRule);
 		try {
-			setState(58);
+			setState(52);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case Keyword_If:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(55);
+				setState(49);
 				surfaceRule_Conditional();
 				}
 				break;
 			case Keyword_Block:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(56);
+				setState(50);
 				surfaceRule_Block();
 				}
 				break;
 			case Keyword_Sequence:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(57);
+				setState(51);
 				surfaceRule_Sequence();
 				}
 				break;
@@ -413,15 +377,15 @@ public class MMS_SurfaceRules extends Parser {
 
 	public final SurfaceRule_ConditionalContext surfaceRule_Conditional() throws RecognitionException {
 		SurfaceRule_ConditionalContext _localctx = new SurfaceRule_ConditionalContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_surfaceRule_Conditional);
+		enterRule(_localctx, 10, RULE_surfaceRule_Conditional);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(60);
+			setState(54);
 			match(Keyword_If);
-			setState(61);
+			setState(55);
 			match(SquareOpen);
-			setState(62);
+			setState(56);
 			match(SquareClose);
 			}
 		}
@@ -449,13 +413,13 @@ public class MMS_SurfaceRules extends Parser {
 
 	public final SurfaceRule_BlockContext surfaceRule_Block() throws RecognitionException {
 		SurfaceRule_BlockContext _localctx = new SurfaceRule_BlockContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_surfaceRule_Block);
+		enterRule(_localctx, 12, RULE_surfaceRule_Block);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(64);
+			setState(58);
 			match(Keyword_Block);
-			setState(65);
+			setState(59);
 			reference();
 			}
 		}
@@ -498,76 +462,76 @@ public class MMS_SurfaceRules extends Parser {
 
 	public final SurfaceRule_SequenceContext surfaceRule_Sequence() throws RecognitionException {
 		SurfaceRule_SequenceContext _localctx = new SurfaceRule_SequenceContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_surfaceRule_Sequence);
+		enterRule(_localctx, 14, RULE_surfaceRule_Sequence);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
+			setState(61);
 			match(Keyword_Sequence);
-			setState(68);
+			setState(62);
 			match(SquareOpen);
-			setState(72);
+			setState(66);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==NL) {
 				{
 				{
-				setState(69);
+				setState(63);
 				match(NL);
 				}
 				}
-				setState(74);
+				setState(68);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(87);
+			setState(81);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Keyword_Rule) | (1L << Keyword_Sequence) | (1L << Keyword_Block) | (1L << Keyword_If))) != 0)) {
 				{
 				{
-				setState(77);
+				setState(71);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case Keyword_Sequence:
 				case Keyword_Block:
 				case Keyword_If:
 					{
-					setState(75);
+					setState(69);
 					surfaceRule();
 					}
 					break;
 				case Keyword_Rule:
 					{
-					setState(76);
+					setState(70);
 					surfaceRuleReference();
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(82);
+				setState(76);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==NL) {
 					{
 					{
-					setState(79);
+					setState(73);
 					match(NL);
 					}
 					}
-					setState(84);
+					setState(78);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 				}
-				setState(89);
+				setState(83);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(90);
+			setState(84);
 			match(SquareClose);
 			}
 		}
@@ -596,15 +560,15 @@ public class MMS_SurfaceRules extends Parser {
 
 	public final ReferenceContext reference() throws RecognitionException {
 		ReferenceContext _localctx = new ReferenceContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_reference);
+		enterRule(_localctx, 16, RULE_reference);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(92);
+			setState(86);
 			match(Identifier);
-			setState(93);
+			setState(87);
 			match(Colon);
-			setState(94);
+			setState(88);
 			match(Identifier);
 			}
 		}
@@ -620,30 +584,29 @@ public class MMS_SurfaceRules extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"c\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3"+
-		"\2\3\2\3\2\3\2\3\3\3\3\3\3\3\4\3\4\6\4 \n\4\r\4\16\4!\3\4\3\4\6\4&\n\4"+
-		"\r\4\16\4\'\7\4*\n\4\f\4\16\4-\13\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\6\3"+
-		"\6\3\6\3\6\3\7\3\7\3\7\5\7=\n\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\n\3\n\3"+
-		"\n\7\nI\n\n\f\n\16\nL\13\n\3\n\3\n\5\nP\n\n\3\n\7\nS\n\n\f\n\16\nV\13"+
-		"\n\7\nX\n\n\f\n\16\n[\13\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\2\2\f\2\4"+
-		"\6\b\n\f\16\20\22\24\2\2\2a\2\26\3\2\2\2\4\32\3\2\2\2\6\35\3\2\2\2\b\60"+
-		"\3\2\2\2\n\65\3\2\2\2\f<\3\2\2\2\16>\3\2\2\2\20B\3\2\2\2\22E\3\2\2\2\24"+
-		"^\3\2\2\2\26\27\7\3\2\2\27\30\7\"\2\2\30\31\5\6\4\2\31\3\3\2\2\2\32\33"+
-		"\7\3\2\2\33\34\5\6\4\2\34\5\3\2\2\2\35\37\7\33\2\2\36 \7\30\2\2\37\36"+
-		"\3\2\2\2 !\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2\"+\3\2\2\2#%\5\n\6\2$&\7\30"+
-		"\2\2%$\3\2\2\2&\'\3\2\2\2\'%\3\2\2\2\'(\3\2\2\2(*\3\2\2\2)#\3\2\2\2*-"+
-		"\3\2\2\2+)\3\2\2\2+,\3\2\2\2,.\3\2\2\2-+\3\2\2\2./\7\34\2\2/\7\3\2\2\2"+
-		"\60\61\7\4\2\2\61\62\7\35\2\2\62\63\7\"\2\2\63\64\7\36\2\2\64\t\3\2\2"+
-		"\2\65\66\7\4\2\2\66\67\7\"\2\2\678\5\f\7\28\13\3\2\2\29=\5\16\b\2:=\5"+
-		"\20\t\2;=\5\22\n\2<9\3\2\2\2<:\3\2\2\2<;\3\2\2\2=\r\3\2\2\2>?\7\24\2\2"+
-		"?@\7\31\2\2@A\7\32\2\2A\17\3\2\2\2BC\7\7\2\2CD\5\24\13\2D\21\3\2\2\2E"+
-		"F\7\6\2\2FJ\7\31\2\2GI\7\30\2\2HG\3\2\2\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2"+
-		"\2KY\3\2\2\2LJ\3\2\2\2MP\5\f\7\2NP\5\b\5\2OM\3\2\2\2ON\3\2\2\2PT\3\2\2"+
-		"\2QS\7\30\2\2RQ\3\2\2\2SV\3\2\2\2TR\3\2\2\2TU\3\2\2\2UX\3\2\2\2VT\3\2"+
-		"\2\2WO\3\2\2\2X[\3\2\2\2YW\3\2\2\2YZ\3\2\2\2Z\\\3\2\2\2[Y\3\2\2\2\\]\7"+
-		"\32\2\2]\23\3\2\2\2^_\7\"\2\2_`\7 \2\2`a\7\"\2\2a\25\3\2\2\2\n!\'+<JO"+
-		"TY";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"]\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
+		"\3\3\3\3\6\3\32\n\3\r\3\16\3\33\3\3\3\3\6\3 \n\3\r\3\16\3!\7\3$\n\3\f"+
+		"\3\16\3\'\13\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6"+
+		"\5\6\67\n\6\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\t\3\t\3\t\7\tC\n\t\f\t\16\t"+
+		"F\13\t\3\t\3\t\5\tJ\n\t\3\t\7\tM\n\t\f\t\16\tP\13\t\7\tR\n\t\f\t\16\t"+
+		"U\13\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\2\2\\"+
+		"\2\24\3\2\2\2\4\27\3\2\2\2\6*\3\2\2\2\b/\3\2\2\2\n\66\3\2\2\2\f8\3\2\2"+
+		"\2\16<\3\2\2\2\20?\3\2\2\2\22X\3\2\2\2\24\25\7\3\2\2\25\26\5\4\3\2\26"+
+		"\3\3\2\2\2\27\31\7\33\2\2\30\32\7\30\2\2\31\30\3\2\2\2\32\33\3\2\2\2\33"+
+		"\31\3\2\2\2\33\34\3\2\2\2\34%\3\2\2\2\35\37\5\b\5\2\36 \7\30\2\2\37\36"+
+		"\3\2\2\2 !\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2\"$\3\2\2\2#\35\3\2\2\2$\'\3"+
+		"\2\2\2%#\3\2\2\2%&\3\2\2\2&(\3\2\2\2\'%\3\2\2\2()\7\34\2\2)\5\3\2\2\2"+
+		"*+\7\4\2\2+,\7\35\2\2,-\5\22\n\2-.\7\36\2\2.\7\3\2\2\2/\60\7\4\2\2\60"+
+		"\61\7\"\2\2\61\62\5\n\6\2\62\t\3\2\2\2\63\67\5\f\7\2\64\67\5\16\b\2\65"+
+		"\67\5\20\t\2\66\63\3\2\2\2\66\64\3\2\2\2\66\65\3\2\2\2\67\13\3\2\2\28"+
+		"9\7\24\2\29:\7\31\2\2:;\7\32\2\2;\r\3\2\2\2<=\7\7\2\2=>\5\22\n\2>\17\3"+
+		"\2\2\2?@\7\6\2\2@D\7\31\2\2AC\7\30\2\2BA\3\2\2\2CF\3\2\2\2DB\3\2\2\2D"+
+		"E\3\2\2\2ES\3\2\2\2FD\3\2\2\2GJ\5\n\6\2HJ\5\6\4\2IG\3\2\2\2IH\3\2\2\2"+
+		"JN\3\2\2\2KM\7\30\2\2LK\3\2\2\2MP\3\2\2\2NL\3\2\2\2NO\3\2\2\2OR\3\2\2"+
+		"\2PN\3\2\2\2QI\3\2\2\2RU\3\2\2\2SQ\3\2\2\2ST\3\2\2\2TV\3\2\2\2US\3\2\2"+
+		"\2VW\7\32\2\2W\21\3\2\2\2XY\7\"\2\2YZ\7 \2\2Z[\7\"\2\2[\23\3\2\2\2\n\33"+
+		"!%\66DINS";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

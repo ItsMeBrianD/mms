@@ -1,11 +1,11 @@
-namespace demo;
+namespace reference_demo;
 
-surface mySurface {
-    rule myRule sequence [
+surface {
+    rule Referencer sequence [
         block minecraft:stone
         block minecraft:grass
-        rule(myRule2)
+        rule(demo:Reference)
     ]
 
-    rule myRule2 block minecraft:air
+    rule Referenced block minecraft:air
 }

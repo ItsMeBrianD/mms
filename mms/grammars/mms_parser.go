@@ -50,71 +50,68 @@ func mmsparserParserInit() {
 	}
 	staticData.RuleNames = []string{
 		"namespaceDeclaration", "statement", "mmsFile", "surfaceDeclaration",
-		"surfaceInline", "surfaceDefinition", "surfaceRuleReference", "surfaceRuleDeclaration",
+		"surfaceDefinition", "surfaceRuleReference", "surfaceRuleDeclaration",
 		"surfaceRule", "surfaceRule_Conditional", "surfaceRule_Block", "surfaceRule_Sequence",
 		"reference",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 32, 144, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 32, 138, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
-		10, 2, 11, 7, 11, 2, 12, 7, 12, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1,
-		2, 5, 2, 34, 8, 2, 10, 2, 12, 2, 37, 9, 2, 1, 2, 1, 2, 5, 2, 41, 8, 2,
-		10, 2, 12, 2, 44, 9, 2, 1, 2, 1, 2, 4, 2, 48, 8, 2, 11, 2, 12, 2, 49, 5,
-		2, 52, 8, 2, 10, 2, 12, 2, 55, 9, 2, 1, 2, 3, 2, 58, 8, 2, 1, 2, 5, 2,
-		61, 8, 2, 10, 2, 12, 2, 64, 9, 2, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 3, 1,
-		4, 1, 4, 1, 4, 1, 5, 1, 5, 4, 5, 77, 8, 5, 11, 5, 12, 5, 78, 1, 5, 1, 5,
-		4, 5, 83, 8, 5, 11, 5, 12, 5, 84, 5, 5, 87, 8, 5, 10, 5, 12, 5, 90, 9,
-		5, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 1,
-		8, 1, 8, 1, 8, 3, 8, 106, 8, 8, 1, 9, 1, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1,
-		10, 1, 11, 1, 11, 1, 11, 5, 11, 118, 8, 11, 10, 11, 12, 11, 121, 9, 11,
-		1, 11, 1, 11, 3, 11, 125, 8, 11, 1, 11, 5, 11, 128, 8, 11, 10, 11, 12,
-		11, 131, 9, 11, 5, 11, 133, 8, 11, 10, 11, 12, 11, 136, 9, 11, 1, 11, 1,
-		11, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 0, 0, 13, 0, 2, 4, 6, 8, 10, 12,
-		14, 16, 18, 20, 22, 24, 0, 0, 145, 0, 26, 1, 0, 0, 0, 2, 30, 1, 0, 0, 0,
-		4, 35, 1, 0, 0, 0, 6, 67, 1, 0, 0, 0, 8, 71, 1, 0, 0, 0, 10, 74, 1, 0,
-		0, 0, 12, 93, 1, 0, 0, 0, 14, 98, 1, 0, 0, 0, 16, 105, 1, 0, 0, 0, 18,
-		107, 1, 0, 0, 0, 20, 111, 1, 0, 0, 0, 22, 114, 1, 0, 0, 0, 24, 139, 1,
-		0, 0, 0, 26, 27, 5, 17, 0, 0, 27, 28, 5, 32, 0, 0, 28, 29, 5, 31, 0, 0,
-		29, 1, 1, 0, 0, 0, 30, 31, 3, 6, 3, 0, 31, 3, 1, 0, 0, 0, 32, 34, 5, 22,
-		0, 0, 33, 32, 1, 0, 0, 0, 34, 37, 1, 0, 0, 0, 35, 33, 1, 0, 0, 0, 35, 36,
-		1, 0, 0, 0, 36, 38, 1, 0, 0, 0, 37, 35, 1, 0, 0, 0, 38, 42, 3, 0, 0, 0,
-		39, 41, 5, 22, 0, 0, 40, 39, 1, 0, 0, 0, 41, 44, 1, 0, 0, 0, 42, 40, 1,
-		0, 0, 0, 42, 43, 1, 0, 0, 0, 43, 53, 1, 0, 0, 0, 44, 42, 1, 0, 0, 0, 45,
-		47, 3, 2, 1, 0, 46, 48, 5, 22, 0, 0, 47, 46, 1, 0, 0, 0, 48, 49, 1, 0,
-		0, 0, 49, 47, 1, 0, 0, 0, 49, 50, 1, 0, 0, 0, 50, 52, 1, 0, 0, 0, 51, 45,
-		1, 0, 0, 0, 52, 55, 1, 0, 0, 0, 53, 51, 1, 0, 0, 0, 53, 54, 1, 0, 0, 0,
-		54, 57, 1, 0, 0, 0, 55, 53, 1, 0, 0, 0, 56, 58, 3, 2, 1, 0, 57, 56, 1,
-		0, 0, 0, 57, 58, 1, 0, 0, 0, 58, 62, 1, 0, 0, 0, 59, 61, 5, 22, 0, 0, 60,
-		59, 1, 0, 0, 0, 61, 64, 1, 0, 0, 0, 62, 60, 1, 0, 0, 0, 62, 63, 1, 0, 0,
-		0, 63, 65, 1, 0, 0, 0, 64, 62, 1, 0, 0, 0, 65, 66, 5, 0, 0, 1, 66, 5, 1,
-		0, 0, 0, 67, 68, 5, 1, 0, 0, 68, 69, 5, 32, 0, 0, 69, 70, 3, 10, 5, 0,
-		70, 7, 1, 0, 0, 0, 71, 72, 5, 1, 0, 0, 72, 73, 3, 10, 5, 0, 73, 9, 1, 0,
-		0, 0, 74, 76, 5, 25, 0, 0, 75, 77, 5, 22, 0, 0, 76, 75, 1, 0, 0, 0, 77,
-		78, 1, 0, 0, 0, 78, 76, 1, 0, 0, 0, 78, 79, 1, 0, 0, 0, 79, 88, 1, 0, 0,
-		0, 80, 82, 3, 14, 7, 0, 81, 83, 5, 22, 0, 0, 82, 81, 1, 0, 0, 0, 83, 84,
-		1, 0, 0, 0, 84, 82, 1, 0, 0, 0, 84, 85, 1, 0, 0, 0, 85, 87, 1, 0, 0, 0,
-		86, 80, 1, 0, 0, 0, 87, 90, 1, 0, 0, 0, 88, 86, 1, 0, 0, 0, 88, 89, 1,
-		0, 0, 0, 89, 91, 1, 0, 0, 0, 90, 88, 1, 0, 0, 0, 91, 92, 5, 26, 0, 0, 92,
-		11, 1, 0, 0, 0, 93, 94, 5, 2, 0, 0, 94, 95, 5, 27, 0, 0, 95, 96, 5, 32,
-		0, 0, 96, 97, 5, 28, 0, 0, 97, 13, 1, 0, 0, 0, 98, 99, 5, 2, 0, 0, 99,
-		100, 5, 32, 0, 0, 100, 101, 3, 16, 8, 0, 101, 15, 1, 0, 0, 0, 102, 106,
-		3, 18, 9, 0, 103, 106, 3, 20, 10, 0, 104, 106, 3, 22, 11, 0, 105, 102,
-		1, 0, 0, 0, 105, 103, 1, 0, 0, 0, 105, 104, 1, 0, 0, 0, 106, 17, 1, 0,
-		0, 0, 107, 108, 5, 18, 0, 0, 108, 109, 5, 23, 0, 0, 109, 110, 5, 24, 0,
-		0, 110, 19, 1, 0, 0, 0, 111, 112, 5, 5, 0, 0, 112, 113, 3, 24, 12, 0, 113,
-		21, 1, 0, 0, 0, 114, 115, 5, 4, 0, 0, 115, 119, 5, 23, 0, 0, 116, 118,
-		5, 22, 0, 0, 117, 116, 1, 0, 0, 0, 118, 121, 1, 0, 0, 0, 119, 117, 1, 0,
-		0, 0, 119, 120, 1, 0, 0, 0, 120, 134, 1, 0, 0, 0, 121, 119, 1, 0, 0, 0,
-		122, 125, 3, 16, 8, 0, 123, 125, 3, 12, 6, 0, 124, 122, 1, 0, 0, 0, 124,
-		123, 1, 0, 0, 0, 125, 129, 1, 0, 0, 0, 126, 128, 5, 22, 0, 0, 127, 126,
-		1, 0, 0, 0, 128, 131, 1, 0, 0, 0, 129, 127, 1, 0, 0, 0, 129, 130, 1, 0,
-		0, 0, 130, 133, 1, 0, 0, 0, 131, 129, 1, 0, 0, 0, 132, 124, 1, 0, 0, 0,
-		133, 136, 1, 0, 0, 0, 134, 132, 1, 0, 0, 0, 134, 135, 1, 0, 0, 0, 135,
-		137, 1, 0, 0, 0, 136, 134, 1, 0, 0, 0, 137, 138, 5, 24, 0, 0, 138, 23,
-		1, 0, 0, 0, 139, 140, 5, 32, 0, 0, 140, 141, 5, 30, 0, 0, 141, 142, 5,
-		32, 0, 0, 142, 25, 1, 0, 0, 0, 14, 35, 42, 49, 53, 57, 62, 78, 84, 88,
-		105, 119, 124, 129, 134,
+		10, 2, 11, 7, 11, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 2, 5, 2, 32, 8,
+		2, 10, 2, 12, 2, 35, 9, 2, 1, 2, 1, 2, 5, 2, 39, 8, 2, 10, 2, 12, 2, 42,
+		9, 2, 1, 2, 1, 2, 4, 2, 46, 8, 2, 11, 2, 12, 2, 47, 5, 2, 50, 8, 2, 10,
+		2, 12, 2, 53, 9, 2, 1, 2, 3, 2, 56, 8, 2, 1, 2, 5, 2, 59, 8, 2, 10, 2,
+		12, 2, 62, 9, 2, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 4, 1, 4, 4, 4, 71, 8,
+		4, 11, 4, 12, 4, 72, 1, 4, 1, 4, 4, 4, 77, 8, 4, 11, 4, 12, 4, 78, 5, 4,
+		81, 8, 4, 10, 4, 12, 4, 84, 9, 4, 1, 4, 1, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1,
+		5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 3, 7, 100, 8, 7, 1, 8, 1,
+		8, 1, 8, 1, 8, 1, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1, 10, 5, 10, 112, 8, 10,
+		10, 10, 12, 10, 115, 9, 10, 1, 10, 1, 10, 3, 10, 119, 8, 10, 1, 10, 5,
+		10, 122, 8, 10, 10, 10, 12, 10, 125, 9, 10, 5, 10, 127, 8, 10, 10, 10,
+		12, 10, 130, 9, 10, 1, 10, 1, 10, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 0,
+		0, 12, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 0, 0, 140, 0, 24, 1,
+		0, 0, 0, 2, 28, 1, 0, 0, 0, 4, 33, 1, 0, 0, 0, 6, 65, 1, 0, 0, 0, 8, 68,
+		1, 0, 0, 0, 10, 87, 1, 0, 0, 0, 12, 92, 1, 0, 0, 0, 14, 99, 1, 0, 0, 0,
+		16, 101, 1, 0, 0, 0, 18, 105, 1, 0, 0, 0, 20, 108, 1, 0, 0, 0, 22, 133,
+		1, 0, 0, 0, 24, 25, 5, 17, 0, 0, 25, 26, 5, 32, 0, 0, 26, 27, 5, 31, 0,
+		0, 27, 1, 1, 0, 0, 0, 28, 29, 3, 6, 3, 0, 29, 3, 1, 0, 0, 0, 30, 32, 5,
+		22, 0, 0, 31, 30, 1, 0, 0, 0, 32, 35, 1, 0, 0, 0, 33, 31, 1, 0, 0, 0, 33,
+		34, 1, 0, 0, 0, 34, 36, 1, 0, 0, 0, 35, 33, 1, 0, 0, 0, 36, 40, 3, 0, 0,
+		0, 37, 39, 5, 22, 0, 0, 38, 37, 1, 0, 0, 0, 39, 42, 1, 0, 0, 0, 40, 38,
+		1, 0, 0, 0, 40, 41, 1, 0, 0, 0, 41, 51, 1, 0, 0, 0, 42, 40, 1, 0, 0, 0,
+		43, 45, 3, 2, 1, 0, 44, 46, 5, 22, 0, 0, 45, 44, 1, 0, 0, 0, 46, 47, 1,
+		0, 0, 0, 47, 45, 1, 0, 0, 0, 47, 48, 1, 0, 0, 0, 48, 50, 1, 0, 0, 0, 49,
+		43, 1, 0, 0, 0, 50, 53, 1, 0, 0, 0, 51, 49, 1, 0, 0, 0, 51, 52, 1, 0, 0,
+		0, 52, 55, 1, 0, 0, 0, 53, 51, 1, 0, 0, 0, 54, 56, 3, 2, 1, 0, 55, 54,
+		1, 0, 0, 0, 55, 56, 1, 0, 0, 0, 56, 60, 1, 0, 0, 0, 57, 59, 5, 22, 0, 0,
+		58, 57, 1, 0, 0, 0, 59, 62, 1, 0, 0, 0, 60, 58, 1, 0, 0, 0, 60, 61, 1,
+		0, 0, 0, 61, 63, 1, 0, 0, 0, 62, 60, 1, 0, 0, 0, 63, 64, 5, 0, 0, 1, 64,
+		5, 1, 0, 0, 0, 65, 66, 5, 1, 0, 0, 66, 67, 3, 8, 4, 0, 67, 7, 1, 0, 0,
+		0, 68, 70, 5, 25, 0, 0, 69, 71, 5, 22, 0, 0, 70, 69, 1, 0, 0, 0, 71, 72,
+		1, 0, 0, 0, 72, 70, 1, 0, 0, 0, 72, 73, 1, 0, 0, 0, 73, 82, 1, 0, 0, 0,
+		74, 76, 3, 12, 6, 0, 75, 77, 5, 22, 0, 0, 76, 75, 1, 0, 0, 0, 77, 78, 1,
+		0, 0, 0, 78, 76, 1, 0, 0, 0, 78, 79, 1, 0, 0, 0, 79, 81, 1, 0, 0, 0, 80,
+		74, 1, 0, 0, 0, 81, 84, 1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 82, 83, 1, 0, 0,
+		0, 83, 85, 1, 0, 0, 0, 84, 82, 1, 0, 0, 0, 85, 86, 5, 26, 0, 0, 86, 9,
+		1, 0, 0, 0, 87, 88, 5, 2, 0, 0, 88, 89, 5, 27, 0, 0, 89, 90, 3, 22, 11,
+		0, 90, 91, 5, 28, 0, 0, 91, 11, 1, 0, 0, 0, 92, 93, 5, 2, 0, 0, 93, 94,
+		5, 32, 0, 0, 94, 95, 3, 14, 7, 0, 95, 13, 1, 0, 0, 0, 96, 100, 3, 16, 8,
+		0, 97, 100, 3, 18, 9, 0, 98, 100, 3, 20, 10, 0, 99, 96, 1, 0, 0, 0, 99,
+		97, 1, 0, 0, 0, 99, 98, 1, 0, 0, 0, 100, 15, 1, 0, 0, 0, 101, 102, 5, 18,
+		0, 0, 102, 103, 5, 23, 0, 0, 103, 104, 5, 24, 0, 0, 104, 17, 1, 0, 0, 0,
+		105, 106, 5, 5, 0, 0, 106, 107, 3, 22, 11, 0, 107, 19, 1, 0, 0, 0, 108,
+		109, 5, 4, 0, 0, 109, 113, 5, 23, 0, 0, 110, 112, 5, 22, 0, 0, 111, 110,
+		1, 0, 0, 0, 112, 115, 1, 0, 0, 0, 113, 111, 1, 0, 0, 0, 113, 114, 1, 0,
+		0, 0, 114, 128, 1, 0, 0, 0, 115, 113, 1, 0, 0, 0, 116, 119, 3, 14, 7, 0,
+		117, 119, 3, 10, 5, 0, 118, 116, 1, 0, 0, 0, 118, 117, 1, 0, 0, 0, 119,
+		123, 1, 0, 0, 0, 120, 122, 5, 22, 0, 0, 121, 120, 1, 0, 0, 0, 122, 125,
+		1, 0, 0, 0, 123, 121, 1, 0, 0, 0, 123, 124, 1, 0, 0, 0, 124, 127, 1, 0,
+		0, 0, 125, 123, 1, 0, 0, 0, 126, 118, 1, 0, 0, 0, 127, 130, 1, 0, 0, 0,
+		128, 126, 1, 0, 0, 0, 128, 129, 1, 0, 0, 0, 129, 131, 1, 0, 0, 0, 130,
+		128, 1, 0, 0, 0, 131, 132, 5, 24, 0, 0, 132, 21, 1, 0, 0, 0, 133, 134,
+		5, 32, 0, 0, 134, 135, 5, 30, 0, 0, 135, 136, 5, 32, 0, 0, 136, 23, 1,
+		0, 0, 0, 14, 33, 40, 47, 51, 55, 60, 72, 78, 82, 99, 113, 118, 123, 128,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -193,15 +190,14 @@ const (
 	MMSParserRULE_statement               = 1
 	MMSParserRULE_mmsFile                 = 2
 	MMSParserRULE_surfaceDeclaration      = 3
-	MMSParserRULE_surfaceInline           = 4
-	MMSParserRULE_surfaceDefinition       = 5
-	MMSParserRULE_surfaceRuleReference    = 6
-	MMSParserRULE_surfaceRuleDeclaration  = 7
-	MMSParserRULE_surfaceRule             = 8
-	MMSParserRULE_surfaceRule_Conditional = 9
-	MMSParserRULE_surfaceRule_Block       = 10
-	MMSParserRULE_surfaceRule_Sequence    = 11
-	MMSParserRULE_reference               = 12
+	MMSParserRULE_surfaceDefinition       = 4
+	MMSParserRULE_surfaceRuleReference    = 5
+	MMSParserRULE_surfaceRuleDeclaration  = 6
+	MMSParserRULE_surfaceRule             = 7
+	MMSParserRULE_surfaceRule_Conditional = 8
+	MMSParserRULE_surfaceRule_Block       = 9
+	MMSParserRULE_surfaceRule_Sequence    = 10
+	MMSParserRULE_reference               = 11
 )
 
 // INamespaceDeclarationContext is an interface to support dynamic dispatch.
@@ -289,7 +285,7 @@ func (p *MMSParser) NamespaceDeclaration() (localctx INamespaceDeclarationContex
 	p.EnterRule(localctx, 0, MMSParserRULE_namespaceDeclaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(26)
+		p.SetState(24)
 		p.Match(MMSParserKeyword_Namespace)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -297,7 +293,7 @@ func (p *MMSParser) NamespaceDeclaration() (localctx INamespaceDeclarationContex
 		}
 	}
 	{
-		p.SetState(27)
+		p.SetState(25)
 		p.Match(MMSParserIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -305,7 +301,7 @@ func (p *MMSParser) NamespaceDeclaration() (localctx INamespaceDeclarationContex
 		}
 	}
 	{
-		p.SetState(28)
+		p.SetState(26)
 		p.Match(MMSParserSemiColon)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -413,7 +409,7 @@ func (p *MMSParser) Statement() (localctx IStatementContext) {
 	p.EnterRule(localctx, 2, MMSParserRULE_statement)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(30)
+		p.SetState(28)
 		p.SurfaceDeclaration()
 	}
 
@@ -578,7 +574,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(35)
+	p.SetState(33)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -587,7 +583,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(32)
+			p.SetState(30)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -595,7 +591,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 			}
 		}
 
-		p.SetState(37)
+		p.SetState(35)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -603,10 +599,10 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(38)
+		p.SetState(36)
 		p.NamespaceDeclaration()
 	}
-	p.SetState(42)
+	p.SetState(40)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -618,7 +614,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(39)
+				p.SetState(37)
 				p.Match(MMSParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -627,7 +623,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 			}
 
 		}
-		p.SetState(44)
+		p.SetState(42)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -637,7 +633,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 			goto errorExit
 		}
 	}
-	p.SetState(53)
+	p.SetState(51)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -649,10 +645,10 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(45)
+				p.SetState(43)
 				p.Statement()
 			}
-			p.SetState(47)
+			p.SetState(45)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -662,7 +658,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 				switch _alt {
 				case 1:
 					{
-						p.SetState(46)
+						p.SetState(44)
 						p.Match(MMSParserNL)
 						if p.HasError() {
 							// Recognition error - abort rule
@@ -675,7 +671,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 					goto errorExit
 				}
 
-				p.SetState(49)
+				p.SetState(47)
 				p.GetErrorHandler().Sync(p)
 				_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 2, p.GetParserRuleContext())
 				if p.HasError() {
@@ -684,7 +680,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 			}
 
 		}
-		p.SetState(55)
+		p.SetState(53)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -694,7 +690,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 			goto errorExit
 		}
 	}
-	p.SetState(57)
+	p.SetState(55)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -703,12 +699,12 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 
 	if _la == MMSParserKeyword_Surface {
 		{
-			p.SetState(56)
+			p.SetState(54)
 			p.Statement()
 		}
 
 	}
-	p.SetState(62)
+	p.SetState(60)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -717,7 +713,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(59)
+			p.SetState(57)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -725,7 +721,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 			}
 		}
 
-		p.SetState(64)
+		p.SetState(62)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -733,7 +729,7 @@ func (p *MMSParser) MmsFile() (localctx IMmsFileContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(65)
+		p.SetState(63)
 		p.Match(MMSParserEOF)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -763,7 +759,6 @@ type ISurfaceDeclarationContext interface {
 
 	// Getter signatures
 	Keyword_Surface() antlr.TerminalNode
-	Identifier() antlr.TerminalNode
 	SurfaceDefinition() ISurfaceDefinitionContext
 
 	// IsSurfaceDeclarationContext differentiates from other interfaces.
@@ -804,10 +799,6 @@ func (s *SurfaceDeclarationContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *SurfaceDeclarationContext) Keyword_Surface() antlr.TerminalNode {
 	return s.GetToken(MMSParserKeyword_Surface, 0)
-}
-
-func (s *SurfaceDeclarationContext) Identifier() antlr.TerminalNode {
-	return s.GetToken(MMSParserIdentifier, 0)
 }
 
 func (s *SurfaceDeclarationContext) SurfaceDefinition() ISurfaceDefinitionContext {
@@ -851,7 +842,7 @@ func (p *MMSParser) SurfaceDeclaration() (localctx ISurfaceDeclarationContext) {
 	p.EnterRule(localctx, 6, MMSParserRULE_surfaceDeclaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(67)
+		p.SetState(65)
 		p.Match(MMSParserKeyword_Surface)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -859,132 +850,7 @@ func (p *MMSParser) SurfaceDeclaration() (localctx ISurfaceDeclarationContext) {
 		}
 	}
 	{
-		p.SetState(68)
-		p.Match(MMSParserIdentifier)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
-		}
-	}
-	{
-		p.SetState(69)
-		p.SurfaceDefinition()
-	}
-
-errorExit:
-	if p.HasError() {
-		v := p.GetError()
-		localctx.SetException(v)
-		p.GetErrorHandler().ReportError(p, v)
-		p.GetErrorHandler().Recover(p, v)
-		p.SetError(nil)
-	}
-	p.ExitRule()
-	return localctx
-	goto errorExit // Trick to prevent compiler error if the label is not used
-}
-
-// ISurfaceInlineContext is an interface to support dynamic dispatch.
-type ISurfaceInlineContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// Getter signatures
-	Keyword_Surface() antlr.TerminalNode
-	SurfaceDefinition() ISurfaceDefinitionContext
-
-	// IsSurfaceInlineContext differentiates from other interfaces.
-	IsSurfaceInlineContext()
-}
-
-type SurfaceInlineContext struct {
-	antlr.BaseParserRuleContext
-	parser antlr.Parser
-}
-
-func NewEmptySurfaceInlineContext() *SurfaceInlineContext {
-	var p = new(SurfaceInlineContext)
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = MMSParserRULE_surfaceInline
-	return p
-}
-
-func InitEmptySurfaceInlineContext(p *SurfaceInlineContext) {
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = MMSParserRULE_surfaceInline
-}
-
-func (*SurfaceInlineContext) IsSurfaceInlineContext() {}
-
-func NewSurfaceInlineContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SurfaceInlineContext {
-	var p = new(SurfaceInlineContext)
-
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = MMSParserRULE_surfaceInline
-
-	return p
-}
-
-func (s *SurfaceInlineContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *SurfaceInlineContext) Keyword_Surface() antlr.TerminalNode {
-	return s.GetToken(MMSParserKeyword_Surface, 0)
-}
-
-func (s *SurfaceInlineContext) SurfaceDefinition() ISurfaceDefinitionContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ISurfaceDefinitionContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISurfaceDefinitionContext)
-}
-
-func (s *SurfaceInlineContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *SurfaceInlineContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *SurfaceInlineContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(MMSParserListener); ok {
-		listenerT.EnterSurfaceInline(s)
-	}
-}
-
-func (s *SurfaceInlineContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(MMSParserListener); ok {
-		listenerT.ExitSurfaceInline(s)
-	}
-}
-
-func (p *MMSParser) SurfaceInline() (localctx ISurfaceInlineContext) {
-	localctx = NewSurfaceInlineContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 8, MMSParserRULE_surfaceInline)
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(71)
-		p.Match(MMSParserKeyword_Surface)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
-		}
-	}
-	{
-		p.SetState(72)
+		p.SetState(66)
 		p.SurfaceDefinition()
 	}
 
@@ -1131,19 +997,19 @@ func (s *SurfaceDefinitionContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *MMSParser) SurfaceDefinition() (localctx ISurfaceDefinitionContext) {
 	localctx = NewSurfaceDefinitionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, MMSParserRULE_surfaceDefinition)
+	p.EnterRule(localctx, 8, MMSParserRULE_surfaceDefinition)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(74)
+		p.SetState(68)
 		p.Match(MMSParserCurlyOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(76)
+	p.SetState(70)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1152,7 +1018,7 @@ func (p *MMSParser) SurfaceDefinition() (localctx ISurfaceDefinitionContext) {
 
 	for ok := true; ok; ok = _la == MMSParserNL {
 		{
-			p.SetState(75)
+			p.SetState(69)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1160,14 +1026,14 @@ func (p *MMSParser) SurfaceDefinition() (localctx ISurfaceDefinitionContext) {
 			}
 		}
 
-		p.SetState(78)
+		p.SetState(72)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(88)
+	p.SetState(82)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1176,10 +1042,10 @@ func (p *MMSParser) SurfaceDefinition() (localctx ISurfaceDefinitionContext) {
 
 	for _la == MMSParserKeyword_Rule {
 		{
-			p.SetState(80)
+			p.SetState(74)
 			p.SurfaceRuleDeclaration()
 		}
-		p.SetState(82)
+		p.SetState(76)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1188,7 +1054,7 @@ func (p *MMSParser) SurfaceDefinition() (localctx ISurfaceDefinitionContext) {
 
 		for ok := true; ok; ok = _la == MMSParserNL {
 			{
-				p.SetState(81)
+				p.SetState(75)
 				p.Match(MMSParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1196,7 +1062,7 @@ func (p *MMSParser) SurfaceDefinition() (localctx ISurfaceDefinitionContext) {
 				}
 			}
 
-			p.SetState(84)
+			p.SetState(78)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -1204,7 +1070,7 @@ func (p *MMSParser) SurfaceDefinition() (localctx ISurfaceDefinitionContext) {
 			_la = p.GetTokenStream().LA(1)
 		}
 
-		p.SetState(90)
+		p.SetState(84)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1212,7 +1078,7 @@ func (p *MMSParser) SurfaceDefinition() (localctx ISurfaceDefinitionContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(91)
+		p.SetState(85)
 		p.Match(MMSParserCurlyClose)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1243,7 +1109,7 @@ type ISurfaceRuleReferenceContext interface {
 	// Getter signatures
 	Keyword_Rule() antlr.TerminalNode
 	RoundOpen() antlr.TerminalNode
-	Identifier() antlr.TerminalNode
+	Reference() IReferenceContext
 	RoundClose() antlr.TerminalNode
 
 	// IsSurfaceRuleReferenceContext differentiates from other interfaces.
@@ -1290,8 +1156,20 @@ func (s *SurfaceRuleReferenceContext) RoundOpen() antlr.TerminalNode {
 	return s.GetToken(MMSParserRoundOpen, 0)
 }
 
-func (s *SurfaceRuleReferenceContext) Identifier() antlr.TerminalNode {
-	return s.GetToken(MMSParserIdentifier, 0)
+func (s *SurfaceRuleReferenceContext) Reference() IReferenceContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IReferenceContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IReferenceContext)
 }
 
 func (s *SurfaceRuleReferenceContext) RoundClose() antlr.TerminalNode {
@@ -1320,10 +1198,10 @@ func (s *SurfaceRuleReferenceContext) ExitRule(listener antlr.ParseTreeListener)
 
 func (p *MMSParser) SurfaceRuleReference() (localctx ISurfaceRuleReferenceContext) {
 	localctx = NewSurfaceRuleReferenceContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, MMSParserRULE_surfaceRuleReference)
+	p.EnterRule(localctx, 10, MMSParserRULE_surfaceRuleReference)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(93)
+		p.SetState(87)
 		p.Match(MMSParserKeyword_Rule)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1331,7 +1209,7 @@ func (p *MMSParser) SurfaceRuleReference() (localctx ISurfaceRuleReferenceContex
 		}
 	}
 	{
-		p.SetState(94)
+		p.SetState(88)
 		p.Match(MMSParserRoundOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1339,15 +1217,11 @@ func (p *MMSParser) SurfaceRuleReference() (localctx ISurfaceRuleReferenceContex
 		}
 	}
 	{
-		p.SetState(95)
-		p.Match(MMSParserIdentifier)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
-		}
+		p.SetState(89)
+		p.Reference()
 	}
 	{
-		p.SetState(96)
+		p.SetState(90)
 		p.Match(MMSParserRoundClose)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1462,10 +1336,10 @@ func (s *SurfaceRuleDeclarationContext) ExitRule(listener antlr.ParseTreeListene
 
 func (p *MMSParser) SurfaceRuleDeclaration() (localctx ISurfaceRuleDeclarationContext) {
 	localctx = NewSurfaceRuleDeclarationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, MMSParserRULE_surfaceRuleDeclaration)
+	p.EnterRule(localctx, 12, MMSParserRULE_surfaceRuleDeclaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(98)
+		p.SetState(92)
 		p.Match(MMSParserKeyword_Rule)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1473,7 +1347,7 @@ func (p *MMSParser) SurfaceRuleDeclaration() (localctx ISurfaceRuleDeclarationCo
 		}
 	}
 	{
-		p.SetState(99)
+		p.SetState(93)
 		p.Match(MMSParserIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1481,7 +1355,7 @@ func (p *MMSParser) SurfaceRuleDeclaration() (localctx ISurfaceRuleDeclarationCo
 		}
 	}
 	{
-		p.SetState(100)
+		p.SetState(94)
 		p.SurfaceRule()
 	}
 
@@ -1616,8 +1490,8 @@ func (s *SurfaceRuleContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *MMSParser) SurfaceRule() (localctx ISurfaceRuleContext) {
 	localctx = NewSurfaceRuleContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, MMSParserRULE_surfaceRule)
-	p.SetState(105)
+	p.EnterRule(localctx, 14, MMSParserRULE_surfaceRule)
+	p.SetState(99)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1627,21 +1501,21 @@ func (p *MMSParser) SurfaceRule() (localctx ISurfaceRuleContext) {
 	case MMSParserKeyword_If:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(102)
+			p.SetState(96)
 			p.SurfaceRule_Conditional()
 		}
 
 	case MMSParserKeyword_Block:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(103)
+			p.SetState(97)
 			p.SurfaceRule_Block()
 		}
 
 	case MMSParserKeyword_Sequence:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(104)
+			p.SetState(98)
 			p.SurfaceRule_Sequence()
 		}
 
@@ -1745,10 +1619,10 @@ func (s *SurfaceRule_ConditionalContext) ExitRule(listener antlr.ParseTreeListen
 
 func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_ConditionalContext) {
 	localctx = NewSurfaceRule_ConditionalContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, MMSParserRULE_surfaceRule_Conditional)
+	p.EnterRule(localctx, 16, MMSParserRULE_surfaceRule_Conditional)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(107)
+		p.SetState(101)
 		p.Match(MMSParserKeyword_If)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1756,7 +1630,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 		}
 	}
 	{
-		p.SetState(108)
+		p.SetState(102)
 		p.Match(MMSParserSquareOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1764,7 +1638,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 		}
 	}
 	{
-		p.SetState(109)
+		p.SetState(103)
 		p.Match(MMSParserSquareClose)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1874,10 +1748,10 @@ func (s *SurfaceRule_BlockContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *MMSParser) SurfaceRule_Block() (localctx ISurfaceRule_BlockContext) {
 	localctx = NewSurfaceRule_BlockContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, MMSParserRULE_surfaceRule_Block)
+	p.EnterRule(localctx, 18, MMSParserRULE_surfaceRule_Block)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(111)
+		p.SetState(105)
 		p.Match(MMSParserKeyword_Block)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1885,7 +1759,7 @@ func (p *MMSParser) SurfaceRule_Block() (localctx ISurfaceRule_BlockContext) {
 		}
 	}
 	{
-		p.SetState(112)
+		p.SetState(106)
 		p.Reference()
 	}
 
@@ -2080,12 +1954,12 @@ func (s *SurfaceRule_SequenceContext) ExitRule(listener antlr.ParseTreeListener)
 
 func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContext) {
 	localctx = NewSurfaceRule_SequenceContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, MMSParserRULE_surfaceRule_Sequence)
+	p.EnterRule(localctx, 20, MMSParserRULE_surfaceRule_Sequence)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(114)
+		p.SetState(108)
 		p.Match(MMSParserKeyword_Sequence)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2093,14 +1967,14 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 		}
 	}
 	{
-		p.SetState(115)
+		p.SetState(109)
 		p.Match(MMSParserSquareOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(119)
+	p.SetState(113)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2109,7 +1983,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(116)
+			p.SetState(110)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2117,14 +1991,14 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 			}
 		}
 
-		p.SetState(121)
+		p.SetState(115)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(134)
+	p.SetState(128)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2132,7 +2006,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 	_la = p.GetTokenStream().LA(1)
 
 	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&262196) != 0 {
-		p.SetState(124)
+		p.SetState(118)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2141,13 +2015,13 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 		switch p.GetTokenStream().LA(1) {
 		case MMSParserKeyword_Sequence, MMSParserKeyword_Block, MMSParserKeyword_If:
 			{
-				p.SetState(122)
+				p.SetState(116)
 				p.SurfaceRule()
 			}
 
 		case MMSParserKeyword_Rule:
 			{
-				p.SetState(123)
+				p.SetState(117)
 				p.SurfaceRuleReference()
 			}
 
@@ -2155,7 +2029,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 			p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 			goto errorExit
 		}
-		p.SetState(129)
+		p.SetState(123)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2164,7 +2038,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 
 		for _la == MMSParserNL {
 			{
-				p.SetState(126)
+				p.SetState(120)
 				p.Match(MMSParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2172,7 +2046,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 				}
 			}
 
-			p.SetState(131)
+			p.SetState(125)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -2180,7 +2054,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 			_la = p.GetTokenStream().LA(1)
 		}
 
-		p.SetState(136)
+		p.SetState(130)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2188,7 +2062,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(137)
+		p.SetState(131)
 		p.Match(MMSParserSquareClose)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2291,10 +2165,10 @@ func (s *ReferenceContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *MMSParser) Reference() (localctx IReferenceContext) {
 	localctx = NewReferenceContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, MMSParserRULE_reference)
+	p.EnterRule(localctx, 22, MMSParserRULE_reference)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(139)
+		p.SetState(133)
 		p.Match(MMSParserIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2302,7 +2176,7 @@ func (p *MMSParser) Reference() (localctx IReferenceContext) {
 		}
 	}
 	{
-		p.SetState(140)
+		p.SetState(134)
 		p.Match(MMSParserColon)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2310,7 +2184,7 @@ func (p *MMSParser) Reference() (localctx IReferenceContext) {
 		}
 	}
 	{
-		p.SetState(141)
+		p.SetState(135)
 		p.Match(MMSParserIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule

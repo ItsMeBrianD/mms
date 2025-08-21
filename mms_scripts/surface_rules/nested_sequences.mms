@@ -1,7 +1,7 @@
 namespace demo;
 
-surface mySurface {
-    rule myRule sequence [
+surface {
+    rule Nesting sequence [
         block minecraft:stone
         block minecraft:grass
         sequence [
