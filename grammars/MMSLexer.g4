@@ -1,9 +1,12 @@
 lexer grammar MMSLexer;
 
-channels {
-    SYMBOL
-}
+Keyword_Namespace: 'namespace';
+Keyword_If: 'if';
+Keyword_Else: 'else';
+Keyword_In: 'in';
 
+Whitespace: [\t ]+ -> skip;
+NewLine: [\n\r];
 
 SquareOpen: '[';
 SquareClose: ']';
@@ -14,4 +17,5 @@ RoundClose: ')';
 
 Colon: ':';
 SemiColon: ';';
-Identifier: [a-zA-Z_][a-zA-Z0-9_]* -> channel(SYMBOL);
+// Must come last
+Identifier: [a-zA-Z_][a-zA-Z0-9_]*;

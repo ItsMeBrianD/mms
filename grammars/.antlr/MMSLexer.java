@@ -16,12 +16,11 @@ public class MMSLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		SquareOpen=1, SquareClose=2, CurlyOpen=3, CurlyClose=4, RoundOpen=5, RoundClose=6, 
-		Colon=7, SemiColon=8, Identifier=9;
-	public static final int
-		SYMBOL=2;
+		Keyword_Namespace=1, Keyword_If=2, Keyword_Else=3, Keyword_In=4, Whitespace=5, 
+		NewLine=6, SquareOpen=7, SquareClose=8, CurlyOpen=9, CurlyClose=10, RoundOpen=11, 
+		RoundClose=12, Colon=13, SemiColon=14, Identifier=15;
 	public static String[] channelNames = {
-		"DEFAULT_TOKEN_CHANNEL", "HIDDEN", "SYMBOL"
+		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
 
 	public static String[] modeNames = {
@@ -30,7 +29,8 @@ public class MMSLexer extends Lexer {
 
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"SquareOpen", "SquareClose", "CurlyOpen", "CurlyClose", "RoundOpen", 
+			"Keyword_Namespace", "Keyword_If", "Keyword_Else", "Keyword_In", "Whitespace", 
+			"NewLine", "SquareOpen", "SquareClose", "CurlyOpen", "CurlyClose", "RoundOpen", 
 			"RoundClose", "Colon", "SemiColon", "Identifier"
 		};
 	}
@@ -38,14 +38,16 @@ public class MMSLexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'['", "']'", "'{'", "'}'", "'('", "')'", "':'", "';'"
+			null, "'namespace'", "'if'", "'else'", "'in'", null, null, "'['", "']'", 
+			"'{'", "'}'", "'('", "')'", "':'", "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "SquareOpen", "SquareClose", "CurlyOpen", "CurlyClose", "RoundOpen", 
-			"RoundClose", "Colon", "SemiColon", "Identifier"
+			null, "Keyword_Namespace", "Keyword_If", "Keyword_Else", "Keyword_In", 
+			"Whitespace", "NewLine", "SquareOpen", "SquareClose", "CurlyOpen", "CurlyClose", 
+			"RoundOpen", "RoundClose", "Colon", "SemiColon", "Identifier"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -107,19 +109,29 @@ public class MMSLexer extends Lexer {
 	public ATN getATN() { return _ATN; }
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\13.\b\1\4\2\t\2\4"+
-		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2"+
-		"\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\7\n("+
-		"\n\n\f\n\16\n+\13\n\3\n\3\n\2\2\13\3\3\5\4\7\5\t\6\13\7\r\b\17\t\21\n"+
-		"\23\13\3\2\4\5\2C\\aac|\6\2\62;C\\aac|\2.\2\3\3\2\2\2\2\5\3\2\2\2\2\7"+
-		"\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2\r\3\2\2\2\2\17\3\2\2\2\2\21\3\2\2"+
-		"\2\2\23\3\2\2\2\3\25\3\2\2\2\5\27\3\2\2\2\7\31\3\2\2\2\t\33\3\2\2\2\13"+
-		"\35\3\2\2\2\r\37\3\2\2\2\17!\3\2\2\2\21#\3\2\2\2\23%\3\2\2\2\25\26\7]"+
-		"\2\2\26\4\3\2\2\2\27\30\7_\2\2\30\6\3\2\2\2\31\32\7}\2\2\32\b\3\2\2\2"+
-		"\33\34\7\177\2\2\34\n\3\2\2\2\35\36\7*\2\2\36\f\3\2\2\2\37 \7+\2\2 \16"+
-		"\3\2\2\2!\"\7<\2\2\"\20\3\2\2\2#$\7=\2\2$\22\3\2\2\2%)\t\2\2\2&(\t\3\2"+
-		"\2\'&\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*,\3\2\2\2+)\3\2\2\2,-\b\n"+
-		"\2\2-\24\3\2\2\2\4\2)\3\2\4\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\21V\b\1\4\2\t\2\4"+
+		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
+		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\3\2\3\2\3\2\3\2\3\2"+
+		"\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\6\6"+
+		"\68\n\6\r\6\16\69\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3"+
+		"\f\3\f\3\r\3\r\3\16\3\16\3\17\3\17\3\20\3\20\7\20R\n\20\f\20\16\20U\13"+
+		"\20\2\2\21\3\3\5\4\7\5\t\6\13\7\r\b\17\t\21\n\23\13\25\f\27\r\31\16\33"+
+		"\17\35\20\37\21\3\2\6\4\2\13\13\"\"\4\2\f\f\17\17\5\2C\\aac|\6\2\62;C"+
+		"\\aac|\2W\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2"+
+		"\2\r\3\2\2\2\2\17\3\2\2\2\2\21\3\2\2\2\2\23\3\2\2\2\2\25\3\2\2\2\2\27"+
+		"\3\2\2\2\2\31\3\2\2\2\2\33\3\2\2\2\2\35\3\2\2\2\2\37\3\2\2\2\3!\3\2\2"+
+		"\2\5+\3\2\2\2\7.\3\2\2\2\t\63\3\2\2\2\13\67\3\2\2\2\r=\3\2\2\2\17?\3\2"+
+		"\2\2\21A\3\2\2\2\23C\3\2\2\2\25E\3\2\2\2\27G\3\2\2\2\31I\3\2\2\2\33K\3"+
+		"\2\2\2\35M\3\2\2\2\37O\3\2\2\2!\"\7p\2\2\"#\7c\2\2#$\7o\2\2$%\7g\2\2%"+
+		"&\7u\2\2&\'\7r\2\2\'(\7c\2\2()\7e\2\2)*\7g\2\2*\4\3\2\2\2+,\7k\2\2,-\7"+
+		"h\2\2-\6\3\2\2\2./\7g\2\2/\60\7n\2\2\60\61\7u\2\2\61\62\7g\2\2\62\b\3"+
+		"\2\2\2\63\64\7k\2\2\64\65\7p\2\2\65\n\3\2\2\2\668\t\2\2\2\67\66\3\2\2"+
+		"\289\3\2\2\29\67\3\2\2\29:\3\2\2\2:;\3\2\2\2;<\b\6\2\2<\f\3\2\2\2=>\t"+
+		"\3\2\2>\16\3\2\2\2?@\7]\2\2@\20\3\2\2\2AB\7_\2\2B\22\3\2\2\2CD\7}\2\2"+
+		"D\24\3\2\2\2EF\7\177\2\2F\26\3\2\2\2GH\7*\2\2H\30\3\2\2\2IJ\7+\2\2J\32"+
+		"\3\2\2\2KL\7<\2\2L\34\3\2\2\2MN\7=\2\2N\36\3\2\2\2OS\t\4\2\2PR\t\5\2\2"+
+		"QP\3\2\2\2RU\3\2\2\2SQ\3\2\2\2ST\3\2\2\2T \3\2\2\2US\3\2\2\2\5\29S\3\b"+
+		"\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

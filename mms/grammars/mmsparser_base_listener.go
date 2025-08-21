@@ -1,7 +1,6 @@
-// Code generated from grammars/MMSParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
+// Code generated from ./grammars/MMSParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
-package parser // MMSParser
-
+package grammars // MMSParser
 import "github.com/antlr4-go/antlr/v4"
 
 // BaseMMSParserListener is a complete listener for a parse tree produced by MMSParser.
@@ -21,8 +20,20 @@ func (s *BaseMMSParserListener) EnterEveryRule(ctx antlr.ParserRuleContext) {}
 // ExitEveryRule is called when any rule is exited.
 func (s *BaseMMSParserListener) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
+// EnterNamespaceDeclaration is called when production namespaceDeclaration is entered.
+func (s *BaseMMSParserListener) EnterNamespaceDeclaration(ctx *NamespaceDeclarationContext) {}
+
+// ExitNamespaceDeclaration is called when production namespaceDeclaration is exited.
+func (s *BaseMMSParserListener) ExitNamespaceDeclaration(ctx *NamespaceDeclarationContext) {}
+
 // EnterMmsFile is called when production mmsFile is entered.
 func (s *BaseMMSParserListener) EnterMmsFile(ctx *MmsFileContext) {}
 
 // ExitMmsFile is called when production mmsFile is exited.
 func (s *BaseMMSParserListener) ExitMmsFile(ctx *MmsFileContext) {}
+
+// EnterReference is called when production reference is entered.
+func (s *BaseMMSParserListener) EnterReference(ctx *ReferenceContext) {}
+
+// ExitReference is called when production reference is exited.
+func (s *BaseMMSParserListener) ExitReference(ctx *ReferenceContext) {}

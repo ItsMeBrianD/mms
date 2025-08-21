@@ -19,6 +19,22 @@
             pkgs.antlr4
             pkgs.go
             pkgs.fish
+
+            (pkgs.writeShellApplication {
+              name = "antlr-build";
+              runtimeInputs = [
+                pkgs.antlr4
+                pkgs.go
+              ];
+              text = ''
+                set -e
+                src="./grammars"
+                dst="./mms"
+                ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/MMSLexer.g4 -o $dst -package grammars;
+                ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/MMSParser.g4 -lib $dst/grammars -o $dst -package grammars;
+              '';
+            })
+
           ];
 
           shellHook = ''
@@ -35,8 +51,12 @@
           subPackages = [ "." ];
 
           preBuild = ''
-            ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/grammars/MMSLexer.g4 -o ./mms;
-            ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/grammars/MMSParser.g4 -lib ./mms -o ./mms
+                dst=./mms
+                mkdir -p $dst
+                ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/grammars/MMSLexer.g4 -o $dst -package grammars;
+                ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/grammars/MMSParser.g4 -lib $dst/grammars -o $dst -package grammars;
+
+                
           '';
         };
 
