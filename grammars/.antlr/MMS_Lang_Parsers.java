@@ -16,9 +16,14 @@ public class MMS_Lang_Parsers extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		Keyword_Namespace=1, Keyword_If=2, Keyword_Else=3, Keyword_In=4, Whitespace=5, 
-		NewLine=6, SquareOpen=7, SquareClose=8, CurlyOpen=9, CurlyClose=10, RoundOpen=11, 
-		RoundClose=12, Colon=13, SemiColon=14, Identifier=15;
+		Keyword_Surface=1, Keyword_Rule=2, Keyword_Condition=3, Keyword_Sequence=4, 
+		Keyword_Block=5, Keyword_Bandlands=6, Keyword_AbovePreliminarySurface=7, 
+		Keyword_Biome=8, Keyword_Hole=9, Keyword_Steep=10, Keyword_StoneDepth=11, 
+		Keyword_Freezing=12, Keyword_Temperature=13, Keyword_VerticalGradient=14, 
+		Keyword_Water=15, Keyword_YAbove=16, Keyword_Namespace=17, Keyword_If=18, 
+		Keyword_Else=19, Keyword_In=20, WS=21, NL=22, SquareOpen=23, SquareClose=24, 
+		CurlyOpen=25, CurlyClose=26, RoundOpen=27, RoundClose=28, Bang=29, Colon=30, 
+		SemiColon=31, Identifier=32;
 	public static final int
 		RULE_reference = 0;
 	private static String[] makeRuleNames() {
@@ -30,16 +35,24 @@ public class MMS_Lang_Parsers extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'namespace'", "'if'", "'else'", "'in'", null, null, "'['", "']'", 
-			"'{'", "'}'", "'('", "')'", "':'", "';'"
+			null, "'surface'", "'rule'", "'condition'", "'sequence'", "'block'", 
+			"'bandlands'", "'above_preliminary_surface'", "'biome'", "'hole'", "'steep'", 
+			"'stone_depth'", "'freezing'", "'temperature'", "'vertical_gradient'", 
+			"'water'", "'y_above'", "'namespace'", "'if'", "'else'", "'in'", null, 
+			null, "'['", "']'", "'{'", "'}'", "'('", "')'", "'!'", "':'", "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "Keyword_Namespace", "Keyword_If", "Keyword_Else", "Keyword_In", 
-			"Whitespace", "NewLine", "SquareOpen", "SquareClose", "CurlyOpen", "CurlyClose", 
-			"RoundOpen", "RoundClose", "Colon", "SemiColon", "Identifier"
+			null, "Keyword_Surface", "Keyword_Rule", "Keyword_Condition", "Keyword_Sequence", 
+			"Keyword_Block", "Keyword_Bandlands", "Keyword_AbovePreliminarySurface", 
+			"Keyword_Biome", "Keyword_Hole", "Keyword_Steep", "Keyword_StoneDepth", 
+			"Keyword_Freezing", "Keyword_Temperature", "Keyword_VerticalGradient", 
+			"Keyword_Water", "Keyword_YAbove", "Keyword_Namespace", "Keyword_If", 
+			"Keyword_Else", "Keyword_In", "WS", "NL", "SquareOpen", "SquareClose", 
+			"CurlyOpen", "CurlyClose", "RoundOpen", "RoundClose", "Bang", "Colon", 
+			"SemiColon", "Identifier"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -131,9 +144,9 @@ public class MMS_Lang_Parsers extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21\t\4\2\t\2\3\2"+
-		"\3\2\3\2\3\2\3\2\2\2\3\2\2\2\2\7\2\4\3\2\2\2\4\5\7\21\2\2\5\6\7\17\2\2"+
-		"\6\7\7\21\2\2\7\3\3\2\2\2\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\"\t\4\2\t\2\3\2\3"+
+		"\2\3\2\3\2\3\2\2\2\3\2\2\2\2\7\2\4\3\2\2\2\4\5\7\"\2\2\5\6\7 \2\2\6\7"+
+		"\7\"\2\2\7\3\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

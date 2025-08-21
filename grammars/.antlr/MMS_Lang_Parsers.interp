@@ -1,5 +1,21 @@
 token literal names:
 null
+'surface'
+'rule'
+'condition'
+'sequence'
+'block'
+'bandlands'
+'above_preliminary_surface'
+'biome'
+'hole'
+'steep'
+'stone_depth'
+'freezing'
+'temperature'
+'vertical_gradient'
+'water'
+'y_above'
 'namespace'
 'if'
 'else'
@@ -12,24 +28,42 @@ null
 '}'
 '('
 ')'
+'!'
 ':'
 ';'
 null
 
 token symbolic names:
 null
+Keyword_Surface
+Keyword_Rule
+Keyword_Condition
+Keyword_Sequence
+Keyword_Block
+Keyword_Bandlands
+Keyword_AbovePreliminarySurface
+Keyword_Biome
+Keyword_Hole
+Keyword_Steep
+Keyword_StoneDepth
+Keyword_Freezing
+Keyword_Temperature
+Keyword_VerticalGradient
+Keyword_Water
+Keyword_YAbove
 Keyword_Namespace
 Keyword_If
 Keyword_Else
 Keyword_In
-Whitespace
-NewLine
+WS
+NL
 SquareOpen
 SquareClose
 CurlyOpen
 CurlyClose
 RoundOpen
 RoundClose
+Bang
 Colon
 SemiColon
 Identifier
@@ -39,4 +73,4 @@ reference
 
 
 atn:
-[3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 17, 9, 4, 2, 9, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 2, 2, 3, 2, 2, 2, 2, 7, 2, 4, 3, 2, 2, 2, 4, 5, 7, 17, 2, 2, 5, 6, 7, 15, 2, 2, 6, 7, 7, 17, 2, 2, 7, 3, 3, 2, 2, 2, 2]
+[3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 34, 9, 4, 2, 9, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 2, 2, 3, 2, 2, 2, 2, 7, 2, 4, 3, 2, 2, 2, 4, 5, 7, 34, 2, 2, 5, 6, 7, 32, 2, 2, 6, 7, 7, 34, 2, 2, 7, 3, 3, 2, 2, 2, 2]

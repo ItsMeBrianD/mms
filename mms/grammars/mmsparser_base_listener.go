@@ -26,11 +26,65 @@ func (s *BaseMMSParserListener) EnterNamespaceDeclaration(ctx *NamespaceDeclarat
 // ExitNamespaceDeclaration is called when production namespaceDeclaration is exited.
 func (s *BaseMMSParserListener) ExitNamespaceDeclaration(ctx *NamespaceDeclarationContext) {}
 
+// EnterStatement is called when production statement is entered.
+func (s *BaseMMSParserListener) EnterStatement(ctx *StatementContext) {}
+
+// ExitStatement is called when production statement is exited.
+func (s *BaseMMSParserListener) ExitStatement(ctx *StatementContext) {}
+
 // EnterMmsFile is called when production mmsFile is entered.
 func (s *BaseMMSParserListener) EnterMmsFile(ctx *MmsFileContext) {}
 
 // ExitMmsFile is called when production mmsFile is exited.
 func (s *BaseMMSParserListener) ExitMmsFile(ctx *MmsFileContext) {}
+
+// EnterSurfaceDeclaration is called when production surfaceDeclaration is entered.
+func (s *BaseMMSParserListener) EnterSurfaceDeclaration(ctx *SurfaceDeclarationContext) {}
+
+// ExitSurfaceDeclaration is called when production surfaceDeclaration is exited.
+func (s *BaseMMSParserListener) ExitSurfaceDeclaration(ctx *SurfaceDeclarationContext) {}
+
+// EnterSurfaceInline is called when production surfaceInline is entered.
+func (s *BaseMMSParserListener) EnterSurfaceInline(ctx *SurfaceInlineContext) {}
+
+// ExitSurfaceInline is called when production surfaceInline is exited.
+func (s *BaseMMSParserListener) ExitSurfaceInline(ctx *SurfaceInlineContext) {}
+
+// EnterSurfaceDefinition is called when production surfaceDefinition is entered.
+func (s *BaseMMSParserListener) EnterSurfaceDefinition(ctx *SurfaceDefinitionContext) {}
+
+// ExitSurfaceDefinition is called when production surfaceDefinition is exited.
+func (s *BaseMMSParserListener) ExitSurfaceDefinition(ctx *SurfaceDefinitionContext) {}
+
+// EnterSurfaceRuleDeclaration is called when production surfaceRuleDeclaration is entered.
+func (s *BaseMMSParserListener) EnterSurfaceRuleDeclaration(ctx *SurfaceRuleDeclarationContext) {}
+
+// ExitSurfaceRuleDeclaration is called when production surfaceRuleDeclaration is exited.
+func (s *BaseMMSParserListener) ExitSurfaceRuleDeclaration(ctx *SurfaceRuleDeclarationContext) {}
+
+// EnterSurfaceRule is called when production surfaceRule is entered.
+func (s *BaseMMSParserListener) EnterSurfaceRule(ctx *SurfaceRuleContext) {}
+
+// ExitSurfaceRule is called when production surfaceRule is exited.
+func (s *BaseMMSParserListener) ExitSurfaceRule(ctx *SurfaceRuleContext) {}
+
+// EnterSurfaceRule_Conditional is called when production surfaceRule_Conditional is entered.
+func (s *BaseMMSParserListener) EnterSurfaceRule_Conditional(ctx *SurfaceRule_ConditionalContext) {}
+
+// ExitSurfaceRule_Conditional is called when production surfaceRule_Conditional is exited.
+func (s *BaseMMSParserListener) ExitSurfaceRule_Conditional(ctx *SurfaceRule_ConditionalContext) {}
+
+// EnterSurfaceRule_Block is called when production surfaceRule_Block is entered.
+func (s *BaseMMSParserListener) EnterSurfaceRule_Block(ctx *SurfaceRule_BlockContext) {}
+
+// ExitSurfaceRule_Block is called when production surfaceRule_Block is exited.
+func (s *BaseMMSParserListener) ExitSurfaceRule_Block(ctx *SurfaceRule_BlockContext) {}
+
+// EnterSurfaceRule_Sequence is called when production surfaceRule_Sequence is entered.
+func (s *BaseMMSParserListener) EnterSurfaceRule_Sequence(ctx *SurfaceRule_SequenceContext) {}
+
+// ExitSurfaceRule_Sequence is called when production surfaceRule_Sequence is exited.
+func (s *BaseMMSParserListener) ExitSurfaceRule_Sequence(ctx *SurfaceRule_SequenceContext) {}
 
 // EnterReference is called when production reference is entered.
 func (s *BaseMMSParserListener) EnterReference(ctx *ReferenceContext) {}

@@ -1,0 +1,122 @@
+{{Exclusive|java}}
+
+'''Surface rules''' are used to determine the block for each solid position of the terrain. They are responsible for [[Grass Block|grass]] and [[dirt]] layers, creating different bands of [[terracotta]] in badlands, for [[deepslate]], [[bedrock]], and more.
+
+Surface rules are used in the [[Custom noise settings|noise settings]] of a [[data pack]].
+
+== JSON format ==
+A surface rule is a type of [[wikipedia:Decision_tree|decision tree]]. Using a combination of sequences and conditions, it can implement checks to place the right blocks in the right places.
+
+<div class="treeview">
+* {{nbt|compound}} The root object.
+** {{nbt|string|type}}: Type of the surface rule as a [[resource location]].
+** Extra fields of the surface rule, described below.
+</div>
+
+The possible values for {{nbt|string|type}} and associated extra fields:
+
+<div class="treeview" id="bandlands" style="margin-block-end: 1em;">
+* '''bandlands'''{{sic}} &mdash; Used in [[badlands]] to place [[terracotta]]. This rule has no extra fields.
+</div>
+
+<div class="treeview" id="block" style="margin-block-end: 1em;">
+* '''block''' &mdash; Places a specified block.
+** {{nbt|compound|result_state}}: The block state to place.
+*** {{nbt inherit/block state}}
+</div>
+
+<div class="treeview" id="condition" style="margin-block-end: 1em;">
+* '''condition''' &mdash; Checks a condition
+** {{nbt|compound|if_true}}: The '''[[#Surface conditions|surface condition]]''' (see below) to check.
+** {{nbt|compound|then_run}}: The '''surface rule''' to run if the condition matches.
+</div>
+
+<div class="treeview" id="sequence" style="margin-block-end: 1em;">
+* '''sequence''' &mdash; Tries surface rules in order, only the first that matches is applied.
+** {{nbt|list|sequence}}: A list of surface rules to try.
+*** {{nbt|compound}} A '''surface rule''' object.
+</div>
+
+== Surface conditions ==
+<div class="treeview">
+* {{nbt|compound}} The root object.
+** {{nbt|string|type}}: Type of the surface condition as a [[resource location]].
+** Extra fields of the surface condition, described below.
+</div>
+
+The possible values for {{nbt|string|type}} and associated extra fields:
+
+<div class="treeview" id="above_preliminary_surface" style="margin-block-end: 1em;">
+* '''above_preliminary_surface''' &mdash; Checks if the current position is above the preliminary surface level, which is a Y-level usually a few blocks below the main surface, ignoring noise caves. This is used to prevent grass blocks from being placed in noise caves. This condition has no extra fields. The preliminary surface level is calculated from the {{cd|initial_density_without_jaggedness}} noise router density function.
+</div>
+
+<div class="treeview" id="biome" style="margin-block-end: 1em;">
+* '''biome''' &mdash; Checks the biome at the current position.
+** {{nbt|list|biome_is}}: A list of biomes where this condition matches.
+*** {{nbt|string}} A resource location of a [[biome]].
+</div>
+
+<div class="treeview" id="hole" style="margin-block-end: 1em;">
+* '''hole''' &mdash; Passes for columns where the [[#Surface depth|surface depth]] is 0. This condition has no extra fields.
+</div>
+
+<div class="treeview" id="noise_threshold" style="margin-block-end: 1em;">
+* '''noise_threshold''' &mdash; Computes the noise value of the current column using a specified [[noise]] and checks if it is between the min and max threshold.
+** {{nbt|string|noise}}: {{json ref|noise}}.
+** {{nbt|double|min_threshold}}: The minimum noise value where the condition passes.
+** {{nbt|double|max_threshold}}: The maximum noise value where the condition passes.
+</div>
+
+<div class="treeview" id="not" style="margin-block-end: 1em;">
+* '''not''' &mdash; Inverts a surface conditions, passing when the nested condition fails.
+** {{nbt|compound|invert}}: The '''surface condition''' object to invert.
+</div>
+
+<div class="treeview" id="steep" style="margin-block-end: 1em;">
+* '''steep''' &mdash; Checks if the current position is a steep face on the north or east sides of a mountain. This condition has no extra fields.
+</div>
+
+<div class="treeview" id="stone_depth" style="margin-block-end: 1em;">
+* '''stone_depth''' &mdash; Checks if the current position is within a specified distance from the surface, either upward or downward, using [[#Terrain depth|terrain depth]]. This is used in vanilla to place grass blocks and dirt layers on the surface in the [[overworld]], and [[soul sand]], [[soul soil]], [[gravel]] and [[basalt]] floors and ceilings in the [[nether]].
+** {{nbt|string|surface_type}}: Either <code>floor</code> or <code>ceiling</code>. If <code>floor</code>, the blocks will be placed based on the distance to the surface above, if <code>ceiling</code>, the distance to the surface below will be used instead.
+** {{nbt|int|offset}}: The vertical offset.
+** {{nbt|boolean|add_surface_depth}}: If true, adds the [[#Surface depth|surface depth]] to the offset. Note: this is ''not'' {{cd|add_stone_depth}}!
+** {{nbt|int|secondary_depth_range}}: Adds a mapped value of the [[#Secondary surface depth|secondary surface depth]] to the offset, calculated using the formula: {{cd|map(surface_secondary(X,0,Z), -1, 1, 0, secondary_depth_range)}}.
+</div>
+
+<div class="treeview" id="temperature" style="margin-block-end: 1em;">
+* '''temperature''' &mdash; Checks if the current block is in a biome that is cold enough for [[snowfall]]. This condition has no extra fields.
+</div>
+
+<div class="treeview" id="vertical_gradient" style="margin-block-end: 1em;">
+* '''vertical_gradient''' &mdash; Compares the current Y position, with a messy transition, just like the deepslate and bedrock transitions.
+** {{nbt|string|random_name}}: Used as a seed to randomize the gradient.
+** {{nbt|compound|true_at_and_below}}: The lower vertical anchor. Positions at and below this always pass.
+*** {{nbt inherit/vertical_anchor}}
+** {{nbt|compound|false_at_and_above}}: The upper vertical anchor. Positions at and above this always fail. The Y-coords between the two vertical anchors produces a gradient where the probability of success is {{cd|(false_at_and_above - Y) / (false_at_and_above - true_at_and_below)}}.
+*** {{nbt inherit/vertical_anchor}}
+</div>
+
+<div class="treeview" id="water" style="margin-block-end: 1em;">
+* '''water''' &mdash; Checks if the current position is above water, based on [[#Terrain depth|terrain depth]]. Note that if there is no water above this block, the condition always passes, regardless of the values of the fields.
+** {{nbt|int|offset}}: The value added to the water depth before the comparison is done. This value can be negative to match blocks at a specific depth relative to water surface.
+** {{nbt|int|surface_depth_multiplier}}: Value between -20 and 20. How much it is affected by the [[#Surface depth|surface depth]]. {{cd|surface_depth(X,Z) * surface_depth_multiplier}} is added to offset before comparing.
+** {{nbt|boolean|add_stone_depth}}: If true, adds the distance to the surface to the offset, effectively checking if the surface block above this one is above water.
+</div>
+
+<div class="treeview" id="y_above" style="margin-block-end: 1em;">
+* '''y_above''' &mdash; Checks if the current position is above a specified height (exclusive).
+** {{nbt|compound|anchor}}: The vertical anchor to compare the height with.
+*** {{nbt inherit/vertical_anchor}}
+** {{nbt|int|surface_depth_multiplier}}: Value between -20 and 20. How much it is affected by the [[#Surface depth|surface depth]]. {{cd|surface_depth(X,Z) * surface_depth_multiplier}} is added to anchor before comparing.
+** {{nbt|boolean|add_stone_depth}}: If true, adds the [[#Terrain depth|distance to the surface above]] to the offset.
+</div>
+
+== Surface depth ==
+The surface depth is an integer value computed for each column, which is used by various [[#Surface conditions|conditions]]. It uses the {{cd|minecraft:surface}} [[noise]]. The calculation is as follows: {{cd|floor(surface(X,0,Z) × 2.75 + 3.0 + positional_noise(X,0,Z) × 0.25)}} where {{cd|surface}} returns the noise value of the {{cd|minecraft:surface}} noise and {{cd|positional_noise}} returns a random value between 0 and 1.
+
+== Secondary surface depth ==
+The secondary surface depth is a value  between -1 and 1 computed for each column, which can be used by the [[#stone_depth|stone_depth condition]]. It uses the {{cd|minecraft:surface_secondary}} [[noise]].
+
+== Terrain depth ==
+The generator tracks the vertical distance to the surface above (internally <code>stoneDepthAbove</code>) and the cavity below (internally <code>stoneDepthBelow</code>), as well as how deep underwater each block is (if there is any water above it at all; <code>waterHeight</code>). These values are used in the [[#stone_depth|stone_depth]], [[#water|water]] and [[#y_above|y_above]] conditions.

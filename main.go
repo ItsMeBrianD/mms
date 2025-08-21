@@ -8,8 +8,16 @@ import (
 
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/serializers"
 	"github.com/urfave/cli/v3"
 )
+
+func parseFileContent(content string) grammars.IMmsFileContext {
+	stream := antlr.NewInputStream(content)
+	lexer := grammars.NewMMSLexer(stream)
+	parser := grammars.NewMMSParser(antlr.NewCommonTokenStream(lexer, 0))
+	return parser.MmsFile()
+}
 
 func main() {
 	app := &cli.Command{
@@ -29,23 +37,8 @@ func main() {
 				return err
 			}
 
-			fmt.Println(string(data))
-
-			stream := antlr.NewInputStream(string(data))
-			lexer := grammars.NewMMSLexer(stream)
-
-			// parser := grammars.NewMMSParser(antlr.NewCommonTokenStream(lexer, 0))
-
-			for _, token := range lexer.GetAllTokens() {
-				name := lexer.SymbolicNames[token.GetTokenType()]
-				fmt.Printf("[%s] %s\n", name, token.GetText())
-			}
-
-			// tree := parser.MmsFile()
-
-			// fmt.Println(tree)
-
-			// antlr.ParseTreeWalkerDefault.Walk(nil, tree)
+			tree := parseFileContent(string(data))
+			serializers.SerializeSurfaceRules(tree)
 			return nil
 		},
 	}
