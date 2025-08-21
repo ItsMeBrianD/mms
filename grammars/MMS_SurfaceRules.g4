@@ -9,11 +9,13 @@ surfaceDeclaration: Keyword_Surface Identifier surfaceDefinition;
 surfaceInline: Keyword_Surface surfaceDefinition;
 surfaceDefinition: CurlyOpen NL+ (surfaceRuleDeclaration NL+)* CurlyClose;
 
-//// Surface Conditions
+
+//// Surface Rules
+surfaceRuleReference: Keyword_Rule RoundOpen Identifier RoundClose;
 surfaceRuleDeclaration: Keyword_Rule Identifier surfaceRule;
 surfaceRule: surfaceRule_Conditional | surfaceRule_Block | surfaceRule_Sequence;
 surfaceRule_Conditional: Keyword_If SquareOpen SquareClose;
 surfaceRule_Block: Keyword_Block reference;
-surfaceRule_Sequence: Keyword_Sequence SquareOpen NL* (surfaceRule NL*)* SquareClose;
+surfaceRule_Sequence: Keyword_Sequence SquareOpen NL* ((surfaceRule | surfaceRuleReference) NL*)* SquareClose;
 
 ////

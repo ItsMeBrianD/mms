@@ -25,6 +25,9 @@ type MMSParserListener interface {
 	// EnterSurfaceDefinition is called when entering the surfaceDefinition production.
 	EnterSurfaceDefinition(c *SurfaceDefinitionContext)
 
+	// EnterSurfaceRuleReference is called when entering the surfaceRuleReference production.
+	EnterSurfaceRuleReference(c *SurfaceRuleReferenceContext)
+
 	// EnterSurfaceRuleDeclaration is called when entering the surfaceRuleDeclaration production.
 	EnterSurfaceRuleDeclaration(c *SurfaceRuleDeclarationContext)
 
@@ -60,6 +63,9 @@ type MMSParserListener interface {
 
 	// ExitSurfaceDefinition is called when exiting the surfaceDefinition production.
 	ExitSurfaceDefinition(c *SurfaceDefinitionContext)
+
+	// ExitSurfaceRuleReference is called when exiting the surfaceRuleReference production.
+	ExitSurfaceRuleReference(c *SurfaceRuleReferenceContext)
 
 	// ExitSurfaceRuleDeclaration is called when exiting the surfaceRuleDeclaration production.
 	ExitSurfaceRuleDeclaration(c *SurfaceRuleDeclarationContext)

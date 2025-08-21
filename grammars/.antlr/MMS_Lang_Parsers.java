@@ -20,7 +20,7 @@ public class MMS_Lang_Parsers extends Parser {
 		Keyword_Block=5, Keyword_Bandlands=6, Keyword_AbovePreliminarySurface=7, 
 		Keyword_Biome=8, Keyword_Hole=9, Keyword_Steep=10, Keyword_StoneDepth=11, 
 		Keyword_Freezing=12, Keyword_Temperature=13, Keyword_VerticalGradient=14, 
-		Keyword_Water=15, Keyword_YAbove=16, Keyword_Namespace=17, Keyword_If=18, 
+		Keyword_AboveWater=15, Keyword_YAbove=16, Keyword_Namespace=17, Keyword_If=18, 
 		Keyword_Else=19, Keyword_In=20, WS=21, NL=22, SquareOpen=23, SquareClose=24, 
 		CurlyOpen=25, CurlyClose=26, RoundOpen=27, RoundClose=28, Bang=29, Colon=30, 
 		SemiColon=31, Identifier=32;
@@ -38,8 +38,8 @@ public class MMS_Lang_Parsers extends Parser {
 			null, "'surface'", "'rule'", "'condition'", "'sequence'", "'block'", 
 			"'bandlands'", "'above_preliminary_surface'", "'biome'", "'hole'", "'steep'", 
 			"'stone_depth'", "'freezing'", "'temperature'", "'vertical_gradient'", 
-			"'water'", "'y_above'", "'namespace'", "'if'", "'else'", "'in'", null, 
-			null, "'['", "']'", "'{'", "'}'", "'('", "')'", "'!'", "':'", "';'"
+			"'above_water'", "'y_above'", "'namespace'", "'if'", "'else'", "'in'", 
+			null, null, "'['", "']'", "'{'", "'}'", "'('", "')'", "'!'", "':'", "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -49,7 +49,7 @@ public class MMS_Lang_Parsers extends Parser {
 			"Keyword_Block", "Keyword_Bandlands", "Keyword_AbovePreliminarySurface", 
 			"Keyword_Biome", "Keyword_Hole", "Keyword_Steep", "Keyword_StoneDepth", 
 			"Keyword_Freezing", "Keyword_Temperature", "Keyword_VerticalGradient", 
-			"Keyword_Water", "Keyword_YAbove", "Keyword_Namespace", "Keyword_If", 
+			"Keyword_AboveWater", "Keyword_YAbove", "Keyword_Namespace", "Keyword_If", 
 			"Keyword_Else", "Keyword_In", "WS", "NL", "SquareOpen", "SquareClose", 
 			"CurlyOpen", "CurlyClose", "RoundOpen", "RoundClose", "Bang", "Colon", 
 			"SemiColon", "Identifier"

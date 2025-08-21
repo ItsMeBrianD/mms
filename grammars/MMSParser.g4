@@ -9,4 +9,4 @@ namespaceDeclaration: Keyword_Namespace Identifier SemiColon;
 statement: surfaceDeclaration;
 
 
-mmsFile: namespaceDeclaration NL* (statement NL+)* statement? EOF;
+mmsFile: NL* namespaceDeclaration NL* (statement NL+)* statement? NL* EOF;

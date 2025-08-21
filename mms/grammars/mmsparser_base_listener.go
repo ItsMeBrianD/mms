@@ -56,6 +56,12 @@ func (s *BaseMMSParserListener) EnterSurfaceDefinition(ctx *SurfaceDefinitionCon
 // ExitSurfaceDefinition is called when production surfaceDefinition is exited.
 func (s *BaseMMSParserListener) ExitSurfaceDefinition(ctx *SurfaceDefinitionContext) {}
 
+// EnterSurfaceRuleReference is called when production surfaceRuleReference is entered.
+func (s *BaseMMSParserListener) EnterSurfaceRuleReference(ctx *SurfaceRuleReferenceContext) {}
+
+// ExitSurfaceRuleReference is called when production surfaceRuleReference is exited.
+func (s *BaseMMSParserListener) ExitSurfaceRuleReference(ctx *SurfaceRuleReferenceContext) {}
+
 // EnterSurfaceRuleDeclaration is called when production surfaceRuleDeclaration is entered.
 func (s *BaseMMSParserListener) EnterSurfaceRuleDeclaration(ctx *SurfaceRuleDeclarationContext) {}
 

@@ -14,7 +14,7 @@ null
 'freezing'
 'temperature'
 'vertical_gradient'
-'water'
+'above_water'
 'y_above'
 'namespace'
 'if'
@@ -49,7 +49,7 @@ Keyword_StoneDepth
 Keyword_Freezing
 Keyword_Temperature
 Keyword_VerticalGradient
-Keyword_Water
+Keyword_AboveWater
 Keyword_YAbove
 Keyword_Namespace
 Keyword_If

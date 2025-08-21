@@ -2,22 +2,15 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"os"
 
-	"github.com/antlr4-go/antlr/v4"
-	"github.com/itsmebriand/mms/mms/grammars"
-	"github.com/itsmebriand/mms/serializers"
+	"github.com/itsmebriand/mms/parse"
+	"github.com/itsmebriand/mms/walkers"
 	"github.com/urfave/cli/v3"
 )
-
-func parseFileContent(content string) grammars.IMmsFileContext {
-	stream := antlr.NewInputStream(content)
-	lexer := grammars.NewMMSLexer(stream)
-	parser := grammars.NewMMSParser(antlr.NewCommonTokenStream(lexer, 0))
-	return parser.MmsFile()
-}
 
 func main() {
 	app := &cli.Command{
@@ -37,8 +30,11 @@ func main() {
 				return err
 			}
 
-			tree := parseFileContent(string(data))
-			serializers.SerializeSurfaceRules(tree)
+			tree, errs := parse.ParseFileContent(string(data), file)
+			if len(errs) > 0 {
+				return errors.Join(errs...)
+			}
+			walkers.SerializeSurfaceRules(tree)
 			return nil
 		},
 	}
