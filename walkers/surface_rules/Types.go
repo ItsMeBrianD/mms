@@ -1,6 +1,12 @@
-package surface_rule_walkers
+package surface_rules
 
-import "github.com/itsmebriand/mms/mms/grammars"
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+
+	"github.com/itsmebriand/mms/mms/grammars"
+)
 
 type RuleType string
 
@@ -37,15 +43,38 @@ type SurfaceRuleSerializer struct {
 	grammars.BaseMMSParserListener
 	ruleStack   []Rule
 	rulesByName map[string]Rule
+
+	NamespaceRules map[string]map[string]Rule
+
+	Errors []error
+}
+
+func (l *SurfaceRuleSerializer) Flush() error {
+	for namespace, rules := range l.NamespaceRules {
+		os.Mkdir("mms_build/"+namespace+"/_debug/surface_rules", 0755)
+		for name, rule := range rules {
+			file, err := os.OpenFile("mms_build/"+namespace+"/_debug/surface_rules/"+name+".json", os.O_CREATE|os.O_WRONLY, 0644)
+			if err != nil {
+				return err
+			}
+			fmt.Printf("Writing %s\n", name)
+			defer file.Close()
+			encoder := json.NewEncoder(file)
+			encoder.SetIndent("", "  ")
+			encoder.Encode(rule)
+		}
+	}
+	return nil
 }
 
 func NewSurfaceRuleSerializer() *SurfaceRuleSerializer {
 	return &SurfaceRuleSerializer{
-		rulesByName: make(map[string]Rule),
+		rulesByName:    make(map[string]Rule),
+		NamespaceRules: make(map[string]map[string]Rule),
 	}
 }
 
-func (l SurfaceRuleSerializer) GetRules() map[string]Rule {
+func (l *SurfaceRuleSerializer) GetRules() map[string]Rule {
 	return l.rulesByName
 }
 

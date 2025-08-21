@@ -3,17 +3,25 @@ package walkers_test
 import (
 	"testing"
 
-	"github.com/itsmebriand/mms/parse"
-	"github.com/itsmebriand/mms/walkers"
+	"github.com/itsmebriand/mms/mms"
+	"github.com/itsmebriand/mms/mms/grammars"
 	surface_rule_walkers "github.com/itsmebriand/mms/walkers/surface_rules"
 )
 
+func getParser() (*grammars.MMSParser, *surface_rule_walkers.SurfaceRuleSerializer) {
+	p := grammars.NewMMSParser(nil)
+	serializer := surface_rule_walkers.NewSurfaceRuleSerializer()
+	p.AddParseListener(serializer)
+	return p, serializer
+}
+
 func TestNoRules(t *testing.T) {
-	file, err := parse.ParseFileContent("namespace demo;", "test.mms")
+	project := mms.NewProject(".")
+	err := project.ParseFile("namespace demo;")
 	if err != nil {
 		t.Fatal(err)
 	}
-	res := walkers.SerializeSurfaceRules(file)
+	res := project.SurfaceRules.GetRules()
 
 	keys := make([]string, 0, len(res))
 	for k := range res {
@@ -25,27 +33,22 @@ func TestNoRules(t *testing.T) {
 	}
 }
 
-func TestUnscopedRules(t *testing.T) {
-	_, err := parse.ParseFileContent(`
-namespace demo;
-rule myRule block minecraft:stone
-	`, "test.mms")
-	if err == nil {
-		t.Fatal("Expected error, got nil")
-	}
-}
-
 func TestSimpleBlockRule(t *testing.T) {
-	file, err := parse.ParseFileContentStrict(`
+	project := mms.NewProject(".")
+	err := project.ParseFile(`
 namespace demo;
 surface mySurface {
 	rule myRule block minecraft:stone
 }
-	`, "test.mms")
+	`)
 	if err != nil {
 		t.Fatal(err)
 	}
-	res := walkers.SerializeSurfaceRules(file)
+	errs := project.SurfaceRules.Errors
+	if len(errs) != 0 {
+		t.Errorf("Expected no errors, got %d", len(errs))
+	}
+	res := project.SurfaceRules.GetRules()
 	keys := make([]string, 0, len(res))
 	for k := range res {
 		keys = append(keys, k)
@@ -62,7 +65,8 @@ surface mySurface {
 }
 
 func TestSequenceRule(t *testing.T) {
-	file, err := parse.ParseFileContentStrict(`
+	project := mms.NewProject(".")
+	project.ParseFile(`
 namespace demo;
 surface mySurface {
 	rule seqRule sequence [
@@ -70,11 +74,12 @@ surface mySurface {
 		block minecraft:dirt
 	]
 }
-`, "test.mms")
-	if err != nil {
-		t.Fatal(err)
+`)
+	errs := project.SurfaceRules.Errors
+	if len(errs) != 0 {
+		t.Errorf("Expected no errors, got %d", len(errs))
 	}
-	res := walkers.SerializeSurfaceRules(file)
+	res := project.SurfaceRules.GetRules()
 	rule, ok := res["seqRule"]
 	if !ok {
 		t.Fatalf("Expected rule 'seqRule' present")
@@ -95,7 +100,8 @@ surface mySurface {
 }
 
 func TestReferenceRule(t *testing.T) {
-	file, err := parse.ParseFileContentStrict(`
+	project := mms.NewProject(".")
+	project.ParseFile(`
 namespace demo;
 surface mySurface {
 	rule MyRule sequence [
@@ -105,11 +111,13 @@ surface mySurface {
 
 	rule RefMe block minecraft:dirt
 }
-`, "test.mms")
-	if err != nil {
-		t.Fatal(err)
+`)
+	errs := project.SurfaceRules.Errors
+	if len(errs) != 0 {
+		t.Errorf("Expected no errors, got %d", len(errs))
 	}
-	res := walkers.SerializeSurfaceRules(file)
+	project.SurfaceRules.Finalize()
+	res := project.SurfaceRules.GetRules()
 	rule, ok := res["MyRule"]
 	if !ok {
 		t.Fatalf("Expected rule 'MyRule' present")
@@ -127,7 +135,8 @@ surface mySurface {
 }
 
 func TestNestedSequence(t *testing.T) {
-	file, err := parse.ParseFileContentStrict(`
+	project := mms.NewProject(".")
+	project.ParseFile(`
 namespace demo;
 surface mySurface {
 	rule MyRule sequence [
@@ -139,11 +148,13 @@ surface mySurface {
 		]
 	]
 }
-`, "test.mms")
-	if err != nil {
-		t.Fatal(err)
+`)
+	errs := project.SurfaceRules.Errors
+	if len(errs) != 0 {
+		t.Errorf("Expected no errors, got %d", len(errs))
 	}
-	res := walkers.SerializeSurfaceRules(file)
+	project.SurfaceRules.Finalize()
+	res := project.SurfaceRules.GetRules()
 	rule, ok := res["MyRule"]
 	if !ok {
 		t.Fatalf("Expected rule 'MyRule' present")

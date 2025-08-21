@@ -1,8 +1,23 @@
-package surface_rule_walkers
+package surface_rules
 
 import (
+	"errors"
+	"fmt"
+
 	"github.com/itsmebriand/mms/mms/grammars"
 )
+
+func (l *SurfaceRuleSerializer) ExitNamespaceDeclaration(ctx *grammars.NamespaceDeclarationContext) {
+	namespace := ctx.Identifier().GetText()
+
+	if _, ok := l.NamespaceRules[namespace]; !ok {
+		l.NamespaceRules[namespace] = make(map[string]Rule)
+	}
+
+	for k, v := range l.rulesByName {
+		l.NamespaceRules[namespace][k] = v
+	}
+}
 
 func (l *SurfaceRuleSerializer) ExitSurfaceRuleReference(ctx *grammars.SurfaceRuleReferenceContext) {
 	if _, ok := ctx.GetParent().(*grammars.SurfaceRule_SequenceContext); ok {
@@ -33,7 +48,20 @@ func (l *SurfaceRuleSerializer) ExitSurfaceRuleDeclaration(ctx *grammars.Surface
 	if len(l.ruleStack) > 0 {
 		// Extract rule name from context
 		name := ctx.Identifier().GetText()
+		origName := name
+		suffix := 1
+		for {
+			if _, ok := l.rulesByName[name]; !ok {
+				break
+			}
+			suffix++
+			name = origName + fmt.Sprintf("_duplicate_%d", suffix)
+		}
+		if name != origName {
+			l.Errors = append(l.Errors, errors.New("duplicate rule name: "+origName))
+		}
 		l.rulesByName[name] = l.ruleStack[len(l.ruleStack)-1]
+
 	}
 }
 
@@ -48,7 +76,7 @@ func ReplaceRefs(rulesByName map[string]Rule, sequence SequenceRule) SequenceRul
 	return sequence
 }
 
-func (l *SurfaceRuleSerializer) ExitSurfaceDeclaration(ctx *grammars.SurfaceDeclarationContext) {
+func (l *SurfaceRuleSerializer) Finalize() {
 	for name, rule := range l.rulesByName {
 		if rule.Type() == SequenceRuleType {
 			replaced := ReplaceRefs(l.rulesByName, rule.(SequenceRule))

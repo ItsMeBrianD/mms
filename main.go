@@ -2,13 +2,10 @@ package main
 
 import (
 	"context"
-	"errors"
-	"fmt"
 	"log"
 	"os"
 
-	"github.com/itsmebriand/mms/parse"
-	"github.com/itsmebriand/mms/walkers"
+	"github.com/itsmebriand/mms/mms"
 	"github.com/urfave/cli/v3"
 )
 
@@ -24,18 +21,9 @@ func main() {
 		Description: "Test command to parse a Minecraft Meta Script (MMS) file.",
 		Action: func(c context.Context, cmd *cli.Command) error {
 			file := cmd.StringArg("file")
-			fmt.Println(file)
-			data, err := os.ReadFile(file)
-			if err != nil {
-				return err
-			}
+			project := mms.NewProject(file)
 
-			tree, errs := parse.ParseFileContent(string(data), file)
-			if len(errs) > 0 {
-				return errors.Join(errs...)
-			}
-			walkers.SerializeSurfaceRules(tree)
-			return nil
+			return project.Parse()
 		},
 	}
 
