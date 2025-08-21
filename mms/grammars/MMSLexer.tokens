@@ -1,0 +1,17 @@
+SquareOpen=1
+SquareClose=2
+CurlyOpen=3
+CurlyClose=4
+RoundOpen=5
+RoundClose=6
+Colon=7
+SemiColon=8
+Identifier=9
+'['=1
+']'=2
+'{'=3
+'}'=4
+'('=5
+')'=6
+':'=7
+';'=8
