@@ -47,6 +47,7 @@ func (l *SurfaceRuleSerializer) SerializeToFileTreeLike(root *lib.FileTreeLike) 
 	if root == nil {
 		return nil, errors.New("root is nil")
 	}
+
 	for namespace, rules := range l.NamespaceRules {
 		namespaceDir := root.MkDir(namespace)
 		debugDir := namespaceDir.MkDir("_debug")
@@ -54,14 +55,14 @@ func (l *SurfaceRuleSerializer) SerializeToFileTreeLike(root *lib.FileTreeLike) 
 
 		out := make(map[string]json.RawMessage)
 		for name, rule := range rules {
-			data, err := json.Marshal(rule)
+			data, err := json.MarshalIndent(rule, "", "  ")
 			if err != nil {
 				fmt.Println("Failed to marshal rule", name, err)
 				return nil, err
 			}
 			out[name] = data
 		}
-		data, err := json.Marshal(out)
+		data, err := json.MarshalIndent(out, "", "  ")
 		if err != nil {
 			fmt.Println("Failed to marshal surface_rules.json for namespace", namespace)
 			return nil, err
@@ -76,14 +77,14 @@ func (l *SurfaceRuleSerializer) SerializeToFileTreeLike(root *lib.FileTreeLike) 
 		conditionsFile := debugDir.MkFile("conditions.json", "")
 		out := make(map[string]json.RawMessage)
 		for name, condition := range conditions {
-			data, err := json.Marshal(condition)
+			data, err := json.MarshalIndent(condition, "", "  ")
 			if err != nil {
 				fmt.Println("Failed to marshal condition", name, err)
 				return nil, err
 			}
 			out[name] = data
 		}
-		data, err := json.Marshal(out)
+		data, err := json.MarshalIndent(out, "", "  ")
 		if err != nil {
 			fmt.Println("Failed to marshal conditions.json for namespace", namespace)
 			return nil, err

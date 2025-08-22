@@ -1,0 +1,54 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "MMS",
+    "patterns": [
+        { "include": "#comments" },
+        { "include": "#keywords" },
+        { "include": "#strings" },
+        { "include": "#numbers" },
+        { "include": "#block_references" }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.mms",
+                    "match": "//.*$"
+                },
+                {
+                    "name": "comment.block.mms",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.mms",
+                    "match": "\\b(rule|condition|block|biome|noise|type|scale|y_above|y_below|y_between)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.mms",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.mms",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "numbers": {
+            "name": "constant.numeric.mms",
+            "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+        },
+        "block_references": {
+            "name": "support.class.mms",
+            "match": "\\b(minecraft:[a-z_]+)\\b"
+        }
+    },
+    "scopeName": "source.mms"
+}

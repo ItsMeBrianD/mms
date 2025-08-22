@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/itsmebriand/mms/lsp"
 	"github.com/itsmebriand/mms/mms"
 	"github.com/urfave/cli/v3"
 )
@@ -26,6 +27,26 @@ func main() {
 				},
 			},
 			{
+				Name: "lsp",
+				Description: "Start the MMS language server",
+				Action: func(c context.Context, cmd *cli.Command) error {
+					log.Println("Starting MMS language server...")
+					
+					// Create and initialize the language server
+					server := lsp.NewLanguageServer()
+					
+					// Connect standard input and output
+					if err := server.Connect(os.Stdin, os.Stdout); err != nil {
+						return fmt.Errorf("failed to connect server: %v", err)
+					}
+					
+					log.Println("MMS language server connected to stdin/stdout")
+					
+					// Run the server
+					return server.Run()
+				},
+			},
+			{
 				Name: "build",
 				Arguments: []cli.Argument{
 					&cli.StringArg{
@@ -36,8 +57,8 @@ func main() {
 
 				Action: func(c context.Context, cmd *cli.Command) error {
 					file := cmd.StringArg("file")
-					project := mms.NewProject(file)
-					t, err := project.Parse()
+					project := mms.NewProject()
+					t, err := project.ParseFiles(file)
 					if err != nil {
 						return err
 					}

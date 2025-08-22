@@ -1,0 +1,46 @@
+{
+    "name": "mms-language",
+    "displayName": "MMS Language Support",
+    "description": "Language support for MMS (Minecraft Mapping Script) files",
+    "version": "0.0.1",
+    "publisher": "mms",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "activationEvents": [
+        "onLanguage:mms"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "languages": [{
+            "id": "mms",
+            "aliases": ["MMS", "mms"],
+            "extensions": [".mms"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "mms",
+            "scopeName": "source.mms",
+            "path": "./syntaxes/mms.tmLanguage.json"
+        }],
+        "configuration": {
+            "type": "object",
+            "title": "MMS Language Server Configuration",
+            "properties": {
+                "mms.languageServer.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable/disable MMS language server"
+                },
+                "mms.languageServer.path": {
+                    "type": "string",
+                    "default": "mms",
+                    "description": "Path to the MMS executable"
+                }
+            }
+        }
+    }
+}

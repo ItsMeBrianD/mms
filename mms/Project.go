@@ -13,11 +13,9 @@ import (
 type Project struct {
 	parser       *grammars.MMSParser
 	SurfaceRules *surface_rules.SurfaceRuleSerializer
-
-	Root string
 }
 
-func NewProject(root string) *Project {
+func NewProject() *Project {
 	parser := grammars.NewMMSParser(nil)
 	surfaceRules := surface_rules.NewSurfaceRuleSerializer()
 	parser.AddParseListener(surfaceRules)
@@ -25,7 +23,6 @@ func NewProject(root string) *Project {
 	return &Project{
 		parser:       parser,
 		SurfaceRules: surfaceRules,
-		Root:         root,
 	}
 }
 
@@ -34,19 +31,19 @@ func (p Project) SerializeToFileTreeLike() (*lib.FileTreeLike, error) {
 	return p.SurfaceRules.SerializeToFileTreeLike(root)
 }
 
-func (p *Project) Parse() (*lib.FileTreeLike, error) {
-	stat, err := os.Stat(p.Root)
+func (p *Project) ParseFiles(root string) (*lib.FileTreeLike, error) {
+	stat, err := os.Stat(root)
 	if err != nil {
 		return nil, err
 	}
 	files := make([]string, 0)
 	if stat.IsDir() {
-		files, err = getAllFilesInDir(p.Root)
+		files, err = getAllFilesInDir(root)
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		files = append(files, p.Root)
+		files = append(files, root)
 	}
 
 	namespaces := make(map[string][]grammars.IMmsFileContext, 0)
@@ -56,7 +53,7 @@ func (p *Project) Parse() (*lib.FileTreeLike, error) {
 		if err != nil {
 			return nil, err
 		}
-		ctx, err := p.ParseFile(string(data))
+		ctx, err := p.ParseLiteral(string(data))
 		if err != nil {
 			return nil, err
 		}
@@ -65,11 +62,15 @@ func (p *Project) Parse() (*lib.FileTreeLike, error) {
 
 	}
 
+	return p.Finalize()
+}
+
+func (p *Project) Finalize() (*lib.FileTreeLike, error) {
 	p.SurfaceRules.Finalize()
 	return p.SerializeToFileTreeLike()
 }
 
-func (p *Project) ParseFile(content string) (*grammars.MmsFileContext, error) {
+func (p *Project) ParseLiteral(content string) (*grammars.MmsFileContext, error) {
 	stream := antlr.NewInputStream(content)
 	if stream == nil {
 		return nil, errors.New("failed to create input stream")

@@ -16,9 +16,14 @@ func parseLiteral(this js.Value, args []js.Value) interface{} {
 		return errors.New("expected 1 argument")
 	}
 	content := args[0].String()
-	project := mms.NewProject("-")
+	project := mms.NewProject()
 
-	filetree, err := project.ParseFile(content)
+	_, err := project.ParseLiteral(content)
+	if err != nil {
+		return err
+	}
+
+	filetree, err := project.Finalize()
 	if err != nil {
 		return err
 	}
