@@ -1,3 +1,5 @@
+//go:build !js && !wasm
+
 package main
 
 import (
@@ -12,18 +14,31 @@ import (
 func main() {
 	app := &cli.Command{
 		Name: "mms",
-		Arguments: []cli.Argument{
-			&cli.StringArg{
-				Name:      "file",
-				UsageText: "The file to parse",
-			},
-		},
-		Description: "Test command to parse a Minecraft Meta Script (MMS) file.",
-		Action: func(c context.Context, cmd *cli.Command) error {
-			file := cmd.StringArg("file")
-			project := mms.NewProject(file)
 
-			return project.Parse()
+		Commands: []*cli.Command{
+			{
+				Name: "version",
+				Action: func(c context.Context, cmd *cli.Command) error {
+					log.Println("mms version 0.1.0")
+					return nil
+				},
+			},
+			{
+				Name: "parse",
+				Arguments: []cli.Argument{
+					&cli.StringArg{
+						Name:      "file",
+						UsageText: "The file to parse",
+					},
+				},
+
+				Action: func(c context.Context, cmd *cli.Command) error {
+					file := cmd.StringArg("file")
+					project := mms.NewProject(file)
+
+					return project.Parse()
+				},
+			},
 		},
 	}
 
