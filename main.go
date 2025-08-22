@@ -4,6 +4,8 @@ package main
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 
@@ -24,19 +26,29 @@ func main() {
 				},
 			},
 			{
-				Name: "parse",
+				Name: "build",
 				Arguments: []cli.Argument{
 					&cli.StringArg{
 						Name:      "file",
-						UsageText: "The file to parse",
+						UsageText: "The root directory or file to build",
 					},
 				},
 
 				Action: func(c context.Context, cmd *cli.Command) error {
 					file := cmd.StringArg("file")
 					project := mms.NewProject(file)
+					t, err := project.Parse()
+					if err != nil {
+						return err
+					}
 
-					return project.Parse()
+					data, err := json.Marshal(t)
+					if err != nil {
+						return err
+					}
+					fmt.Println(string(data))
+
+					return nil
 				},
 			},
 		},

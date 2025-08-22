@@ -6,6 +6,7 @@ import (
 
 	antlr "github.com/antlr4-go/antlr/v4"
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/mms/lib"
 	"github.com/itsmebriand/mms/mms/surface_rules"
 )
 
@@ -28,16 +29,21 @@ func NewProject(root string) *Project {
 	}
 }
 
-func (p *Project) Parse() error {
+func (p Project) SerializeToFileTreeLike() (*lib.FileTreeLike, error) {
+	root := lib.NewDirLike("mms_build")
+	return p.SurfaceRules.SerializeToFileTreeLike(root)
+}
+
+func (p *Project) Parse() (*lib.FileTreeLike, error) {
 	stat, err := os.Stat(p.Root)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	files := make([]string, 0)
 	if stat.IsDir() {
 		files, err = getAllFilesInDir(p.Root)
 		if err != nil {
-			return err
+			return nil, err
 		}
 	} else {
 		files = append(files, p.Root)
@@ -48,26 +54,19 @@ func (p *Project) Parse() error {
 	for _, file := range files {
 		data, err := os.ReadFile(file)
 		if err != nil {
-			return err
+			return nil, err
 		}
 		ctx, err := p.ParseFile(string(data))
 		if err != nil {
-			return err
+			return nil, err
 		}
 		namespace := ctx.NamespaceDeclaration().Identifier().GetText()
 		namespaces[namespace] = append(namespaces[namespace], ctx)
 
 	}
 
-	os.Mkdir("mms_build", 0755)
-	for namespace := range namespaces {
-		os.RemoveAll("mms_build/" + namespace)
-		os.Mkdir("mms_build/"+namespace, 0755)
-		os.Mkdir("mms_build/"+namespace+"/_debug", 0755)
-	}
 	p.SurfaceRules.Finalize()
-	p.SurfaceRules.Flush()
-	return nil
+	return p.SerializeToFileTreeLike()
 }
 
 func (p *Project) ParseFile(content string) (*grammars.MmsFileContext, error) {

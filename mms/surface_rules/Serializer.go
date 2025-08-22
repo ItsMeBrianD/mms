@@ -2,10 +2,11 @@ package surface_rules
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
-	"os"
 
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/mms/lib"
 	"github.com/itsmebriand/mms/mms/surface_rules/condition_factory"
 	"github.com/itsmebriand/mms/mms/surface_rules/rule_factory"
 	surface_rules_store "github.com/itsmebriand/mms/mms/surface_rules/store"
@@ -42,81 +43,80 @@ func NewSurfaceRuleSerializer() *SurfaceRuleSerializer {
 	}
 }
 
-func (l *SurfaceRuleSerializer) Flush() error {
+func (l *SurfaceRuleSerializer) SerializeToFileTreeLike(root *lib.FileTreeLike) (*lib.FileTreeLike, error) {
+	if root == nil {
+		return nil, errors.New("root is nil")
+	}
 	for namespace, rules := range l.NamespaceRules {
-		dirPath := "mms_build/" + namespace + "/_debug"
-		os.MkdirAll(dirPath, 0755)
+		namespaceDir := root.MkDir(namespace)
+		debugDir := namespaceDir.MkDir("_debug")
+		surfaceRulesFile := debugDir.MkFile("surface_rules.json", "")
+
 		out := make(map[string]json.RawMessage)
 		for name, rule := range rules {
 			data, err := json.Marshal(rule)
 			if err != nil {
 				fmt.Println("Failed to marshal rule", name, err)
-				return err
+				return nil, err
 			}
 			out[name] = data
 		}
-		file, err := os.OpenFile(dirPath+"/surface_rules.json", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+		data, err := json.Marshal(out)
 		if err != nil {
-			fmt.Println("Failed to open surface_rules.json for namespace", namespace)
-			return err
+			fmt.Println("Failed to marshal surface_rules.json for namespace", namespace)
+			return nil, err
 		}
-		enc := json.NewEncoder(file)
-		enc.SetIndent("", "  ")
-		if err := enc.Encode(out); err != nil {
-			fmt.Println("Failed to encode surface_rules.json for namespace", namespace)
-			return err
-		}
-		file.Close()
+		surfaceRulesFile.SetContent(string(data))
+		debugDir.AddChild(surfaceRulesFile)
 	}
 
 	for namespace, conditions := range l.NamespaceConditions {
-		dirPath := "mms_build/" + namespace + "/_debug"
-		os.MkdirAll(dirPath, 0755)
+		namespaceDir := root.MkDir(namespace)
+		debugDir := namespaceDir.MkDir("_debug")
+		conditionsFile := debugDir.MkFile("conditions.json", "")
 		out := make(map[string]json.RawMessage)
 		for name, condition := range conditions {
 			data, err := json.Marshal(condition)
 			if err != nil {
 				fmt.Println("Failed to marshal condition", name, err)
-				return err
+				return nil, err
 			}
 			out[name] = data
 		}
-		file, err := os.OpenFile(dirPath+"/conditions.json", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+		data, err := json.Marshal(out)
 		if err != nil {
-			fmt.Println("Failed to open conditions.json for namespace", namespace)
-			return err
+			fmt.Println("Failed to marshal conditions.json for namespace", namespace)
+			return nil, err
 		}
-		enc := json.NewEncoder(file)
-		enc.SetIndent("", "  ")
-		if err := enc.Encode(out); err != nil {
-			fmt.Println("Failed to encode conditions.json for namespace", namespace)
-			return err
-		}
-		file.Close()
+		conditionsFile.SetContent(string(data))
 	}
-	return nil
+	return root, nil
 }
 
 func (l *SurfaceRuleSerializer) ExitMmsFile(ctx *grammars.MmsFileContext) {
-	namespace := ctx.NamespaceDeclaration().Identifier().GetText()
+	if namespaceDecl := ctx.NamespaceDeclaration(); namespaceDecl != nil {
+		if id := namespaceDecl.Identifier(); id != nil {
+			namespace := id.GetText()
+			if _, ok := l.NamespaceRules[namespace]; !ok {
+				l.NamespaceRules[namespace] = make(map[string]surface_rule_types.Rule)
+			}
 
-	if _, ok := l.NamespaceRules[namespace]; !ok {
-		l.NamespaceRules[namespace] = make(map[string]surface_rule_types.Rule)
+			if _, ok := l.NamespaceConditions[namespace]; !ok {
+				l.NamespaceConditions[namespace] = make(map[string]surface_rule_types.Condition)
+			}
+
+			for k, v := range l.rulesByName {
+				l.NamespaceRules[namespace][k] = v
+				l.rulesByName = make(map[string]surface_rule_types.Rule)
+			}
+
+			for k, v := range l.conditionsByName {
+				l.NamespaceConditions[namespace][k] = v
+				l.conditionsByName = make(map[string]surface_rule_types.Condition)
+			}
+		}
 	}
 
-	if _, ok := l.NamespaceConditions[namespace]; !ok {
-		l.NamespaceConditions[namespace] = make(map[string]surface_rule_types.Condition)
-	}
-
-	for k, v := range l.rulesByName {
-		l.NamespaceRules[namespace][k] = v
-		l.rulesByName = make(map[string]surface_rule_types.Rule)
-	}
-
-	for k, v := range l.conditionsByName {
-		l.NamespaceConditions[namespace][k] = v
-		l.conditionsByName = make(map[string]surface_rule_types.Condition)
-	}
 }
 
 func (l *SurfaceRuleSerializer) ExitSurfaceCondition(ctx *grammars.SurfaceConditionContext) {

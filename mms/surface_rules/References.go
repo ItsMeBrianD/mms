@@ -8,9 +8,11 @@ import (
 )
 
 func (l *SurfaceRuleSerializer) ExitNamespaceDeclaration(ctx *grammars.NamespaceDeclarationContext) {
-	l.currentNamespace = ctx.Identifier().GetText()
-	l.conditionFactory.CurrentNamespace = l.currentNamespace
-	l.ruleFactory.CurrentNamespace = l.currentNamespace
+	if id := ctx.Identifier(); id != nil {
+		l.currentNamespace = id.GetText()
+		l.conditionFactory.CurrentNamespace = l.currentNamespace
+		l.ruleFactory.CurrentNamespace = l.currentNamespace
+	}
 }
 
 func (l *SurfaceRuleSerializer) ReplaceRefs(rule surface_rule_types.Rule) surface_rule_types.Rule {
