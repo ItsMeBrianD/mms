@@ -66,7 +66,7 @@ func mmsparserParserInit() {
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 47, 342, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 47, 348, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
@@ -79,141 +79,144 @@ func mmsparserParserInit() {
 		2, 1, 2, 1, 2, 1, 3, 1, 3, 1, 3, 1, 4, 1, 4, 5, 4, 111, 8, 4, 10, 4, 12,
 		4, 114, 9, 4, 1, 4, 1, 4, 3, 4, 118, 8, 4, 1, 4, 5, 4, 121, 8, 4, 10, 4,
 		12, 4, 124, 9, 4, 5, 4, 126, 8, 4, 10, 4, 12, 4, 129, 9, 4, 1, 4, 1, 4,
-		1, 5, 1, 5, 3, 5, 135, 8, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7,
-		1, 7, 3, 7, 145, 8, 7, 1, 8, 1, 8, 5, 8, 149, 8, 8, 10, 8, 12, 8, 152,
-		9, 8, 1, 8, 3, 8, 155, 8, 8, 1, 8, 1, 8, 5, 8, 159, 8, 8, 10, 8, 12, 8,
-		162, 9, 8, 1, 8, 1, 8, 5, 8, 166, 8, 8, 10, 8, 12, 8, 169, 9, 8, 1, 8,
-		1, 8, 5, 8, 173, 8, 8, 10, 8, 12, 8, 176, 9, 8, 1, 8, 1, 8, 1, 9, 1, 9,
-		1, 9, 1, 10, 1, 10, 1, 10, 5, 10, 186, 8, 10, 10, 10, 12, 10, 189, 9, 10,
-		1, 10, 1, 10, 5, 10, 193, 8, 10, 10, 10, 12, 10, 196, 9, 10, 5, 10, 198,
-		8, 10, 10, 10, 12, 10, 201, 9, 10, 1, 10, 1, 10, 1, 11, 1, 11, 3, 11, 207,
-		8, 11, 1, 12, 1, 12, 1, 12, 1, 12, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1,
-		13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 3, 13, 225, 8, 13, 1, 14,
-		1, 14, 1, 15, 1, 15, 1, 15, 5, 15, 232, 8, 15, 10, 15, 12, 15, 235, 9,
-		15, 1, 15, 1, 15, 5, 15, 239, 8, 15, 10, 15, 12, 15, 242, 9, 15, 5, 15,
-		244, 8, 15, 10, 15, 12, 15, 247, 9, 15, 1, 15, 1, 15, 1, 16, 1, 16, 1,
-		17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 18, 1, 18, 1, 19,
-		1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 1, 20, 1, 20, 1, 21, 1, 21, 1, 21, 1,
-		21, 1, 21, 1, 21, 1, 22, 1, 22, 1, 22, 1, 22, 1, 22, 1, 23, 1, 23, 1, 23,
-		1, 23, 1, 23, 1, 24, 3, 24, 288, 8, 24, 1, 24, 1, 24, 1, 25, 1, 25, 5,
-		25, 294, 8, 25, 10, 25, 12, 25, 297, 9, 25, 1, 25, 1, 25, 5, 25, 301, 8,
-		25, 10, 25, 12, 25, 304, 9, 25, 1, 25, 1, 25, 5, 25, 308, 8, 25, 10, 25,
-		12, 25, 311, 9, 25, 5, 25, 313, 8, 25, 10, 25, 12, 25, 316, 9, 25, 1, 25,
-		1, 25, 1, 26, 1, 26, 1, 26, 1, 26, 1, 27, 1, 27, 3, 27, 326, 8, 27, 1,
-		28, 1, 28, 1, 28, 3, 28, 331, 8, 28, 1, 29, 1, 29, 1, 29, 1, 30, 1, 30,
-		1, 30, 1, 31, 1, 31, 1, 31, 1, 31, 0, 0, 32, 0, 2, 4, 6, 8, 10, 12, 14,
-		16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50,
-		52, 54, 56, 58, 60, 62, 0, 2, 1, 0, 20, 21, 1, 0, 23, 24, 354, 0, 64, 1,
-		0, 0, 0, 2, 68, 1, 0, 0, 0, 4, 73, 1, 0, 0, 0, 6, 105, 1, 0, 0, 0, 8, 108,
-		1, 0, 0, 0, 10, 134, 1, 0, 0, 0, 12, 136, 1, 0, 0, 0, 14, 144, 1, 0, 0,
-		0, 16, 146, 1, 0, 0, 0, 18, 179, 1, 0, 0, 0, 20, 182, 1, 0, 0, 0, 22, 206,
-		1, 0, 0, 0, 24, 208, 1, 0, 0, 0, 26, 224, 1, 0, 0, 0, 28, 226, 1, 0, 0,
-		0, 30, 228, 1, 0, 0, 0, 32, 250, 1, 0, 0, 0, 34, 252, 1, 0, 0, 0, 36, 260,
-		1, 0, 0, 0, 38, 262, 1, 0, 0, 0, 40, 268, 1, 0, 0, 0, 42, 270, 1, 0, 0,
-		0, 44, 276, 1, 0, 0, 0, 46, 281, 1, 0, 0, 0, 48, 287, 1, 0, 0, 0, 50, 291,
-		1, 0, 0, 0, 52, 319, 1, 0, 0, 0, 54, 325, 1, 0, 0, 0, 56, 330, 1, 0, 0,
-		0, 58, 332, 1, 0, 0, 0, 60, 335, 1, 0, 0, 0, 62, 338, 1, 0, 0, 0, 64, 65,
-		5, 28, 0, 0, 65, 66, 5, 45, 0, 0, 66, 67, 5, 43, 0, 0, 67, 1, 1, 0, 0,
-		0, 68, 69, 3, 6, 3, 0, 69, 3, 1, 0, 0, 0, 70, 72, 5, 33, 0, 0, 71, 70,
-		1, 0, 0, 0, 72, 75, 1, 0, 0, 0, 73, 71, 1, 0, 0, 0, 73, 74, 1, 0, 0, 0,
-		74, 76, 1, 0, 0, 0, 75, 73, 1, 0, 0, 0, 76, 80, 3, 0, 0, 0, 77, 79, 5,
-		33, 0, 0, 78, 77, 1, 0, 0, 0, 79, 82, 1, 0, 0, 0, 80, 78, 1, 0, 0, 0, 80,
-		81, 1, 0, 0, 0, 81, 91, 1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 83, 85, 3, 2, 1,
-		0, 84, 86, 5, 33, 0, 0, 85, 84, 1, 0, 0, 0, 86, 87, 1, 0, 0, 0, 87, 85,
-		1, 0, 0, 0, 87, 88, 1, 0, 0, 0, 88, 90, 1, 0, 0, 0, 89, 83, 1, 0, 0, 0,
-		90, 93, 1, 0, 0, 0, 91, 89, 1, 0, 0, 0, 91, 92, 1, 0, 0, 0, 92, 95, 1,
-		0, 0, 0, 93, 91, 1, 0, 0, 0, 94, 96, 3, 2, 1, 0, 95, 94, 1, 0, 0, 0, 95,
-		96, 1, 0, 0, 0, 96, 100, 1, 0, 0, 0, 97, 99, 5, 33, 0, 0, 98, 97, 1, 0,
-		0, 0, 99, 102, 1, 0, 0, 0, 100, 98, 1, 0, 0, 0, 100, 101, 1, 0, 0, 0, 101,
-		103, 1, 0, 0, 0, 102, 100, 1, 0, 0, 0, 103, 104, 5, 0, 0, 1, 104, 5, 1,
-		0, 0, 0, 105, 106, 5, 3, 0, 0, 106, 107, 3, 8, 4, 0, 107, 7, 1, 0, 0, 0,
-		108, 112, 5, 36, 0, 0, 109, 111, 5, 33, 0, 0, 110, 109, 1, 0, 0, 0, 111,
-		114, 1, 0, 0, 0, 112, 110, 1, 0, 0, 0, 112, 113, 1, 0, 0, 0, 113, 127,
-		1, 0, 0, 0, 114, 112, 1, 0, 0, 0, 115, 118, 3, 12, 6, 0, 116, 118, 3, 24,
-		12, 0, 117, 115, 1, 0, 0, 0, 117, 116, 1, 0, 0, 0, 118, 122, 1, 0, 0, 0,
-		119, 121, 5, 33, 0, 0, 120, 119, 1, 0, 0, 0, 121, 124, 1, 0, 0, 0, 122,
-		120, 1, 0, 0, 0, 122, 123, 1, 0, 0, 0, 123, 126, 1, 0, 0, 0, 124, 122,
-		1, 0, 0, 0, 125, 117, 1, 0, 0, 0, 126, 129, 1, 0, 0, 0, 127, 125, 1, 0,
-		0, 0, 127, 128, 1, 0, 0, 0, 128, 130, 1, 0, 0, 0, 129, 127, 1, 0, 0, 0,
-		130, 131, 5, 37, 0, 0, 131, 9, 1, 0, 0, 0, 132, 135, 5, 45, 0, 0, 133,
-		135, 3, 52, 26, 0, 134, 132, 1, 0, 0, 0, 134, 133, 1, 0, 0, 0, 135, 11,
-		1, 0, 0, 0, 136, 137, 5, 4, 0, 0, 137, 138, 5, 45, 0, 0, 138, 139, 3, 14,
-		7, 0, 139, 13, 1, 0, 0, 0, 140, 145, 3, 16, 8, 0, 141, 145, 3, 18, 9, 0,
-		142, 145, 3, 20, 10, 0, 143, 145, 3, 10, 5, 0, 144, 140, 1, 0, 0, 0, 144,
-		141, 1, 0, 0, 0, 144, 142, 1, 0, 0, 0, 144, 143, 1, 0, 0, 0, 145, 15, 1,
-		0, 0, 0, 146, 150, 5, 29, 0, 0, 147, 149, 5, 33, 0, 0, 148, 147, 1, 0,
-		0, 0, 149, 152, 1, 0, 0, 0, 150, 148, 1, 0, 0, 0, 150, 151, 1, 0, 0, 0,
-		151, 154, 1, 0, 0, 0, 152, 150, 1, 0, 0, 0, 153, 155, 5, 40, 0, 0, 154,
-		153, 1, 0, 0, 0, 154, 155, 1, 0, 0, 0, 155, 156, 1, 0, 0, 0, 156, 160,
-		5, 38, 0, 0, 157, 159, 5, 33, 0, 0, 158, 157, 1, 0, 0, 0, 159, 162, 1,
-		0, 0, 0, 160, 158, 1, 0, 0, 0, 160, 161, 1, 0, 0, 0, 161, 163, 1, 0, 0,
-		0, 162, 160, 1, 0, 0, 0, 163, 167, 3, 26, 13, 0, 164, 166, 5, 33, 0, 0,
-		165, 164, 1, 0, 0, 0, 166, 169, 1, 0, 0, 0, 167, 165, 1, 0, 0, 0, 167,
-		168, 1, 0, 0, 0, 168, 170, 1, 0, 0, 0, 169, 167, 1, 0, 0, 0, 170, 174,
-		5, 39, 0, 0, 171, 173, 5, 33, 0, 0, 172, 171, 1, 0, 0, 0, 173, 176, 1,
-		0, 0, 0, 174, 172, 1, 0, 0, 0, 174, 175, 1, 0, 0, 0, 175, 177, 1, 0, 0,
-		0, 176, 174, 1, 0, 0, 0, 177, 178, 3, 14, 7, 0, 178, 17, 1, 0, 0, 0, 179,
-		180, 5, 7, 0, 0, 180, 181, 3, 54, 27, 0, 181, 19, 1, 0, 0, 0, 182, 183,
-		5, 6, 0, 0, 183, 187, 5, 34, 0, 0, 184, 186, 5, 33, 0, 0, 185, 184, 1,
-		0, 0, 0, 186, 189, 1, 0, 0, 0, 187, 185, 1, 0, 0, 0, 187, 188, 1, 0, 0,
-		0, 188, 199, 1, 0, 0, 0, 189, 187, 1, 0, 0, 0, 190, 194, 3, 14, 7, 0, 191,
-		193, 5, 33, 0, 0, 192, 191, 1, 0, 0, 0, 193, 196, 1, 0, 0, 0, 194, 192,
-		1, 0, 0, 0, 194, 195, 1, 0, 0, 0, 195, 198, 1, 0, 0, 0, 196, 194, 1, 0,
-		0, 0, 197, 190, 1, 0, 0, 0, 198, 201, 1, 0, 0, 0, 199, 197, 1, 0, 0, 0,
-		199, 200, 1, 0, 0, 0, 200, 202, 1, 0, 0, 0, 201, 199, 1, 0, 0, 0, 202,
-		203, 5, 35, 0, 0, 203, 21, 1, 0, 0, 0, 204, 207, 5, 45, 0, 0, 205, 207,
-		3, 52, 26, 0, 206, 204, 1, 0, 0, 0, 206, 205, 1, 0, 0, 0, 207, 23, 1, 0,
-		0, 0, 208, 209, 5, 5, 0, 0, 209, 210, 5, 45, 0, 0, 210, 211, 3, 26, 13,
-		0, 211, 25, 1, 0, 0, 0, 212, 225, 3, 28, 14, 0, 213, 225, 3, 30, 15, 0,
-		214, 225, 3, 32, 16, 0, 215, 225, 3, 34, 17, 0, 216, 225, 3, 36, 18, 0,
-		217, 225, 3, 38, 19, 0, 218, 225, 3, 40, 20, 0, 219, 225, 3, 42, 21, 0,
-		220, 225, 3, 44, 22, 0, 221, 225, 3, 46, 23, 0, 222, 225, 3, 50, 25, 0,
-		223, 225, 3, 22, 11, 0, 224, 212, 1, 0, 0, 0, 224, 213, 1, 0, 0, 0, 224,
-		214, 1, 0, 0, 0, 224, 215, 1, 0, 0, 0, 224, 216, 1, 0, 0, 0, 224, 217,
-		1, 0, 0, 0, 224, 218, 1, 0, 0, 0, 224, 219, 1, 0, 0, 0, 224, 220, 1, 0,
-		0, 0, 224, 221, 1, 0, 0, 0, 224, 222, 1, 0, 0, 0, 224, 223, 1, 0, 0, 0,
-		225, 27, 1, 0, 0, 0, 226, 227, 5, 9, 0, 0, 227, 29, 1, 0, 0, 0, 228, 229,
-		5, 10, 0, 0, 229, 233, 5, 34, 0, 0, 230, 232, 5, 33, 0, 0, 231, 230, 1,
-		0, 0, 0, 232, 235, 1, 0, 0, 0, 233, 231, 1, 0, 0, 0, 233, 234, 1, 0, 0,
-		0, 234, 245, 1, 0, 0, 0, 235, 233, 1, 0, 0, 0, 236, 240, 3, 54, 27, 0,
-		237, 239, 5, 33, 0, 0, 238, 237, 1, 0, 0, 0, 239, 242, 1, 0, 0, 0, 240,
-		238, 1, 0, 0, 0, 240, 241, 1, 0, 0, 0, 241, 244, 1, 0, 0, 0, 242, 240,
-		1, 0, 0, 0, 243, 236, 1, 0, 0, 0, 244, 247, 1, 0, 0, 0, 245, 243, 1, 0,
-		0, 0, 245, 246, 1, 0, 0, 0, 246, 248, 1, 0, 0, 0, 247, 245, 1, 0, 0, 0,
-		248, 249, 5, 35, 0, 0, 249, 31, 1, 0, 0, 0, 250, 251, 5, 11, 0, 0, 251,
-		33, 1, 0, 0, 0, 252, 253, 5, 12, 0, 0, 253, 254, 3, 54, 27, 0, 254, 255,
-		5, 34, 0, 0, 255, 256, 5, 2, 0, 0, 256, 257, 5, 41, 0, 0, 257, 258, 5,
-		2, 0, 0, 258, 259, 5, 35, 0, 0, 259, 35, 1, 0, 0, 0, 260, 261, 5, 13, 0,
-		0, 261, 37, 1, 0, 0, 0, 262, 263, 5, 14, 0, 0, 263, 264, 7, 0, 0, 0, 264,
-		265, 5, 1, 0, 0, 265, 266, 7, 1, 0, 0, 266, 267, 5, 1, 0, 0, 267, 39, 1,
-		0, 0, 0, 268, 269, 5, 15, 0, 0, 269, 41, 1, 0, 0, 0, 270, 271, 5, 17, 0,
-		0, 271, 272, 5, 44, 0, 0, 272, 273, 3, 56, 28, 0, 273, 274, 5, 41, 0, 0,
-		274, 275, 3, 56, 28, 0, 275, 43, 1, 0, 0, 0, 276, 277, 5, 18, 0, 0, 277,
-		278, 5, 1, 0, 0, 278, 279, 5, 2, 0, 0, 279, 280, 7, 1, 0, 0, 280, 45, 1,
-		0, 0, 0, 281, 282, 5, 19, 0, 0, 282, 283, 3, 56, 28, 0, 283, 284, 5, 1,
-		0, 0, 284, 285, 7, 1, 0, 0, 285, 47, 1, 0, 0, 0, 286, 288, 5, 40, 0, 0,
-		287, 286, 1, 0, 0, 0, 287, 288, 1, 0, 0, 0, 288, 289, 1, 0, 0, 0, 289,
-		290, 3, 26, 13, 0, 290, 49, 1, 0, 0, 0, 291, 295, 5, 22, 0, 0, 292, 294,
-		5, 33, 0, 0, 293, 292, 1, 0, 0, 0, 294, 297, 1, 0, 0, 0, 295, 293, 1, 0,
-		0, 0, 295, 296, 1, 0, 0, 0, 296, 298, 1, 0, 0, 0, 297, 295, 1, 0, 0, 0,
-		298, 302, 5, 38, 0, 0, 299, 301, 5, 33, 0, 0, 300, 299, 1, 0, 0, 0, 301,
-		304, 1, 0, 0, 0, 302, 300, 1, 0, 0, 0, 302, 303, 1, 0, 0, 0, 303, 314,
-		1, 0, 0, 0, 304, 302, 1, 0, 0, 0, 305, 309, 3, 48, 24, 0, 306, 308, 5,
-		33, 0, 0, 307, 306, 1, 0, 0, 0, 308, 311, 1, 0, 0, 0, 309, 307, 1, 0, 0,
-		0, 309, 310, 1, 0, 0, 0, 310, 313, 1, 0, 0, 0, 311, 309, 1, 0, 0, 0, 312,
-		305, 1, 0, 0, 0, 313, 316, 1, 0, 0, 0, 314, 312, 1, 0, 0, 0, 314, 315,
-		1, 0, 0, 0, 315, 317, 1, 0, 0, 0, 316, 314, 1, 0, 0, 0, 317, 318, 5, 39,
-		0, 0, 318, 51, 1, 0, 0, 0, 319, 320, 5, 45, 0, 0, 320, 321, 5, 42, 0, 0,
-		321, 322, 5, 45, 0, 0, 322, 53, 1, 0, 0, 0, 323, 326, 3, 52, 26, 0, 324,
-		326, 5, 45, 0, 0, 325, 323, 1, 0, 0, 0, 325, 324, 1, 0, 0, 0, 326, 55,
-		1, 0, 0, 0, 327, 331, 3, 58, 29, 0, 328, 331, 3, 60, 30, 0, 329, 331, 3,
-		62, 31, 0, 330, 327, 1, 0, 0, 0, 330, 328, 1, 0, 0, 0, 330, 329, 1, 0,
-		0, 0, 331, 57, 1, 0, 0, 0, 332, 333, 5, 25, 0, 0, 333, 334, 5, 1, 0, 0,
-		334, 59, 1, 0, 0, 0, 335, 336, 5, 26, 0, 0, 336, 337, 5, 1, 0, 0, 337,
-		61, 1, 0, 0, 0, 338, 339, 5, 27, 0, 0, 339, 340, 5, 1, 0, 0, 340, 63, 1,
-		0, 0, 0, 32, 73, 80, 87, 91, 95, 100, 112, 117, 122, 127, 134, 144, 150,
-		154, 160, 167, 174, 187, 194, 199, 206, 224, 233, 240, 245, 287, 295, 302,
-		309, 314, 325, 330,
+		1, 5, 1, 5, 3, 5, 135, 8, 5, 1, 6, 1, 6, 1, 6, 5, 6, 140, 8, 6, 10, 6,
+		12, 6, 143, 9, 6, 1, 6, 1, 6, 1, 7, 1, 7, 1, 7, 1, 7, 3, 7, 151, 8, 7,
+		1, 8, 1, 8, 5, 8, 155, 8, 8, 10, 8, 12, 8, 158, 9, 8, 1, 8, 3, 8, 161,
+		8, 8, 1, 8, 1, 8, 5, 8, 165, 8, 8, 10, 8, 12, 8, 168, 9, 8, 1, 8, 1, 8,
+		5, 8, 172, 8, 8, 10, 8, 12, 8, 175, 9, 8, 1, 8, 1, 8, 5, 8, 179, 8, 8,
+		10, 8, 12, 8, 182, 9, 8, 1, 8, 1, 8, 1, 9, 1, 9, 1, 9, 1, 10, 1, 10, 1,
+		10, 5, 10, 192, 8, 10, 10, 10, 12, 10, 195, 9, 10, 1, 10, 1, 10, 5, 10,
+		199, 8, 10, 10, 10, 12, 10, 202, 9, 10, 5, 10, 204, 8, 10, 10, 10, 12,
+		10, 207, 9, 10, 1, 10, 1, 10, 1, 11, 1, 11, 3, 11, 213, 8, 11, 1, 12, 1,
+		12, 1, 12, 1, 12, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13,
+		1, 13, 1, 13, 1, 13, 1, 13, 3, 13, 231, 8, 13, 1, 14, 1, 14, 1, 15, 1,
+		15, 1, 15, 5, 15, 238, 8, 15, 10, 15, 12, 15, 241, 9, 15, 1, 15, 1, 15,
+		5, 15, 245, 8, 15, 10, 15, 12, 15, 248, 9, 15, 5, 15, 250, 8, 15, 10, 15,
+		12, 15, 253, 9, 15, 1, 15, 1, 15, 1, 16, 1, 16, 1, 17, 1, 17, 1, 17, 1,
+		17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 18, 1, 18, 1, 19, 1, 19, 1, 19, 1, 19,
+		1, 19, 1, 19, 1, 20, 1, 20, 1, 21, 1, 21, 1, 21, 1, 21, 1, 21, 1, 21, 1,
+		22, 1, 22, 1, 22, 1, 22, 1, 22, 1, 23, 1, 23, 1, 23, 1, 23, 1, 23, 1, 24,
+		3, 24, 294, 8, 24, 1, 24, 1, 24, 1, 25, 1, 25, 5, 25, 300, 8, 25, 10, 25,
+		12, 25, 303, 9, 25, 1, 25, 1, 25, 5, 25, 307, 8, 25, 10, 25, 12, 25, 310,
+		9, 25, 1, 25, 1, 25, 5, 25, 314, 8, 25, 10, 25, 12, 25, 317, 9, 25, 5,
+		25, 319, 8, 25, 10, 25, 12, 25, 322, 9, 25, 1, 25, 1, 25, 1, 26, 1, 26,
+		1, 26, 1, 26, 1, 27, 1, 27, 3, 27, 332, 8, 27, 1, 28, 1, 28, 1, 28, 3,
+		28, 337, 8, 28, 1, 29, 1, 29, 1, 29, 1, 30, 1, 30, 1, 30, 1, 31, 1, 31,
+		1, 31, 1, 31, 0, 0, 32, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24,
+		26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60,
+		62, 0, 2, 1, 0, 20, 21, 1, 0, 23, 24, 361, 0, 64, 1, 0, 0, 0, 2, 68, 1,
+		0, 0, 0, 4, 73, 1, 0, 0, 0, 6, 105, 1, 0, 0, 0, 8, 108, 1, 0, 0, 0, 10,
+		134, 1, 0, 0, 0, 12, 136, 1, 0, 0, 0, 14, 150, 1, 0, 0, 0, 16, 152, 1,
+		0, 0, 0, 18, 185, 1, 0, 0, 0, 20, 188, 1, 0, 0, 0, 22, 212, 1, 0, 0, 0,
+		24, 214, 1, 0, 0, 0, 26, 230, 1, 0, 0, 0, 28, 232, 1, 0, 0, 0, 30, 234,
+		1, 0, 0, 0, 32, 256, 1, 0, 0, 0, 34, 258, 1, 0, 0, 0, 36, 266, 1, 0, 0,
+		0, 38, 268, 1, 0, 0, 0, 40, 274, 1, 0, 0, 0, 42, 276, 1, 0, 0, 0, 44, 282,
+		1, 0, 0, 0, 46, 287, 1, 0, 0, 0, 48, 293, 1, 0, 0, 0, 50, 297, 1, 0, 0,
+		0, 52, 325, 1, 0, 0, 0, 54, 331, 1, 0, 0, 0, 56, 336, 1, 0, 0, 0, 58, 338,
+		1, 0, 0, 0, 60, 341, 1, 0, 0, 0, 62, 344, 1, 0, 0, 0, 64, 65, 5, 28, 0,
+		0, 65, 66, 5, 45, 0, 0, 66, 67, 5, 43, 0, 0, 67, 1, 1, 0, 0, 0, 68, 69,
+		3, 6, 3, 0, 69, 3, 1, 0, 0, 0, 70, 72, 5, 33, 0, 0, 71, 70, 1, 0, 0, 0,
+		72, 75, 1, 0, 0, 0, 73, 71, 1, 0, 0, 0, 73, 74, 1, 0, 0, 0, 74, 76, 1,
+		0, 0, 0, 75, 73, 1, 0, 0, 0, 76, 80, 3, 0, 0, 0, 77, 79, 5, 33, 0, 0, 78,
+		77, 1, 0, 0, 0, 79, 82, 1, 0, 0, 0, 80, 78, 1, 0, 0, 0, 80, 81, 1, 0, 0,
+		0, 81, 91, 1, 0, 0, 0, 82, 80, 1, 0, 0, 0, 83, 85, 3, 2, 1, 0, 84, 86,
+		5, 33, 0, 0, 85, 84, 1, 0, 0, 0, 86, 87, 1, 0, 0, 0, 87, 85, 1, 0, 0, 0,
+		87, 88, 1, 0, 0, 0, 88, 90, 1, 0, 0, 0, 89, 83, 1, 0, 0, 0, 90, 93, 1,
+		0, 0, 0, 91, 89, 1, 0, 0, 0, 91, 92, 1, 0, 0, 0, 92, 95, 1, 0, 0, 0, 93,
+		91, 1, 0, 0, 0, 94, 96, 3, 2, 1, 0, 95, 94, 1, 0, 0, 0, 95, 96, 1, 0, 0,
+		0, 96, 100, 1, 0, 0, 0, 97, 99, 5, 33, 0, 0, 98, 97, 1, 0, 0, 0, 99, 102,
+		1, 0, 0, 0, 100, 98, 1, 0, 0, 0, 100, 101, 1, 0, 0, 0, 101, 103, 1, 0,
+		0, 0, 102, 100, 1, 0, 0, 0, 103, 104, 5, 0, 0, 1, 104, 5, 1, 0, 0, 0, 105,
+		106, 5, 3, 0, 0, 106, 107, 3, 8, 4, 0, 107, 7, 1, 0, 0, 0, 108, 112, 5,
+		36, 0, 0, 109, 111, 5, 33, 0, 0, 110, 109, 1, 0, 0, 0, 111, 114, 1, 0,
+		0, 0, 112, 110, 1, 0, 0, 0, 112, 113, 1, 0, 0, 0, 113, 127, 1, 0, 0, 0,
+		114, 112, 1, 0, 0, 0, 115, 118, 3, 12, 6, 0, 116, 118, 3, 24, 12, 0, 117,
+		115, 1, 0, 0, 0, 117, 116, 1, 0, 0, 0, 118, 122, 1, 0, 0, 0, 119, 121,
+		5, 33, 0, 0, 120, 119, 1, 0, 0, 0, 121, 124, 1, 0, 0, 0, 122, 120, 1, 0,
+		0, 0, 122, 123, 1, 0, 0, 0, 123, 126, 1, 0, 0, 0, 124, 122, 1, 0, 0, 0,
+		125, 117, 1, 0, 0, 0, 126, 129, 1, 0, 0, 0, 127, 125, 1, 0, 0, 0, 127,
+		128, 1, 0, 0, 0, 128, 130, 1, 0, 0, 0, 129, 127, 1, 0, 0, 0, 130, 131,
+		5, 37, 0, 0, 131, 9, 1, 0, 0, 0, 132, 135, 5, 45, 0, 0, 133, 135, 3, 52,
+		26, 0, 134, 132, 1, 0, 0, 0, 134, 133, 1, 0, 0, 0, 135, 11, 1, 0, 0, 0,
+		136, 137, 5, 4, 0, 0, 137, 141, 5, 45, 0, 0, 138, 140, 5, 33, 0, 0, 139,
+		138, 1, 0, 0, 0, 140, 143, 1, 0, 0, 0, 141, 139, 1, 0, 0, 0, 141, 142,
+		1, 0, 0, 0, 142, 144, 1, 0, 0, 0, 143, 141, 1, 0, 0, 0, 144, 145, 3, 14,
+		7, 0, 145, 13, 1, 0, 0, 0, 146, 151, 3, 16, 8, 0, 147, 151, 3, 18, 9, 0,
+		148, 151, 3, 20, 10, 0, 149, 151, 3, 10, 5, 0, 150, 146, 1, 0, 0, 0, 150,
+		147, 1, 0, 0, 0, 150, 148, 1, 0, 0, 0, 150, 149, 1, 0, 0, 0, 151, 15, 1,
+		0, 0, 0, 152, 156, 5, 29, 0, 0, 153, 155, 5, 33, 0, 0, 154, 153, 1, 0,
+		0, 0, 155, 158, 1, 0, 0, 0, 156, 154, 1, 0, 0, 0, 156, 157, 1, 0, 0, 0,
+		157, 160, 1, 0, 0, 0, 158, 156, 1, 0, 0, 0, 159, 161, 5, 40, 0, 0, 160,
+		159, 1, 0, 0, 0, 160, 161, 1, 0, 0, 0, 161, 162, 1, 0, 0, 0, 162, 166,
+		5, 38, 0, 0, 163, 165, 5, 33, 0, 0, 164, 163, 1, 0, 0, 0, 165, 168, 1,
+		0, 0, 0, 166, 164, 1, 0, 0, 0, 166, 167, 1, 0, 0, 0, 167, 169, 1, 0, 0,
+		0, 168, 166, 1, 0, 0, 0, 169, 173, 3, 26, 13, 0, 170, 172, 5, 33, 0, 0,
+		171, 170, 1, 0, 0, 0, 172, 175, 1, 0, 0, 0, 173, 171, 1, 0, 0, 0, 173,
+		174, 1, 0, 0, 0, 174, 176, 1, 0, 0, 0, 175, 173, 1, 0, 0, 0, 176, 180,
+		5, 39, 0, 0, 177, 179, 5, 33, 0, 0, 178, 177, 1, 0, 0, 0, 179, 182, 1,
+		0, 0, 0, 180, 178, 1, 0, 0, 0, 180, 181, 1, 0, 0, 0, 181, 183, 1, 0, 0,
+		0, 182, 180, 1, 0, 0, 0, 183, 184, 3, 14, 7, 0, 184, 17, 1, 0, 0, 0, 185,
+		186, 5, 7, 0, 0, 186, 187, 3, 54, 27, 0, 187, 19, 1, 0, 0, 0, 188, 189,
+		5, 6, 0, 0, 189, 193, 5, 34, 0, 0, 190, 192, 5, 33, 0, 0, 191, 190, 1,
+		0, 0, 0, 192, 195, 1, 0, 0, 0, 193, 191, 1, 0, 0, 0, 193, 194, 1, 0, 0,
+		0, 194, 205, 1, 0, 0, 0, 195, 193, 1, 0, 0, 0, 196, 200, 3, 14, 7, 0, 197,
+		199, 5, 33, 0, 0, 198, 197, 1, 0, 0, 0, 199, 202, 1, 0, 0, 0, 200, 198,
+		1, 0, 0, 0, 200, 201, 1, 0, 0, 0, 201, 204, 1, 0, 0, 0, 202, 200, 1, 0,
+		0, 0, 203, 196, 1, 0, 0, 0, 204, 207, 1, 0, 0, 0, 205, 203, 1, 0, 0, 0,
+		205, 206, 1, 0, 0, 0, 206, 208, 1, 0, 0, 0, 207, 205, 1, 0, 0, 0, 208,
+		209, 5, 35, 0, 0, 209, 21, 1, 0, 0, 0, 210, 213, 5, 45, 0, 0, 211, 213,
+		3, 52, 26, 0, 212, 210, 1, 0, 0, 0, 212, 211, 1, 0, 0, 0, 213, 23, 1, 0,
+		0, 0, 214, 215, 5, 5, 0, 0, 215, 216, 5, 45, 0, 0, 216, 217, 3, 26, 13,
+		0, 217, 25, 1, 0, 0, 0, 218, 231, 3, 28, 14, 0, 219, 231, 3, 30, 15, 0,
+		220, 231, 3, 32, 16, 0, 221, 231, 3, 34, 17, 0, 222, 231, 3, 36, 18, 0,
+		223, 231, 3, 38, 19, 0, 224, 231, 3, 40, 20, 0, 225, 231, 3, 42, 21, 0,
+		226, 231, 3, 44, 22, 0, 227, 231, 3, 46, 23, 0, 228, 231, 3, 50, 25, 0,
+		229, 231, 3, 22, 11, 0, 230, 218, 1, 0, 0, 0, 230, 219, 1, 0, 0, 0, 230,
+		220, 1, 0, 0, 0, 230, 221, 1, 0, 0, 0, 230, 222, 1, 0, 0, 0, 230, 223,
+		1, 0, 0, 0, 230, 224, 1, 0, 0, 0, 230, 225, 1, 0, 0, 0, 230, 226, 1, 0,
+		0, 0, 230, 227, 1, 0, 0, 0, 230, 228, 1, 0, 0, 0, 230, 229, 1, 0, 0, 0,
+		231, 27, 1, 0, 0, 0, 232, 233, 5, 9, 0, 0, 233, 29, 1, 0, 0, 0, 234, 235,
+		5, 10, 0, 0, 235, 239, 5, 34, 0, 0, 236, 238, 5, 33, 0, 0, 237, 236, 1,
+		0, 0, 0, 238, 241, 1, 0, 0, 0, 239, 237, 1, 0, 0, 0, 239, 240, 1, 0, 0,
+		0, 240, 251, 1, 0, 0, 0, 241, 239, 1, 0, 0, 0, 242, 246, 3, 54, 27, 0,
+		243, 245, 5, 33, 0, 0, 244, 243, 1, 0, 0, 0, 245, 248, 1, 0, 0, 0, 246,
+		244, 1, 0, 0, 0, 246, 247, 1, 0, 0, 0, 247, 250, 1, 0, 0, 0, 248, 246,
+		1, 0, 0, 0, 249, 242, 1, 0, 0, 0, 250, 253, 1, 0, 0, 0, 251, 249, 1, 0,
+		0, 0, 251, 252, 1, 0, 0, 0, 252, 254, 1, 0, 0, 0, 253, 251, 1, 0, 0, 0,
+		254, 255, 5, 35, 0, 0, 255, 31, 1, 0, 0, 0, 256, 257, 5, 11, 0, 0, 257,
+		33, 1, 0, 0, 0, 258, 259, 5, 12, 0, 0, 259, 260, 3, 54, 27, 0, 260, 261,
+		5, 34, 0, 0, 261, 262, 5, 2, 0, 0, 262, 263, 5, 41, 0, 0, 263, 264, 5,
+		2, 0, 0, 264, 265, 5, 35, 0, 0, 265, 35, 1, 0, 0, 0, 266, 267, 5, 13, 0,
+		0, 267, 37, 1, 0, 0, 0, 268, 269, 5, 14, 0, 0, 269, 270, 7, 0, 0, 0, 270,
+		271, 5, 1, 0, 0, 271, 272, 7, 1, 0, 0, 272, 273, 5, 1, 0, 0, 273, 39, 1,
+		0, 0, 0, 274, 275, 5, 15, 0, 0, 275, 41, 1, 0, 0, 0, 276, 277, 5, 17, 0,
+		0, 277, 278, 5, 44, 0, 0, 278, 279, 3, 56, 28, 0, 279, 280, 5, 41, 0, 0,
+		280, 281, 3, 56, 28, 0, 281, 43, 1, 0, 0, 0, 282, 283, 5, 18, 0, 0, 283,
+		284, 5, 1, 0, 0, 284, 285, 5, 2, 0, 0, 285, 286, 7, 1, 0, 0, 286, 45, 1,
+		0, 0, 0, 287, 288, 5, 19, 0, 0, 288, 289, 3, 56, 28, 0, 289, 290, 5, 1,
+		0, 0, 290, 291, 7, 1, 0, 0, 291, 47, 1, 0, 0, 0, 292, 294, 5, 40, 0, 0,
+		293, 292, 1, 0, 0, 0, 293, 294, 1, 0, 0, 0, 294, 295, 1, 0, 0, 0, 295,
+		296, 3, 26, 13, 0, 296, 49, 1, 0, 0, 0, 297, 301, 5, 22, 0, 0, 298, 300,
+		5, 33, 0, 0, 299, 298, 1, 0, 0, 0, 300, 303, 1, 0, 0, 0, 301, 299, 1, 0,
+		0, 0, 301, 302, 1, 0, 0, 0, 302, 304, 1, 0, 0, 0, 303, 301, 1, 0, 0, 0,
+		304, 308, 5, 38, 0, 0, 305, 307, 5, 33, 0, 0, 306, 305, 1, 0, 0, 0, 307,
+		310, 1, 0, 0, 0, 308, 306, 1, 0, 0, 0, 308, 309, 1, 0, 0, 0, 309, 320,
+		1, 0, 0, 0, 310, 308, 1, 0, 0, 0, 311, 315, 3, 48, 24, 0, 312, 314, 5,
+		33, 0, 0, 313, 312, 1, 0, 0, 0, 314, 317, 1, 0, 0, 0, 315, 313, 1, 0, 0,
+		0, 315, 316, 1, 0, 0, 0, 316, 319, 1, 0, 0, 0, 317, 315, 1, 0, 0, 0, 318,
+		311, 1, 0, 0, 0, 319, 322, 1, 0, 0, 0, 320, 318, 1, 0, 0, 0, 320, 321,
+		1, 0, 0, 0, 321, 323, 1, 0, 0, 0, 322, 320, 1, 0, 0, 0, 323, 324, 5, 39,
+		0, 0, 324, 51, 1, 0, 0, 0, 325, 326, 5, 45, 0, 0, 326, 327, 5, 42, 0, 0,
+		327, 328, 5, 45, 0, 0, 328, 53, 1, 0, 0, 0, 329, 332, 3, 52, 26, 0, 330,
+		332, 5, 45, 0, 0, 331, 329, 1, 0, 0, 0, 331, 330, 1, 0, 0, 0, 332, 55,
+		1, 0, 0, 0, 333, 337, 3, 58, 29, 0, 334, 337, 3, 60, 30, 0, 335, 337, 3,
+		62, 31, 0, 336, 333, 1, 0, 0, 0, 336, 334, 1, 0, 0, 0, 336, 335, 1, 0,
+		0, 0, 337, 57, 1, 0, 0, 0, 338, 339, 5, 25, 0, 0, 339, 340, 5, 1, 0, 0,
+		340, 59, 1, 0, 0, 0, 341, 342, 5, 26, 0, 0, 342, 343, 5, 1, 0, 0, 343,
+		61, 1, 0, 0, 0, 344, 345, 5, 27, 0, 0, 345, 346, 5, 1, 0, 0, 346, 63, 1,
+		0, 0, 0, 33, 73, 80, 87, 91, 95, 100, 112, 117, 122, 127, 134, 141, 150,
+		156, 160, 166, 173, 180, 193, 200, 205, 212, 230, 239, 246, 251, 293, 301,
+		308, 315, 320, 331, 336,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -1440,6 +1443,8 @@ type ISurfaceRuleDeclarationContext interface {
 	Keyword_Rule() antlr.TerminalNode
 	Identifier() antlr.TerminalNode
 	SurfaceRule() ISurfaceRuleContext
+	AllNL() []antlr.TerminalNode
+	NL(i int) antlr.TerminalNode
 
 	// IsSurfaceRuleDeclarationContext differentiates from other interfaces.
 	IsSurfaceRuleDeclarationContext()
@@ -1501,6 +1506,14 @@ func (s *SurfaceRuleDeclarationContext) SurfaceRule() ISurfaceRuleContext {
 	return t.(ISurfaceRuleContext)
 }
 
+func (s *SurfaceRuleDeclarationContext) AllNL() []antlr.TerminalNode {
+	return s.GetTokens(MMSParserNL)
+}
+
+func (s *SurfaceRuleDeclarationContext) NL(i int) antlr.TerminalNode {
+	return s.GetToken(MMSParserNL, i)
+}
+
 func (s *SurfaceRuleDeclarationContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1524,6 +1537,8 @@ func (s *SurfaceRuleDeclarationContext) ExitRule(listener antlr.ParseTreeListene
 func (p *MMSParser) SurfaceRuleDeclaration() (localctx ISurfaceRuleDeclarationContext) {
 	localctx = NewSurfaceRuleDeclarationContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 12, MMSParserRULE_surfaceRuleDeclaration)
+	var _la int
+
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(136)
@@ -1541,8 +1556,32 @@ func (p *MMSParser) SurfaceRuleDeclaration() (localctx ISurfaceRuleDeclarationCo
 			goto errorExit
 		}
 	}
+	p.SetState(141)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == MMSParserNL {
+		{
+			p.SetState(138)
+			p.Match(MMSParserNL)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+		p.SetState(143)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+	}
 	{
-		p.SetState(138)
+		p.SetState(144)
 		p.SurfaceRule()
 	}
 
@@ -1695,7 +1734,7 @@ func (s *SurfaceRuleContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *MMSParser) SurfaceRule() (localctx ISurfaceRuleContext) {
 	localctx = NewSurfaceRuleContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 14, MMSParserRULE_surfaceRule)
-	p.SetState(144)
+	p.SetState(150)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1705,28 +1744,28 @@ func (p *MMSParser) SurfaceRule() (localctx ISurfaceRuleContext) {
 	case MMSParserKeyword_If:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(140)
+			p.SetState(146)
 			p.SurfaceRule_Conditional()
 		}
 
 	case MMSParserKeyword_Block:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(141)
+			p.SetState(147)
 			p.SurfaceRule_Block()
 		}
 
 	case MMSParserKeyword_Sequence:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(142)
+			p.SetState(148)
 			p.SurfaceRule_Sequence()
 		}
 
 	case MMSParserIdentifier:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(143)
+			p.SetState(149)
 			p.SurfaceRuleReference()
 		}
 
@@ -1884,14 +1923,14 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(146)
+		p.SetState(152)
 		p.Match(MMSParserKeyword_If)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(150)
+	p.SetState(156)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1900,7 +1939,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(147)
+			p.SetState(153)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1908,14 +1947,14 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 			}
 		}
 
-		p.SetState(152)
+		p.SetState(158)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(154)
+	p.SetState(160)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1924,7 +1963,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 
 	if _la == MMSParserBang {
 		{
-			p.SetState(153)
+			p.SetState(159)
 			p.Match(MMSParserBang)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1934,14 +1973,14 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 
 	}
 	{
-		p.SetState(156)
+		p.SetState(162)
 		p.Match(MMSParserRoundOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(160)
+	p.SetState(166)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1950,7 +1989,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(157)
+			p.SetState(163)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1958,7 +1997,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 			}
 		}
 
-		p.SetState(162)
+		p.SetState(168)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1966,10 +2005,10 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(163)
+		p.SetState(169)
 		p.SurfaceCondition()
 	}
-	p.SetState(167)
+	p.SetState(173)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1978,7 +2017,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(164)
+			p.SetState(170)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1986,7 +2025,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 			}
 		}
 
-		p.SetState(169)
+		p.SetState(175)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1994,14 +2033,14 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(170)
+		p.SetState(176)
 		p.Match(MMSParserRoundClose)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(174)
+	p.SetState(180)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2010,7 +2049,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(171)
+			p.SetState(177)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2018,7 +2057,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 			}
 		}
 
-		p.SetState(176)
+		p.SetState(182)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2027,7 +2066,7 @@ func (p *MMSParser) SurfaceRule_Conditional() (localctx ISurfaceRule_Conditional
 	}
 
 	{
-		p.SetState(177)
+		p.SetState(183)
 		p.SurfaceRule()
 	}
 
@@ -2136,7 +2175,7 @@ func (p *MMSParser) SurfaceRule_Block() (localctx ISurfaceRule_BlockContext) {
 	p.EnterRule(localctx, 18, MMSParserRULE_surfaceRule_Block)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(179)
+		p.SetState(185)
 		p.Match(MMSParserKeyword_Block)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2144,7 +2183,7 @@ func (p *MMSParser) SurfaceRule_Block() (localctx ISurfaceRule_BlockContext) {
 		}
 	}
 	{
-		p.SetState(180)
+		p.SetState(186)
 		p.ResourceReference()
 	}
 
@@ -2301,7 +2340,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(182)
+		p.SetState(188)
 		p.Match(MMSParserKeyword_Sequence)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2309,14 +2348,14 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 		}
 	}
 	{
-		p.SetState(183)
+		p.SetState(189)
 		p.Match(MMSParserSquareOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(187)
+	p.SetState(193)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2325,7 +2364,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(184)
+			p.SetState(190)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2333,14 +2372,14 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 			}
 		}
 
-		p.SetState(189)
+		p.SetState(195)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(199)
+	p.SetState(205)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2349,11 +2388,11 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 
 	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&35184908959936) != 0 {
 		{
-			p.SetState(190)
+			p.SetState(196)
 			p.SurfaceRule()
 		}
 
-		p.SetState(194)
+		p.SetState(200)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2362,7 +2401,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 
 		for _la == MMSParserNL {
 			{
-				p.SetState(191)
+				p.SetState(197)
 				p.Match(MMSParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2370,7 +2409,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 				}
 			}
 
-			p.SetState(196)
+			p.SetState(202)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -2378,7 +2417,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 			_la = p.GetTokenStream().LA(1)
 		}
 
-		p.SetState(201)
+		p.SetState(207)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2386,7 +2425,7 @@ func (p *MMSParser) SurfaceRule_Sequence() (localctx ISurfaceRule_SequenceContex
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(202)
+		p.SetState(208)
 		p.Match(MMSParserSquareClose)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2498,16 +2537,16 @@ func (p *MMSParser) SurfaceConditionReference() (localctx ISurfaceConditionRefer
 	localctx = NewSurfaceConditionReferenceContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 22, MMSParserRULE_surfaceConditionReference)
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(206)
+	p.SetState(212)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 20, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 21, p.GetParserRuleContext()) {
 	case 1:
 		{
-			p.SetState(204)
+			p.SetState(210)
 			p.Match(MMSParserIdentifier)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2517,7 +2556,7 @@ func (p *MMSParser) SurfaceConditionReference() (localctx ISurfaceConditionRefer
 
 	case 2:
 		{
-			p.SetState(205)
+			p.SetState(211)
 			p.Reference()
 		}
 
@@ -2635,7 +2674,7 @@ func (p *MMSParser) SurfaceConditionDeclaration() (localctx ISurfaceConditionDec
 	p.EnterRule(localctx, 24, MMSParserRULE_surfaceConditionDeclaration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(208)
+		p.SetState(214)
 		p.Match(MMSParserKeyword_Condition)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2643,7 +2682,7 @@ func (p *MMSParser) SurfaceConditionDeclaration() (localctx ISurfaceConditionDec
 		}
 	}
 	{
-		p.SetState(209)
+		p.SetState(215)
 		p.Match(MMSParserIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -2651,7 +2690,7 @@ func (p *MMSParser) SurfaceConditionDeclaration() (localctx ISurfaceConditionDec
 		}
 	}
 	{
-		p.SetState(210)
+		p.SetState(216)
 		p.SurfaceCondition()
 	}
 
@@ -2940,7 +2979,7 @@ func (s *SurfaceConditionContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *MMSParser) SurfaceCondition() (localctx ISurfaceConditionContext) {
 	localctx = NewSurfaceConditionContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 26, MMSParserRULE_surfaceCondition)
-	p.SetState(224)
+	p.SetState(230)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2950,84 +2989,84 @@ func (p *MMSParser) SurfaceCondition() (localctx ISurfaceConditionContext) {
 	case MMSParserKeyword_AbovePreliminarySurface:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(212)
+			p.SetState(218)
 			p.SurfaceCondition_AboveSurface()
 		}
 
 	case MMSParserKeyword_Biome:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(213)
+			p.SetState(219)
 			p.SurfaceCondition_Biome()
 		}
 
 	case MMSParserKeyword_Hole:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(214)
+			p.SetState(220)
 			p.SurfaceCondition_Hole()
 		}
 
 	case MMSParserKeyword_Noise:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(215)
+			p.SetState(221)
 			p.SurfaceCondition_Noise()
 		}
 
 	case MMSParserKeyword_Steep:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(216)
+			p.SetState(222)
 			p.SurfaceCondition_Steep()
 		}
 
 	case MMSParserKeyword_StoneDepth:
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(217)
+			p.SetState(223)
 			p.SurfaceCondition_StoneDepth()
 		}
 
 	case MMSParserKeyword_Freezing:
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(218)
+			p.SetState(224)
 			p.SurfaceCondition_Freezing()
 		}
 
 	case MMSParserKeyword_VerticalGradient:
 		p.EnterOuterAlt(localctx, 8)
 		{
-			p.SetState(219)
+			p.SetState(225)
 			p.SurfaceCondition_VerticalGradient()
 		}
 
 	case MMSParserKeyword_AboveWater:
 		p.EnterOuterAlt(localctx, 9)
 		{
-			p.SetState(220)
+			p.SetState(226)
 			p.SurfaceCondition_AboveWater()
 		}
 
 	case MMSParserKeyword_YAbove:
 		p.EnterOuterAlt(localctx, 10)
 		{
-			p.SetState(221)
+			p.SetState(227)
 			p.SurfaceCondition_YAbove()
 		}
 
 	case MMSParserKeyword_And:
 		p.EnterOuterAlt(localctx, 11)
 		{
-			p.SetState(222)
+			p.SetState(228)
 			p.SurfaceCondition_Compound()
 		}
 
 	case MMSParserIdentifier:
 		p.EnterOuterAlt(localctx, 12)
 		{
-			p.SetState(223)
+			p.SetState(229)
 			p.SurfaceConditionReference()
 		}
 
@@ -3124,7 +3163,7 @@ func (p *MMSParser) SurfaceCondition_AboveSurface() (localctx ISurfaceCondition_
 	p.EnterRule(localctx, 28, MMSParserRULE_surfaceCondition_AboveSurface)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(226)
+		p.SetState(232)
 		p.Match(MMSParserKeyword_AbovePreliminarySurface)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3285,7 +3324,7 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(228)
+		p.SetState(234)
 		p.Match(MMSParserKeyword_Biome)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3293,14 +3332,14 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 		}
 	}
 	{
-		p.SetState(229)
+		p.SetState(235)
 		p.Match(MMSParserSquareOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(233)
+	p.SetState(239)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3309,7 +3348,7 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(230)
+			p.SetState(236)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3317,14 +3356,14 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 			}
 		}
 
-		p.SetState(235)
+		p.SetState(241)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(245)
+	p.SetState(251)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3333,10 +3372,10 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 
 	for _la == MMSParserIdentifier {
 		{
-			p.SetState(236)
+			p.SetState(242)
 			p.ResourceReference()
 		}
-		p.SetState(240)
+		p.SetState(246)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3345,7 +3384,7 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 
 		for _la == MMSParserNL {
 			{
-				p.SetState(237)
+				p.SetState(243)
 				p.Match(MMSParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -3353,7 +3392,7 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 				}
 			}
 
-			p.SetState(242)
+			p.SetState(248)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -3361,7 +3400,7 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 			_la = p.GetTokenStream().LA(1)
 		}
 
-		p.SetState(247)
+		p.SetState(253)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3369,7 +3408,7 @@ func (p *MMSParser) SurfaceCondition_Biome() (localctx ISurfaceCondition_BiomeCo
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(248)
+		p.SetState(254)
 		p.Match(MMSParserSquareClose)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3465,7 +3504,7 @@ func (p *MMSParser) SurfaceCondition_Hole() (localctx ISurfaceCondition_HoleCont
 	p.EnterRule(localctx, 32, MMSParserRULE_surfaceCondition_Hole)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(250)
+		p.SetState(256)
 		p.Match(MMSParserKeyword_Hole)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3603,7 +3642,7 @@ func (p *MMSParser) SurfaceCondition_Noise() (localctx ISurfaceCondition_NoiseCo
 	p.EnterRule(localctx, 34, MMSParserRULE_surfaceCondition_Noise)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(252)
+		p.SetState(258)
 		p.Match(MMSParserKeyword_Noise)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3611,11 +3650,11 @@ func (p *MMSParser) SurfaceCondition_Noise() (localctx ISurfaceCondition_NoiseCo
 		}
 	}
 	{
-		p.SetState(253)
+		p.SetState(259)
 		p.ResourceReference()
 	}
 	{
-		p.SetState(254)
+		p.SetState(260)
 		p.Match(MMSParserSquareOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3623,7 +3662,7 @@ func (p *MMSParser) SurfaceCondition_Noise() (localctx ISurfaceCondition_NoiseCo
 		}
 	}
 	{
-		p.SetState(255)
+		p.SetState(261)
 		p.Match(MMSParserFloat)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3631,7 +3670,7 @@ func (p *MMSParser) SurfaceCondition_Noise() (localctx ISurfaceCondition_NoiseCo
 		}
 	}
 	{
-		p.SetState(256)
+		p.SetState(262)
 		p.Match(MMSParserComma)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3639,7 +3678,7 @@ func (p *MMSParser) SurfaceCondition_Noise() (localctx ISurfaceCondition_NoiseCo
 		}
 	}
 	{
-		p.SetState(257)
+		p.SetState(263)
 		p.Match(MMSParserFloat)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3647,7 +3686,7 @@ func (p *MMSParser) SurfaceCondition_Noise() (localctx ISurfaceCondition_NoiseCo
 		}
 	}
 	{
-		p.SetState(258)
+		p.SetState(264)
 		p.Match(MMSParserSquareClose)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3743,7 +3782,7 @@ func (p *MMSParser) SurfaceCondition_Steep() (localctx ISurfaceCondition_SteepCo
 	p.EnterRule(localctx, 36, MMSParserRULE_surfaceCondition_Steep)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(260)
+		p.SetState(266)
 		p.Match(MMSParserKeyword_Steep)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3871,7 +3910,7 @@ func (p *MMSParser) SurfaceCondition_StoneDepth() (localctx ISurfaceCondition_St
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(262)
+		p.SetState(268)
 		p.Match(MMSParserKeyword_StoneDepth)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3879,7 +3918,7 @@ func (p *MMSParser) SurfaceCondition_StoneDepth() (localctx ISurfaceCondition_St
 		}
 	}
 	{
-		p.SetState(263)
+		p.SetState(269)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == MMSParserKeyword_Floor || _la == MMSParserKeyword_Ceiling) {
@@ -3890,7 +3929,7 @@ func (p *MMSParser) SurfaceCondition_StoneDepth() (localctx ISurfaceCondition_St
 		}
 	}
 	{
-		p.SetState(264)
+		p.SetState(270)
 		p.Match(MMSParserInt)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3898,7 +3937,7 @@ func (p *MMSParser) SurfaceCondition_StoneDepth() (localctx ISurfaceCondition_St
 		}
 	}
 	{
-		p.SetState(265)
+		p.SetState(271)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == MMSParserKeyword_Add || _la == MMSParserKeyword_Sub) {
@@ -3909,7 +3948,7 @@ func (p *MMSParser) SurfaceCondition_StoneDepth() (localctx ISurfaceCondition_St
 		}
 	}
 	{
-		p.SetState(266)
+		p.SetState(272)
 		p.Match(MMSParserInt)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4005,7 +4044,7 @@ func (p *MMSParser) SurfaceCondition_Freezing() (localctx ISurfaceCondition_Free
 	p.EnterRule(localctx, 40, MMSParserRULE_surfaceCondition_Freezing)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(268)
+		p.SetState(274)
 		p.Match(MMSParserKeyword_Freezing)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4154,7 +4193,7 @@ func (p *MMSParser) SurfaceCondition_VerticalGradient() (localctx ISurfaceCondit
 	p.EnterRule(localctx, 42, MMSParserRULE_surfaceCondition_VerticalGradient)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(270)
+		p.SetState(276)
 		p.Match(MMSParserKeyword_VerticalGradient)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4162,7 +4201,7 @@ func (p *MMSParser) SurfaceCondition_VerticalGradient() (localctx ISurfaceCondit
 		}
 	}
 	{
-		p.SetState(271)
+		p.SetState(277)
 		p.Match(MMSParserString_)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4170,11 +4209,11 @@ func (p *MMSParser) SurfaceCondition_VerticalGradient() (localctx ISurfaceCondit
 		}
 	}
 	{
-		p.SetState(272)
+		p.SetState(278)
 		p.VerticalAnchor()
 	}
 	{
-		p.SetState(273)
+		p.SetState(279)
 		p.Match(MMSParserComma)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4182,7 +4221,7 @@ func (p *MMSParser) SurfaceCondition_VerticalGradient() (localctx ISurfaceCondit
 		}
 	}
 	{
-		p.SetState(274)
+		p.SetState(280)
 		p.VerticalAnchor()
 	}
 
@@ -4296,7 +4335,7 @@ func (p *MMSParser) SurfaceCondition_AboveWater() (localctx ISurfaceCondition_Ab
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(276)
+		p.SetState(282)
 		p.Match(MMSParserKeyword_AboveWater)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4304,7 +4343,7 @@ func (p *MMSParser) SurfaceCondition_AboveWater() (localctx ISurfaceCondition_Ab
 		}
 	}
 	{
-		p.SetState(277)
+		p.SetState(283)
 		p.Match(MMSParserInt)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4312,7 +4351,7 @@ func (p *MMSParser) SurfaceCondition_AboveWater() (localctx ISurfaceCondition_Ab
 		}
 	}
 	{
-		p.SetState(278)
+		p.SetState(284)
 		p.Match(MMSParserFloat)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4320,7 +4359,7 @@ func (p *MMSParser) SurfaceCondition_AboveWater() (localctx ISurfaceCondition_Ab
 		}
 	}
 	{
-		p.SetState(279)
+		p.SetState(285)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == MMSParserKeyword_Add || _la == MMSParserKeyword_Sub) {
@@ -4453,7 +4492,7 @@ func (p *MMSParser) SurfaceCondition_YAbove() (localctx ISurfaceCondition_YAbove
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(281)
+		p.SetState(287)
 		p.Match(MMSParserKeyword_YAbove)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4461,11 +4500,11 @@ func (p *MMSParser) SurfaceCondition_YAbove() (localctx ISurfaceCondition_YAbove
 		}
 	}
 	{
-		p.SetState(282)
+		p.SetState(288)
 		p.VerticalAnchor()
 	}
 	{
-		p.SetState(283)
+		p.SetState(289)
 		p.Match(MMSParserInt)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4473,7 +4512,7 @@ func (p *MMSParser) SurfaceCondition_YAbove() (localctx ISurfaceCondition_YAbove
 		}
 	}
 	{
-		p.SetState(284)
+		p.SetState(290)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == MMSParserKeyword_Add || _la == MMSParserKeyword_Sub) {
@@ -4590,7 +4629,7 @@ func (p *MMSParser) SurfaceCondition_Compound__Item() (localctx ISurfaceConditio
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(287)
+	p.SetState(293)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4599,7 +4638,7 @@ func (p *MMSParser) SurfaceCondition_Compound__Item() (localctx ISurfaceConditio
 
 	if _la == MMSParserBang {
 		{
-			p.SetState(286)
+			p.SetState(292)
 			p.Match(MMSParserBang)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4609,7 +4648,7 @@ func (p *MMSParser) SurfaceCondition_Compound__Item() (localctx ISurfaceConditio
 
 	}
 	{
-		p.SetState(289)
+		p.SetState(295)
 		p.SurfaceCondition()
 	}
 
@@ -4766,14 +4805,14 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(291)
+		p.SetState(297)
 		p.Match(MMSParserKeyword_And)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(295)
+	p.SetState(301)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4782,7 +4821,7 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(292)
+			p.SetState(298)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4790,7 +4829,7 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 			}
 		}
 
-		p.SetState(297)
+		p.SetState(303)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4798,14 +4837,14 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(298)
+		p.SetState(304)
 		p.Match(MMSParserRoundOpen)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(302)
+	p.SetState(308)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4814,7 +4853,7 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 
 	for _la == MMSParserNL {
 		{
-			p.SetState(299)
+			p.SetState(305)
 			p.Match(MMSParserNL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4822,14 +4861,14 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 			}
 		}
 
-		p.SetState(304)
+		p.SetState(310)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(314)
+	p.SetState(320)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4838,10 +4877,10 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 
 	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&36283888893440) != 0 {
 		{
-			p.SetState(305)
+			p.SetState(311)
 			p.SurfaceCondition_Compound__Item()
 		}
-		p.SetState(309)
+		p.SetState(315)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4850,7 +4889,7 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 
 		for _la == MMSParserNL {
 			{
-				p.SetState(306)
+				p.SetState(312)
 				p.Match(MMSParserNL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -4858,7 +4897,7 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 				}
 			}
 
-			p.SetState(311)
+			p.SetState(317)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
@@ -4866,7 +4905,7 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 			_la = p.GetTokenStream().LA(1)
 		}
 
-		p.SetState(316)
+		p.SetState(322)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4874,7 +4913,7 @@ func (p *MMSParser) SurfaceCondition_Compound() (localctx ISurfaceCondition_Comp
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(317)
+		p.SetState(323)
 		p.Match(MMSParserRoundClose)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4980,7 +5019,7 @@ func (p *MMSParser) Reference() (localctx IReferenceContext) {
 	p.EnterRule(localctx, 52, MMSParserRULE_reference)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(319)
+		p.SetState(325)
 		p.Match(MMSParserIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4988,7 +5027,7 @@ func (p *MMSParser) Reference() (localctx IReferenceContext) {
 		}
 	}
 	{
-		p.SetState(320)
+		p.SetState(326)
 		p.Match(MMSParserColon)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4996,7 +5035,7 @@ func (p *MMSParser) Reference() (localctx IReferenceContext) {
 		}
 	}
 	{
-		p.SetState(321)
+		p.SetState(327)
 		p.Match(MMSParserIdentifier)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5107,24 +5146,24 @@ func (s *ResourceReferenceContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *MMSParser) ResourceReference() (localctx IResourceReferenceContext) {
 	localctx = NewResourceReferenceContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 54, MMSParserRULE_resourceReference)
-	p.SetState(325)
+	p.SetState(331)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 30, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 31, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(323)
+			p.SetState(329)
 			p.Reference()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(324)
+			p.SetState(330)
 			p.Match(MMSParserIdentifier)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5268,7 +5307,7 @@ func (s *VerticalAnchorContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *MMSParser) VerticalAnchor() (localctx IVerticalAnchorContext) {
 	localctx = NewVerticalAnchorContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 56, MMSParserRULE_verticalAnchor)
-	p.SetState(330)
+	p.SetState(336)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5278,21 +5317,21 @@ func (p *MMSParser) VerticalAnchor() (localctx IVerticalAnchorContext) {
 	case MMSParserKeyword_Absolute:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(327)
+			p.SetState(333)
 			p.VerticalAnchor_Absolute()
 		}
 
 	case MMSParserKeyword_AboveBottom:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(328)
+			p.SetState(334)
 			p.VerticalAnchor_AboveBottom()
 		}
 
 	case MMSParserKeyword_BelowTop:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(329)
+			p.SetState(335)
 			p.VerticalAnchor_BelowTop()
 		}
 
@@ -5394,7 +5433,7 @@ func (p *MMSParser) VerticalAnchor_Absolute() (localctx IVerticalAnchor_Absolute
 	p.EnterRule(localctx, 58, MMSParserRULE_verticalAnchor_Absolute)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(332)
+		p.SetState(338)
 		p.Match(MMSParserKeyword_Absolute)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5402,7 +5441,7 @@ func (p *MMSParser) VerticalAnchor_Absolute() (localctx IVerticalAnchor_Absolute
 		}
 	}
 	{
-		p.SetState(333)
+		p.SetState(339)
 		p.Match(MMSParserInt)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5503,7 +5542,7 @@ func (p *MMSParser) VerticalAnchor_AboveBottom() (localctx IVerticalAnchor_Above
 	p.EnterRule(localctx, 60, MMSParserRULE_verticalAnchor_AboveBottom)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(335)
+		p.SetState(341)
 		p.Match(MMSParserKeyword_AboveBottom)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5511,7 +5550,7 @@ func (p *MMSParser) VerticalAnchor_AboveBottom() (localctx IVerticalAnchor_Above
 		}
 	}
 	{
-		p.SetState(336)
+		p.SetState(342)
 		p.Match(MMSParserInt)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5612,7 +5651,7 @@ func (p *MMSParser) VerticalAnchor_BelowTop() (localctx IVerticalAnchor_BelowTop
 	p.EnterRule(localctx, 62, MMSParserRULE_verticalAnchor_BelowTop)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(338)
+		p.SetState(344)
 		p.Match(MMSParserKeyword_BelowTop)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -5620,7 +5659,7 @@ func (p *MMSParser) VerticalAnchor_BelowTop() (localctx IVerticalAnchor_BelowTop
 		}
 	}
 	{
-		p.SetState(339)
+		p.SetState(345)
 		p.Match(MMSParserInt)
 		if p.HasError() {
 			// Recognition error - abort rule

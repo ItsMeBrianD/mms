@@ -2,28 +2,22 @@ package surface_rules
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/itsmebriand/mms/mms/grammars"
-	"github.com/itsmebriand/mms/mms/lib"
+	"github.com/itsmebriand/mms/mms/surface_rules/condition_factory"
 )
-
-func getCondition(ctx grammars.ISurfaceConditionContext, l *SurfaceRuleSerializer) Condition {
-	var condition Condition
-	if ref := ctx.SurfaceConditionReference(); ref != nil {
-		condition = ConditionReference{
-			Reference: lib.ParseReferential(l.currentNamespace, ref),
-		}
-	} else {
-		condition = l.conditionStack[len(l.conditionStack)-1]
-		l.conditionStack = l.conditionStack[:len(l.conditionStack)-1]
-	}
-	return condition
-}
 
 func (l *SurfaceRuleSerializer) ExitSurfaceRule_Conditional(ctx *grammars.SurfaceRule_ConditionalContext) {
 	conditionCtx := ctx.SurfaceCondition()
-	condition := getCondition(conditionCtx, l)
+	condition := l.store.GetCondition(
+		l.conditionFactory.GetConditionRefFromNode(conditionCtx),
+	)
+	if condition == nil {
+		l.Errors = append(l.Errors, errors.New("condition not found: "+conditionCtx.GetText()))
+		return
+	}
 
 	action := l.ruleStack[len(l.ruleStack)-1]
 	l.ruleStack = l.ruleStack[:len(l.ruleStack)-1]
@@ -31,7 +25,7 @@ func (l *SurfaceRuleSerializer) ExitSurfaceRule_Conditional(ctx *grammars.Surfac
 }
 
 type ConditionalRule struct {
-	Condition Condition
+	Condition condition_factory.Condition
 	Action    Rule
 	Negate    bool
 }
@@ -39,7 +33,7 @@ type ConditionalRule struct {
 func (r ConditionalRule) Type() RuleType { return ConditionalRuleType }
 
 func (r ConditionalRule) MarshalJSON() ([]byte, error) {
-	if compound, ok := r.Condition.(CompoundCondition); ok {
+	if compound, ok := r.Condition.(condition_factory.CompoundCondition); ok {
 		// We need to split out the conditions into a deep nest
 		fmt.Println(compound.Conditions)
 		rules := make([]Rule, len(compound.Conditions))
@@ -65,9 +59,9 @@ func (r ConditionalRule) MarshalJSON() ([]byte, error) {
 		return out, err
 	} else {
 		out, err := json.Marshal(struct {
-			Type    RuleType  `json:"type"`
-			IfTrue  Condition `json:"if_true"`
-			ThenRun Rule      `json:"then_run"`
+			Type    RuleType                    `json:"type"`
+			IfTrue  condition_factory.Condition `json:"if_true"`
+			ThenRun Rule                        `json:"then_run"`
 		}{
 			Type:    ConditionalRuleType,
 			IfTrue:  r.Condition,

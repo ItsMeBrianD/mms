@@ -1,10 +1,7 @@
-package surface_rules
+package condition_factory
 
 import (
 	"encoding/json"
-	"errors"
-
-	"github.com/itsmebriand/mms/mms/lib"
 )
 
 type ConditionType string
@@ -27,17 +24,6 @@ const (
 type Condition interface {
 	json.Marshaler
 	Type() ConditionType
-}
-
-type ConditionReference struct {
-	lib.Reference
-	Condition
-	Namespace string
-	Name      string
-}
-
-func (c ConditionReference) Type() ConditionType { return ReferenceConditionType }
-
-func (c ConditionReference) MarshalJSON() ([]byte, error) {
-	return nil, errors.New("ConditionReference cannot be marshaled")
+	Comment() *string
+	SetComment(comment *string)
 }

@@ -1,6 +1,9 @@
 package mms
 
-import "os"
+import (
+	"os"
+	"path/filepath"
+)
 
 func getAllFilesInDir(dir string) ([]string, error) {
 	files := make([]string, 0)
@@ -10,7 +13,7 @@ func getAllFilesInDir(dir string) ([]string, error) {
 	}
 	for _, entry := range entries {
 		if entry.IsDir() {
-			subFiles, err := getAllFilesInDir(dir + entry.Name())
+			subFiles, err := getAllFilesInDir(filepath.Join(dir, entry.Name()))
 			if err != nil {
 				return nil, err
 			}

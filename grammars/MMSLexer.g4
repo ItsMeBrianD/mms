@@ -1,9 +1,7 @@
 lexer grammar MMSLexer;
 
-
 Int: [0-9]+;
 Float: ([0-9]+ '.' [0-9]+) | Int;
-
 
 /// surface rule keywords
 Keyword_Surface: 'surface';

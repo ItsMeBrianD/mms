@@ -13,7 +13,7 @@ surfaceDefinition:
 
 //// Surface Rules
 surfaceRuleReference: (Identifier | reference);
-surfaceRuleDeclaration: Keyword_Rule Identifier surfaceRule;
+surfaceRuleDeclaration: Keyword_Rule Identifier NL* surfaceRule;
 surfaceRule:
 	surfaceRule_Conditional
 	| surfaceRule_Block

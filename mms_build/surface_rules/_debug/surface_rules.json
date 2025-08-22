@@ -1,0 +1,19 @@
+{
+  "SurfaceSequenceRule": {
+    "type": "minecraft:sequence",
+    "sequence": [
+      {
+        "type": "minecraft:block",
+        "block": "minecraft:stone"
+      },
+      {
+        "type": "minecraft:block",
+        "block": "minecraft:grass"
+      },
+      {
+        "type": "minecraft:block",
+        "block": "minecraft:air"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "BedrockFloor": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:vertical_gradient",
+      "random_name": "\"BedrockGradient\"",
+      "true_at_and_below": {
+        "above_bottom": 5
+      },
+      "false_at_and_above": {
+        "above_bottom": 0
+      }
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:bedrock"
+    }
+  }
+}

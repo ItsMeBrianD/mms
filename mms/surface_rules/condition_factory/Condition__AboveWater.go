@@ -1,4 +1,4 @@
-package surface_rules
+package condition_factory
 
 import (
 	"encoding/json"
@@ -11,19 +11,24 @@ type AboveWaterCondition struct {
 	Offset          int
 	DepthMultiplier float64
 	Add             bool
+	comment         *string
 }
 
-func (l *SurfaceRuleSerializer) ExitSurfaceCondition_AboveWater(ctx *grammars.SurfaceCondition_AboveWaterContext) {
+func (f ConditionFactory) NewAboveWaterCondition(ctx *grammars.SurfaceCondition_AboveWaterContext) Condition {
 	offset, _ := strconv.Atoi(ctx.Int().GetText())
 	depthMultiplier, _ := strconv.ParseFloat(ctx.Float().GetText(), 64)
-	l.conditionStack = append(l.conditionStack, AboveWaterCondition{
+	return AboveWaterCondition{
 		Offset:          offset,
 		DepthMultiplier: depthMultiplier,
 		Add:             ctx.Keyword_Add() != nil,
-	})
+	}
 }
 
 func (c AboveWaterCondition) Type() ConditionType { return AboveWaterConditionType }
+
+func (c AboveWaterCondition) SetComment(comment *string) { c.comment = comment }
+
+func (c AboveWaterCondition) Comment() *string { return c.comment }
 
 func (c AboveWaterCondition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {

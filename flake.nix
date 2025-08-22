@@ -54,9 +54,7 @@
                 dst=./mms
                 mkdir -p $dst
                 ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/grammars/MMSLexer.g4 -o $dst -package grammars;
-                ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/grammars/MMSParser.g4 -lib $dst/grammars -o $dst -package grammars;
-
-                
+                ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/grammars/MMSParser.g4 -lib $dst/grammars -o $dst -package grammars;                
           '';
         };
 
