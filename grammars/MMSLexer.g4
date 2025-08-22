@@ -1,7 +1,7 @@
 lexer grammar MMSLexer;
 
-Int: [0-9]+;
-Float: ([0-9]+ '.' [0-9]+) | Int;
+Int: '-'? [0-9]+;
+Float: ('-'? [0-9]+ '.' [0-9]+) | Int;
 
 /// surface rule keywords
 Keyword_Surface: 'surface';
@@ -30,11 +30,9 @@ Keyword_Add: 'add';
 Keyword_Sub: 'sub';
 ///
 
-
 Keyword_Absolute: 'absolute';
 Keyword_AboveBottom: 'above_bottom';
 Keyword_BelowTop: 'below_top';
-
 
 Keyword_Namespace: 'namespace';
 Keyword_If: 'if';
@@ -56,7 +54,6 @@ Colon: ':';
 SemiColon: ';';
 // Must come last
 String: '"' ~[\r\n]* '"';
-
 
 Identifier: [a-zA-Z_][a-zA-Z0-9_]*;
 LineComment: '//' ~[\r\n]* -> skip;

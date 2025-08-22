@@ -1,1 +1,10 @@
-{}
+{
+  "InBadlands": {
+    "type": "minecraft:biome",
+    "biomes": [
+      "minecraft:badlands",
+      "minecraft:eroded_badlands",
+      "minecraft:wooded_badlands"
+    ]
+  }
+}

@@ -59,7 +59,7 @@ surface {
     rule FinalLayer block minecraft:barrier
 
     // MegaCondition combines multiple types, references, and negation
-    condition MegaCondition and [
+    condition MegaCondition and (
         biome [minecraft:plains minecraft:mountains minecraft:forest]
         !hole
         noise minecraft:weird [0.1, 0.9]
@@ -67,5 +67,5 @@ surface {
         above_water 10 0.2 add
         y_above absolute 60 0 add
         vertical_gradient "MegaGradient" absolute 0, absolute 100
-    ]
+    )
 }

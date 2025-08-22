@@ -16,6 +16,7 @@ surfaceRuleReference: (Identifier | reference);
 surfaceRuleDeclaration: Keyword_Rule Identifier NL* surfaceRule;
 surfaceRule:
 	surfaceRule_Conditional
+	| surfaceRule_Bandlands
 	| surfaceRule_Block
 	| surfaceRule_Sequence
 	| surfaceRuleReference;
@@ -24,6 +25,7 @@ surfaceRule_Conditional:
 		surfaceRule
 	);
 
+surfaceRule_Bandlands: Keyword_Bandlands;
 surfaceRule_Block: Keyword_Block resourceReference;
 surfaceRule_Sequence:
 	Keyword_Sequence SquareOpen NL* ((surfaceRule) NL*)* SquareClose;
@@ -31,7 +33,7 @@ surfaceRule_Sequence:
 //// Surface Conditions
 surfaceConditionReference: (Identifier | reference);
 surfaceConditionDeclaration:
-	Keyword_Condition Identifier surfaceCondition;
+	Keyword_Condition Identifier NL* surfaceCondition;
 surfaceCondition:
 	surfaceCondition_AboveSurface
 	| surfaceCondition_Biome
@@ -51,7 +53,7 @@ surfaceCondition_Biome:
 	Keyword_Biome SquareOpen NL* (resourceReference NL*)* SquareClose;
 surfaceCondition_Hole: Keyword_Hole;
 surfaceCondition_Noise:
-	Keyword_Noise resourceReference SquareOpen Float Comma Float SquareClose;
+	Keyword_Noise resourceReference SquareOpen number Comma number SquareClose;
 surfaceCondition_Steep: Keyword_Steep;
 surfaceCondition_StoneDepth:
 	Keyword_StoneDepth (Keyword_Floor | Keyword_Ceiling) //
@@ -67,7 +69,7 @@ surfaceCondition_VerticalGradient:
 surfaceCondition_AboveWater:
 	Keyword_AboveWater //
 	Int // Offset
-	Float // Multiplier
+	number // Multiplier
 	(Keyword_Add | Keyword_Sub);
 
 surfaceCondition_YAbove:

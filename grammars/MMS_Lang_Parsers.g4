@@ -4,6 +4,10 @@ options {
 	tokenVocab = MMSLexer;
 }
 
-reference: Identifier Colon Identifier;
+import MMS_Keyword_Rule;
 
-resourceReference: reference | Identifier;
+reference: (keyword | Identifier) Colon (keyword | Identifier);
+
+resourceReference: reference | (keyword | Identifier);
+
+number: Int | Float;

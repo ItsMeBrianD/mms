@@ -2,13 +2,16 @@ package condition_factory
 
 import (
 	"encoding/json"
+	"slices"
 
 	"github.com/itsmebriand/mms/mms/grammars"
+	surface_rule_types "github.com/itsmebriand/mms/mms/surface_rules/types"
 )
 
-func (f ConditionFactory) NewCompoundCondition(ctx *grammars.SurfaceCondition_CompoundContext) Condition {
-	out := CompoundCondition{}
+func (f ConditionFactory) NewCompoundCondition(ctx *grammars.SurfaceCondition_CompoundContext) surface_rule_types.Condition {
+	out := &CompoundCondition{}
 	items := ctx.AllSurfaceCondition_Compound__Item()
+	slices.Reverse(items)
 
 	for _, item := range items {
 		negated := item.Bang() != nil
@@ -23,13 +26,15 @@ type CompoundCondition struct {
 	Conditions []CompoundConditionItem
 }
 
-func (c CompoundCondition) Type() ConditionType { return CompoundConditionType }
+func (c CompoundCondition) Type() surface_rule_types.ConditionType {
+	return surface_rule_types.CompoundConditionType
+}
 
 func (c CompoundCondition) Comment() *string {
 	return nil
 }
 
-func (c CompoundCondition) SetComment(comment *string) {}
+func (c *CompoundCondition) SetComment(comment *string) {}
 
 func (c CompoundCondition) MarshalJSON() ([]byte, error) {
 	if len(c.Conditions) == 1 {
@@ -40,11 +45,11 @@ func (c CompoundCondition) MarshalJSON() ([]byte, error) {
 		condition.Condition.SetComment(&msg)
 	}
 	return json.Marshal(struct {
-		Type       ConditionType           `json:"type"`
-		Conditions []CompoundConditionItem `json:"conditions"`
-		Comment    *string                 `json:"__comment,omitempty"`
+		Type       surface_rule_types.ConditionType `json:"type"`
+		Conditions []CompoundConditionItem          `json:"conditions"`
+		Comment    *string                          `json:"__comment,omitempty"`
 	}{
-		Type:       CompoundConditionType,
+		Type:       surface_rule_types.CompoundConditionType,
 		Conditions: c.Conditions,
 		Comment:    c.Comment(),
 	})
@@ -52,17 +57,17 @@ func (c CompoundCondition) MarshalJSON() ([]byte, error) {
 
 type CompoundConditionItem struct {
 	json.Marshaler
-	Condition Condition
+	Condition surface_rule_types.Condition
 	Negate    bool
 }
 
 func (c CompoundConditionItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		Type      ConditionType `json:"type"`
-		Condition Condition     `json:"condition"`
-		Negate    bool          `json:"negate"`
+		Type      surface_rule_types.ConditionType `json:"type"`
+		Condition surface_rule_types.Condition     `json:"condition"`
+		Negate    bool                             `json:"negate"`
 	}{
-		Type:      CompoundConditionType,
+		Type:      surface_rule_types.CompoundConditionType,
 		Condition: c.Condition,
 		Negate:    c.Negate,
 	})

@@ -2,28 +2,35 @@ package condition_factory
 
 import (
 	"encoding/json"
+
+	surface_rule_types "github.com/itsmebriand/mms/mms/surface_rules/types"
 )
 
-type ConditionType string
+type NotCondition struct {
+	Invert  surface_rule_types.Condition
+	comment *string
+}
 
-const (
-	AboveSurfaceConditionType     ConditionType = "minecraft:above_preliminary_surface"
-	BiomeConditionType            ConditionType = "minecraft:biome"
-	HoleConditionType             ConditionType = "minecraft:hole"
-	NoiseConditionType            ConditionType = "minecraft:noise"
-	SteepConditionType            ConditionType = "minecraft:steep"
-	StoneDepthConditionType       ConditionType = "minecraft:stone_depth"
-	FreezingConditionType         ConditionType = "minecraft:temperature"
-	VerticalGradientConditionType ConditionType = "minecraft:vertical_gradient"
-	AboveWaterConditionType       ConditionType = "minecraft:water"
-	YAboveConditionType           ConditionType = "minecraft:y_above"
-	CompoundConditionType         ConditionType = "mms:__compound"
-	ReferenceConditionType        ConditionType = "mms:__reference"
-)
+func (c NotCondition) Type() surface_rule_types.ConditionType {
+	return surface_rule_types.NotConditionType
+}
 
-type Condition interface {
-	json.Marshaler
-	Type() ConditionType
-	Comment() *string
-	SetComment(comment *string)
+func (c NotCondition) Comment() *string { return c.comment }
+
+func (c *NotCondition) SetComment(comment *string) { c.comment = comment }
+
+func (c NotCondition) MarshalJSON() ([]byte, error) {
+	return json.Marshal(struct {
+		Type    surface_rule_types.ConditionType `json:"type"`
+		Invert  surface_rule_types.Condition     `json:"invert"`
+		Comment *string                          `json:"__comment,omitempty"`
+	}{
+		Type:    surface_rule_types.NotConditionType,
+		Invert:  c.Invert,
+		Comment: c.comment,
+	})
+}
+
+func InvertCondition(condition surface_rule_types.Condition) surface_rule_types.Condition {
+	return &NotCondition{Invert: condition}
 }

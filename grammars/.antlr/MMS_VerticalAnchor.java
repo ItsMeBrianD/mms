@@ -28,11 +28,13 @@ public class MMS_VerticalAnchor extends Parser {
 		SemiColon=43, String=44, Identifier=45, LineComment=46, BlockComment=47;
 	public static final int
 		RULE_verticalAnchor = 0, RULE_verticalAnchor_Absolute = 1, RULE_verticalAnchor_AboveBottom = 2, 
-		RULE_verticalAnchor_BelowTop = 3, RULE_reference = 4, RULE_resourceReference = 5;
+		RULE_verticalAnchor_BelowTop = 3, RULE_reference = 4, RULE_resourceReference = 5, 
+		RULE_number = 6, RULE_keyword = 7;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"verticalAnchor", "verticalAnchor_Absolute", "verticalAnchor_AboveBottom", 
-			"verticalAnchor_BelowTop", "reference", "resourceReference"
+			"verticalAnchor_BelowTop", "reference", "resourceReference", "number", 
+			"keyword"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -134,27 +136,27 @@ public class MMS_VerticalAnchor extends Parser {
 		VerticalAnchorContext _localctx = new VerticalAnchorContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_verticalAnchor);
 		try {
-			setState(15);
+			setState(19);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case Keyword_Absolute:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(12);
+				setState(16);
 				verticalAnchor_Absolute();
 				}
 				break;
 			case Keyword_AboveBottom:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(13);
+				setState(17);
 				verticalAnchor_AboveBottom();
 				}
 				break;
 			case Keyword_BelowTop:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(14);
+				setState(18);
 				verticalAnchor_BelowTop();
 				}
 				break;
@@ -188,9 +190,9 @@ public class MMS_VerticalAnchor extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(17);
+			setState(21);
 			match(Keyword_Absolute);
-			setState(18);
+			setState(22);
 			match(Int);
 			}
 		}
@@ -220,9 +222,9 @@ public class MMS_VerticalAnchor extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20);
+			setState(24);
 			match(Keyword_AboveBottom);
-			setState(21);
+			setState(25);
 			match(Int);
 			}
 		}
@@ -252,9 +254,9 @@ public class MMS_VerticalAnchor extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(23);
+			setState(27);
 			match(Keyword_BelowTop);
-			setState(24);
+			setState(28);
 			match(Int);
 			}
 		}
@@ -270,11 +272,17 @@ public class MMS_VerticalAnchor extends Parser {
 	}
 
 	public static class ReferenceContext extends ParserRuleContext {
+		public TerminalNode Colon() { return getToken(MMS_VerticalAnchor.Colon, 0); }
+		public List<KeywordContext> keyword() {
+			return getRuleContexts(KeywordContext.class);
+		}
+		public KeywordContext keyword(int i) {
+			return getRuleContext(KeywordContext.class,i);
+		}
 		public List<TerminalNode> Identifier() { return getTokens(MMS_VerticalAnchor.Identifier); }
 		public TerminalNode Identifier(int i) {
 			return getToken(MMS_VerticalAnchor.Identifier, i);
 		}
-		public TerminalNode Colon() { return getToken(MMS_VerticalAnchor.Colon, 0); }
 		public ReferenceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -287,12 +295,100 @@ public class MMS_VerticalAnchor extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(26);
-			match(Identifier);
-			setState(27);
+			setState(32);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case Keyword_Surface:
+			case Keyword_Rule:
+			case Keyword_Condition:
+			case Keyword_Sequence:
+			case Keyword_Block:
+			case Keyword_Bandlands:
+			case Keyword_AbovePreliminarySurface:
+			case Keyword_Biome:
+			case Keyword_Hole:
+			case Keyword_Noise:
+			case Keyword_Steep:
+			case Keyword_StoneDepth:
+			case Keyword_Freezing:
+			case Keyword_Temperature:
+			case Keyword_VerticalGradient:
+			case Keyword_AboveWater:
+			case Keyword_YAbove:
+			case Keyword_Floor:
+			case Keyword_Ceiling:
+			case Keyword_And:
+			case Keyword_Add:
+			case Keyword_Sub:
+			case Keyword_Absolute:
+			case Keyword_AboveBottom:
+			case Keyword_BelowTop:
+			case Keyword_Namespace:
+			case Keyword_If:
+			case Keyword_Else:
+			case Keyword_In:
+				{
+				setState(30);
+				keyword();
+				}
+				break;
+			case Identifier:
+				{
+				setState(31);
+				match(Identifier);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			setState(34);
 			match(Colon);
-			setState(28);
-			match(Identifier);
+			setState(37);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case Keyword_Surface:
+			case Keyword_Rule:
+			case Keyword_Condition:
+			case Keyword_Sequence:
+			case Keyword_Block:
+			case Keyword_Bandlands:
+			case Keyword_AbovePreliminarySurface:
+			case Keyword_Biome:
+			case Keyword_Hole:
+			case Keyword_Noise:
+			case Keyword_Steep:
+			case Keyword_StoneDepth:
+			case Keyword_Freezing:
+			case Keyword_Temperature:
+			case Keyword_VerticalGradient:
+			case Keyword_AboveWater:
+			case Keyword_YAbove:
+			case Keyword_Floor:
+			case Keyword_Ceiling:
+			case Keyword_And:
+			case Keyword_Add:
+			case Keyword_Sub:
+			case Keyword_Absolute:
+			case Keyword_AboveBottom:
+			case Keyword_BelowTop:
+			case Keyword_Namespace:
+			case Keyword_If:
+			case Keyword_Else:
+			case Keyword_In:
+				{
+				setState(35);
+				keyword();
+				}
+				break;
+			case Identifier:
+				{
+				setState(36);
+				match(Identifier);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -310,6 +406,9 @@ public class MMS_VerticalAnchor extends Parser {
 		public ReferenceContext reference() {
 			return getRuleContext(ReferenceContext.class,0);
 		}
+		public KeywordContext keyword() {
+			return getRuleContext(KeywordContext.class,0);
+		}
 		public TerminalNode Identifier() { return getToken(MMS_VerticalAnchor.Identifier, 0); }
 		public ResourceReferenceContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -321,21 +420,65 @@ public class MMS_VerticalAnchor extends Parser {
 		ResourceReferenceContext _localctx = new ResourceReferenceContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_resourceReference);
 		try {
-			setState(32);
+			setState(44);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(30);
+				setState(39);
 				reference();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(31);
-				match(Identifier);
+				setState(42);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case Keyword_Surface:
+				case Keyword_Rule:
+				case Keyword_Condition:
+				case Keyword_Sequence:
+				case Keyword_Block:
+				case Keyword_Bandlands:
+				case Keyword_AbovePreliminarySurface:
+				case Keyword_Biome:
+				case Keyword_Hole:
+				case Keyword_Noise:
+				case Keyword_Steep:
+				case Keyword_StoneDepth:
+				case Keyword_Freezing:
+				case Keyword_Temperature:
+				case Keyword_VerticalGradient:
+				case Keyword_AboveWater:
+				case Keyword_YAbove:
+				case Keyword_Floor:
+				case Keyword_Ceiling:
+				case Keyword_And:
+				case Keyword_Add:
+				case Keyword_Sub:
+				case Keyword_Absolute:
+				case Keyword_AboveBottom:
+				case Keyword_BelowTop:
+				case Keyword_Namespace:
+				case Keyword_If:
+				case Keyword_Else:
+				case Keyword_In:
+					{
+					setState(40);
+					keyword();
+					}
+					break;
+				case Identifier:
+					{
+					setState(41);
+					match(Identifier);
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
 				}
 				break;
 			}
@@ -351,17 +494,126 @@ public class MMS_VerticalAnchor extends Parser {
 		return _localctx;
 	}
 
+	public static class NumberContext extends ParserRuleContext {
+		public TerminalNode Int() { return getToken(MMS_VerticalAnchor.Int, 0); }
+		public TerminalNode Float() { return getToken(MMS_VerticalAnchor.Float, 0); }
+		public NumberContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_number; }
+	}
+
+	public final NumberContext number() throws RecognitionException {
+		NumberContext _localctx = new NumberContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_number);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(46);
+			_la = _input.LA(1);
+			if ( !(_la==Int || _la==Float) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class KeywordContext extends ParserRuleContext {
+		public TerminalNode Keyword_Surface() { return getToken(MMS_VerticalAnchor.Keyword_Surface, 0); }
+		public TerminalNode Keyword_Rule() { return getToken(MMS_VerticalAnchor.Keyword_Rule, 0); }
+		public TerminalNode Keyword_Condition() { return getToken(MMS_VerticalAnchor.Keyword_Condition, 0); }
+		public TerminalNode Keyword_Sequence() { return getToken(MMS_VerticalAnchor.Keyword_Sequence, 0); }
+		public TerminalNode Keyword_Block() { return getToken(MMS_VerticalAnchor.Keyword_Block, 0); }
+		public TerminalNode Keyword_Bandlands() { return getToken(MMS_VerticalAnchor.Keyword_Bandlands, 0); }
+		public TerminalNode Keyword_AbovePreliminarySurface() { return getToken(MMS_VerticalAnchor.Keyword_AbovePreliminarySurface, 0); }
+		public TerminalNode Keyword_Biome() { return getToken(MMS_VerticalAnchor.Keyword_Biome, 0); }
+		public TerminalNode Keyword_Hole() { return getToken(MMS_VerticalAnchor.Keyword_Hole, 0); }
+		public TerminalNode Keyword_Noise() { return getToken(MMS_VerticalAnchor.Keyword_Noise, 0); }
+		public TerminalNode Keyword_Steep() { return getToken(MMS_VerticalAnchor.Keyword_Steep, 0); }
+		public TerminalNode Keyword_StoneDepth() { return getToken(MMS_VerticalAnchor.Keyword_StoneDepth, 0); }
+		public TerminalNode Keyword_Freezing() { return getToken(MMS_VerticalAnchor.Keyword_Freezing, 0); }
+		public TerminalNode Keyword_Temperature() { return getToken(MMS_VerticalAnchor.Keyword_Temperature, 0); }
+		public TerminalNode Keyword_VerticalGradient() { return getToken(MMS_VerticalAnchor.Keyword_VerticalGradient, 0); }
+		public TerminalNode Keyword_AboveWater() { return getToken(MMS_VerticalAnchor.Keyword_AboveWater, 0); }
+		public TerminalNode Keyword_YAbove() { return getToken(MMS_VerticalAnchor.Keyword_YAbove, 0); }
+		public TerminalNode Keyword_Floor() { return getToken(MMS_VerticalAnchor.Keyword_Floor, 0); }
+		public TerminalNode Keyword_Ceiling() { return getToken(MMS_VerticalAnchor.Keyword_Ceiling, 0); }
+		public TerminalNode Keyword_And() { return getToken(MMS_VerticalAnchor.Keyword_And, 0); }
+		public TerminalNode Keyword_Add() { return getToken(MMS_VerticalAnchor.Keyword_Add, 0); }
+		public TerminalNode Keyword_Sub() { return getToken(MMS_VerticalAnchor.Keyword_Sub, 0); }
+		public TerminalNode Keyword_Absolute() { return getToken(MMS_VerticalAnchor.Keyword_Absolute, 0); }
+		public TerminalNode Keyword_AboveBottom() { return getToken(MMS_VerticalAnchor.Keyword_AboveBottom, 0); }
+		public TerminalNode Keyword_BelowTop() { return getToken(MMS_VerticalAnchor.Keyword_BelowTop, 0); }
+		public TerminalNode Keyword_Namespace() { return getToken(MMS_VerticalAnchor.Keyword_Namespace, 0); }
+		public TerminalNode Keyword_If() { return getToken(MMS_VerticalAnchor.Keyword_If, 0); }
+		public TerminalNode Keyword_Else() { return getToken(MMS_VerticalAnchor.Keyword_Else, 0); }
+		public TerminalNode Keyword_In() { return getToken(MMS_VerticalAnchor.Keyword_In, 0); }
+		public KeywordContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_keyword; }
+	}
+
+	public final KeywordContext keyword() throws RecognitionException {
+		KeywordContext _localctx = new KeywordContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_keyword);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(48);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Keyword_Surface) | (1L << Keyword_Rule) | (1L << Keyword_Condition) | (1L << Keyword_Sequence) | (1L << Keyword_Block) | (1L << Keyword_Bandlands) | (1L << Keyword_AbovePreliminarySurface) | (1L << Keyword_Biome) | (1L << Keyword_Hole) | (1L << Keyword_Noise) | (1L << Keyword_Steep) | (1L << Keyword_StoneDepth) | (1L << Keyword_Freezing) | (1L << Keyword_Temperature) | (1L << Keyword_VerticalGradient) | (1L << Keyword_AboveWater) | (1L << Keyword_YAbove) | (1L << Keyword_Floor) | (1L << Keyword_Ceiling) | (1L << Keyword_And) | (1L << Keyword_Add) | (1L << Keyword_Sub) | (1L << Keyword_Absolute) | (1L << Keyword_AboveBottom) | (1L << Keyword_BelowTop) | (1L << Keyword_Namespace) | (1L << Keyword_If) | (1L << Keyword_Else) | (1L << Keyword_In))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\61%\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\3\2\3\2\5\2\22\n\2\3\3\3\3\3\3"+
-		"\3\4\3\4\3\4\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7\5\7#\n\7\3\7\2\2\b\2"+
-		"\4\6\b\n\f\2\2\2!\2\21\3\2\2\2\4\23\3\2\2\2\6\26\3\2\2\2\b\31\3\2\2\2"+
-		"\n\34\3\2\2\2\f\"\3\2\2\2\16\22\5\4\3\2\17\22\5\6\4\2\20\22\5\b\5\2\21"+
-		"\16\3\2\2\2\21\17\3\2\2\2\21\20\3\2\2\2\22\3\3\2\2\2\23\24\7\33\2\2\24"+
-		"\25\7\3\2\2\25\5\3\2\2\2\26\27\7\34\2\2\27\30\7\3\2\2\30\7\3\2\2\2\31"+
-		"\32\7\35\2\2\32\33\7\3\2\2\33\t\3\2\2\2\34\35\7/\2\2\35\36\7,\2\2\36\37"+
-		"\7/\2\2\37\13\3\2\2\2 #\5\n\6\2!#\7/\2\2\" \3\2\2\2\"!\3\2\2\2#\r\3\2"+
-		"\2\2\4\21\"";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\61\65\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\3\2\3\2\3\2\5\2\26"+
+		"\n\2\3\3\3\3\3\3\3\4\3\4\3\4\3\5\3\5\3\5\3\6\3\6\5\6#\n\6\3\6\3\6\3\6"+
+		"\5\6(\n\6\3\7\3\7\3\7\5\7-\n\7\5\7/\n\7\3\b\3\b\3\t\3\t\3\t\2\2\n\2\4"+
+		"\6\b\n\f\16\20\2\4\3\2\3\4\3\2\5!\2\62\2\25\3\2\2\2\4\27\3\2\2\2\6\32"+
+		"\3\2\2\2\b\35\3\2\2\2\n\"\3\2\2\2\f.\3\2\2\2\16\60\3\2\2\2\20\62\3\2\2"+
+		"\2\22\26\5\4\3\2\23\26\5\6\4\2\24\26\5\b\5\2\25\22\3\2\2\2\25\23\3\2\2"+
+		"\2\25\24\3\2\2\2\26\3\3\2\2\2\27\30\7\33\2\2\30\31\7\3\2\2\31\5\3\2\2"+
+		"\2\32\33\7\34\2\2\33\34\7\3\2\2\34\7\3\2\2\2\35\36\7\35\2\2\36\37\7\3"+
+		"\2\2\37\t\3\2\2\2 #\5\20\t\2!#\7/\2\2\" \3\2\2\2\"!\3\2\2\2#$\3\2\2\2"+
+		"$\'\7,\2\2%(\5\20\t\2&(\7/\2\2\'%\3\2\2\2\'&\3\2\2\2(\13\3\2\2\2)/\5\n"+
+		"\6\2*-\5\20\t\2+-\7/\2\2,*\3\2\2\2,+\3\2\2\2-/\3\2\2\2.)\3\2\2\2.,\3\2"+
+		"\2\2/\r\3\2\2\2\60\61\t\2\2\2\61\17\3\2\2\2\62\63\t\3\2\2\63\21\3\2\2"+
+		"\2\7\25\"\',.";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

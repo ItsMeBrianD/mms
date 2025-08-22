@@ -7,33 +7,38 @@ import (
 
 	"github.com/itsmebriand/mms/mms/grammars"
 	"github.com/itsmebriand/mms/mms/surface_rules/condition_factory"
+	"github.com/itsmebriand/mms/mms/surface_rules/rule_factory"
+	surface_rules_store "github.com/itsmebriand/mms/mms/surface_rules/store"
+	surface_rule_types "github.com/itsmebriand/mms/mms/surface_rules/types"
 )
 
 type SurfaceRuleSerializer struct {
 	grammars.BaseMMSParserListener
 	currentNamespace string
-	store            *SurfaceStore
+	store            *surface_rules_store.SurfaceStore
 
 	conditionFactory *condition_factory.ConditionFactory
+	ruleFactory      *rule_factory.RuleFactory
 
-	ruleStack        []Rule
-	rulesByName      map[string]Rule
-	conditionsByName map[string]condition_factory.Condition
+	rulesByName      map[string]surface_rule_types.Rule
+	conditionsByName map[string]surface_rule_types.Condition
 
-	NamespaceRules      map[string]map[string]Rule
-	NamespaceConditions map[string]map[string]condition_factory.Condition
+	NamespaceRules      map[string]map[string]surface_rule_types.Rule
+	NamespaceConditions map[string]map[string]surface_rule_types.Condition
 
 	Errors []error
 }
 
 func NewSurfaceRuleSerializer() *SurfaceRuleSerializer {
+	store := surface_rules_store.NewSurfaceStore()
 	return &SurfaceRuleSerializer{
-		store:               NewSurfaceStore(),
-		conditionFactory:    condition_factory.NewConditionFactory(),
-		rulesByName:         make(map[string]Rule),
-		NamespaceRules:      make(map[string]map[string]Rule),
-		conditionsByName:    make(map[string]condition_factory.Condition),
-		NamespaceConditions: make(map[string]map[string]condition_factory.Condition),
+		store:               store,
+		conditionFactory:    condition_factory.NewConditionFactory(store),
+		ruleFactory:         rule_factory.NewRuleFactory(store),
+		rulesByName:         make(map[string]surface_rule_types.Rule),
+		NamespaceRules:      make(map[string]map[string]surface_rule_types.Rule),
+		conditionsByName:    make(map[string]surface_rule_types.Condition),
+		NamespaceConditions: make(map[string]map[string]surface_rule_types.Condition),
 	}
 }
 
@@ -96,22 +101,30 @@ func (l *SurfaceRuleSerializer) ExitMmsFile(ctx *grammars.MmsFileContext) {
 	namespace := ctx.NamespaceDeclaration().Identifier().GetText()
 
 	if _, ok := l.NamespaceRules[namespace]; !ok {
-		l.NamespaceRules[namespace] = make(map[string]Rule)
+		l.NamespaceRules[namespace] = make(map[string]surface_rule_types.Rule)
 	}
 
 	if _, ok := l.NamespaceConditions[namespace]; !ok {
-		l.NamespaceConditions[namespace] = make(map[string]condition_factory.Condition)
+		l.NamespaceConditions[namespace] = make(map[string]surface_rule_types.Condition)
 	}
 
 	for k, v := range l.rulesByName {
 		l.NamespaceRules[namespace][k] = v
-		l.rulesByName = make(map[string]Rule)
+		l.rulesByName = make(map[string]surface_rule_types.Rule)
 	}
 
 	for k, v := range l.conditionsByName {
 		l.NamespaceConditions[namespace][k] = v
-		l.conditionsByName = make(map[string]condition_factory.Condition)
+		l.conditionsByName = make(map[string]surface_rule_types.Condition)
 	}
+}
+
+func (l *SurfaceRuleSerializer) ExitSurfaceCondition(ctx *grammars.SurfaceConditionContext) {
+	l.conditionFactory.NewCondition(ctx)
+}
+
+func (l *SurfaceRuleSerializer) ExitSurfaceRule(ctx *grammars.SurfaceRuleContext) {
+	l.ruleFactory.NewRule(ctx)
 }
 
 func (l *SurfaceRuleSerializer) Finalize() {

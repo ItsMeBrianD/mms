@@ -20,6 +20,18 @@
             pkgs.go
             pkgs.fish
 
+            (pkgs.writeShellApplication{
+              name = "debug-file";
+              runtimeInputs = [
+                pkgs.antlr4
+                pkgs.go
+              ];
+              text = ''
+                antlr4-parse grammars/MMSParser.g4 grammars/MMSLexer.g4 mmsFile -gui "$1"
+              '';
+                
+            })
+
             (pkgs.writeShellApplication {
               name = "antlr-build";
               runtimeInputs = [
@@ -32,6 +44,23 @@
                 dst="./mms"
                 ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/MMSLexer.g4 -o $dst -package grammars;
                 ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/MMSParser.g4 -lib $dst/grammars -o $dst -package grammars;
+              '';
+            })
+            (pkgs.writeShellApplication {
+              name = "antlr-build-keyword-rule";
+              runtimeInputs = [
+                pkgs.antlr4
+                pkgs.go
+              ];
+              text = ''
+                set -e
+                {
+                  echo "parser grammar MMS_Keyword_Rule;"
+                  echo "options { tokenVocab = MMSLexer; }"
+                  echo "keyword: "
+                  grep Keyword_ < grammars/MMSLexer.g4 | sed -E 's/:.*/ | /' | tr -d '\n' | sed 's/ | $/\n/'
+                  echo ";"
+                } > grammars/MMS_Keyword_Rule.g4
               '';
             })
 
