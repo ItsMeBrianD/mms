@@ -1,0 +1,335 @@
+{
+  "Entrypoint": {
+    "type": "minecraft:sequence",
+    "sequence": [
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biomes": [
+            "minecraft:plains"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:above_preliminary_surface"
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:grass"
+        }
+      },
+      {
+        "type": "minecraft:not",
+        "invert": {
+          "type": "minecraft:conditional",
+          "if_true": {
+            "type": "minecraft:above_preliminary_surface"
+          },
+          "then_run": {
+            "type": "minecraft:block",
+            "block": "minecraft:stone"
+          }
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biomes": [
+            "minecraft:plains"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:grass"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biomes": [
+            "minecraft:plains",
+            "minecraft:forest"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:grass"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:hole"
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:noise",
+          "noise": "minecraft:noodle",
+          "min_threshold": 0.1,
+          "max_threshold": 0.9
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:steep"
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:stone_depth",
+          "offset": 0,
+          "add_surface_depth": true,
+          "secondary_depth_range": 1
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:temperature"
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:vertical_gradient",
+          "random_name": "\"MyGradient\"",
+          "true_at_and_below": {
+            "absolute": 10
+          },
+          "false_at_and_above": {
+            "absolute": 20
+          }
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:water",
+          "offset": 10,
+          "surface_depth_multiplier": 0.1,
+          "add_stone_depth": true
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      },
+      {
+        "type": "minecraft:conditional",
+        "if_true": {
+          "type": "minecraft:y_above",
+          "anchor": {
+            "absolute": 10
+          },
+          "surface_depth_multiplier": 0,
+          "add_stone_depth": true
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "block": "minecraft:stone"
+        }
+      }
+    ]
+  },
+  "If_AboveSurface": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:above_preliminary_surface"
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:grass"
+    }
+  },
+  "If_AboveWater": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:water",
+      "offset": 10,
+      "surface_depth_multiplier": 0.1,
+      "add_stone_depth": true
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  },
+  "If_BelowSurface": {
+    "type": "minecraft:not",
+    "invert": {
+      "type": "minecraft:conditional",
+      "if_true": {
+        "type": "minecraft:above_preliminary_surface"
+      },
+      "then_run": {
+        "type": "minecraft:block",
+        "block": "minecraft:stone"
+      }
+    }
+  },
+  "If_Biome": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:biome",
+      "biomes": [
+        "minecraft:plains"
+      ]
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:grass"
+    }
+  },
+  "If_Biomes": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:biome",
+      "biomes": [
+        "minecraft:plains",
+        "minecraft:forest"
+      ]
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:grass"
+    }
+  },
+  "If_Freezing": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:temperature"
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  },
+  "If_Hole": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:hole"
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  },
+  "If_Noise": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:noise",
+      "noise": "minecraft:noodle",
+      "min_threshold": 0.1,
+      "max_threshold": 0.9
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  },
+  "If_Ref": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:biome",
+      "biomes": [
+        "minecraft:plains"
+      ]
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  },
+  "If_Steep": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:steep"
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  },
+  "If_StoneDepth": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:stone_depth",
+      "offset": 0,
+      "add_surface_depth": true,
+      "secondary_depth_range": 1
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  },
+  "If_VerticalGradient": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:vertical_gradient",
+      "random_name": "\"MyGradient\"",
+      "true_at_and_below": {
+        "absolute": 10
+      },
+      "false_at_and_above": {
+        "absolute": 20
+      }
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  },
+  "If_YAbove": {
+    "type": "minecraft:conditional",
+    "if_true": {
+      "type": "minecraft:y_above",
+      "anchor": {
+        "absolute": 10
+      },
+      "surface_depth_multiplier": 0,
+      "add_stone_depth": true
+    },
+    "then_run": {
+      "type": "minecraft:block",
+      "block": "minecraft:stone"
+    }
+  }
+}

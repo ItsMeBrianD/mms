@@ -1,0 +1,8 @@
+{
+  "MyBiomeCondition": {
+    "type": "minecraft:biome",
+    "biomes": [
+      "minecraft:plains"
+    ]
+  }
+}

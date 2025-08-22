@@ -86,8 +86,148 @@ func (s *BaseMMSParserListener) EnterSurfaceRule_Sequence(ctx *SurfaceRule_Seque
 // ExitSurfaceRule_Sequence is called when production surfaceRule_Sequence is exited.
 func (s *BaseMMSParserListener) ExitSurfaceRule_Sequence(ctx *SurfaceRule_SequenceContext) {}
 
+// EnterSurfaceConditionReference is called when production surfaceConditionReference is entered.
+func (s *BaseMMSParserListener) EnterSurfaceConditionReference(ctx *SurfaceConditionReferenceContext) {
+}
+
+// ExitSurfaceConditionReference is called when production surfaceConditionReference is exited.
+func (s *BaseMMSParserListener) ExitSurfaceConditionReference(ctx *SurfaceConditionReferenceContext) {
+}
+
+// EnterSurfaceConditionDeclaration is called when production surfaceConditionDeclaration is entered.
+func (s *BaseMMSParserListener) EnterSurfaceConditionDeclaration(ctx *SurfaceConditionDeclarationContext) {
+}
+
+// ExitSurfaceConditionDeclaration is called when production surfaceConditionDeclaration is exited.
+func (s *BaseMMSParserListener) ExitSurfaceConditionDeclaration(ctx *SurfaceConditionDeclarationContext) {
+}
+
+// EnterSurfaceCondition is called when production surfaceCondition is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition(ctx *SurfaceConditionContext) {}
+
+// ExitSurfaceCondition is called when production surfaceCondition is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition(ctx *SurfaceConditionContext) {}
+
+// EnterSurfaceCondition_AboveSurface is called when production surfaceCondition_AboveSurface is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_AboveSurface(ctx *SurfaceCondition_AboveSurfaceContext) {
+}
+
+// ExitSurfaceCondition_AboveSurface is called when production surfaceCondition_AboveSurface is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_AboveSurface(ctx *SurfaceCondition_AboveSurfaceContext) {
+}
+
+// EnterSurfaceCondition_Biome is called when production surfaceCondition_Biome is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_Biome(ctx *SurfaceCondition_BiomeContext) {}
+
+// ExitSurfaceCondition_Biome is called when production surfaceCondition_Biome is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_Biome(ctx *SurfaceCondition_BiomeContext) {}
+
+// EnterSurfaceCondition_Hole is called when production surfaceCondition_Hole is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_Hole(ctx *SurfaceCondition_HoleContext) {}
+
+// ExitSurfaceCondition_Hole is called when production surfaceCondition_Hole is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_Hole(ctx *SurfaceCondition_HoleContext) {}
+
+// EnterSurfaceCondition_Noise is called when production surfaceCondition_Noise is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_Noise(ctx *SurfaceCondition_NoiseContext) {}
+
+// ExitSurfaceCondition_Noise is called when production surfaceCondition_Noise is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_Noise(ctx *SurfaceCondition_NoiseContext) {}
+
+// EnterSurfaceCondition_Steep is called when production surfaceCondition_Steep is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_Steep(ctx *SurfaceCondition_SteepContext) {}
+
+// ExitSurfaceCondition_Steep is called when production surfaceCondition_Steep is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_Steep(ctx *SurfaceCondition_SteepContext) {}
+
+// EnterSurfaceCondition_StoneDepth is called when production surfaceCondition_StoneDepth is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_StoneDepth(ctx *SurfaceCondition_StoneDepthContext) {
+}
+
+// ExitSurfaceCondition_StoneDepth is called when production surfaceCondition_StoneDepth is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_StoneDepth(ctx *SurfaceCondition_StoneDepthContext) {
+}
+
+// EnterSurfaceCondition_Freezing is called when production surfaceCondition_Freezing is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_Freezing(ctx *SurfaceCondition_FreezingContext) {
+}
+
+// ExitSurfaceCondition_Freezing is called when production surfaceCondition_Freezing is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_Freezing(ctx *SurfaceCondition_FreezingContext) {
+}
+
+// EnterSurfaceCondition_VerticalGradient is called when production surfaceCondition_VerticalGradient is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_VerticalGradient(ctx *SurfaceCondition_VerticalGradientContext) {
+}
+
+// ExitSurfaceCondition_VerticalGradient is called when production surfaceCondition_VerticalGradient is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_VerticalGradient(ctx *SurfaceCondition_VerticalGradientContext) {
+}
+
+// EnterSurfaceCondition_AboveWater is called when production surfaceCondition_AboveWater is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_AboveWater(ctx *SurfaceCondition_AboveWaterContext) {
+}
+
+// ExitSurfaceCondition_AboveWater is called when production surfaceCondition_AboveWater is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_AboveWater(ctx *SurfaceCondition_AboveWaterContext) {
+}
+
+// EnterSurfaceCondition_YAbove is called when production surfaceCondition_YAbove is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_YAbove(ctx *SurfaceCondition_YAboveContext) {}
+
+// ExitSurfaceCondition_YAbove is called when production surfaceCondition_YAbove is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_YAbove(ctx *SurfaceCondition_YAboveContext) {}
+
+// EnterSurfaceCondition_Compound__Item is called when production surfaceCondition_Compound__Item is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_Compound__Item(ctx *SurfaceCondition_Compound__ItemContext) {
+}
+
+// ExitSurfaceCondition_Compound__Item is called when production surfaceCondition_Compound__Item is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_Compound__Item(ctx *SurfaceCondition_Compound__ItemContext) {
+}
+
+// EnterSurfaceCondition_Compound is called when production surfaceCondition_Compound is entered.
+func (s *BaseMMSParserListener) EnterSurfaceCondition_Compound(ctx *SurfaceCondition_CompoundContext) {
+}
+
+// ExitSurfaceCondition_Compound is called when production surfaceCondition_Compound is exited.
+func (s *BaseMMSParserListener) ExitSurfaceCondition_Compound(ctx *SurfaceCondition_CompoundContext) {
+}
+
 // EnterReference is called when production reference is entered.
 func (s *BaseMMSParserListener) EnterReference(ctx *ReferenceContext) {}
 
 // ExitReference is called when production reference is exited.
 func (s *BaseMMSParserListener) ExitReference(ctx *ReferenceContext) {}
+
+// EnterResourceReference is called when production resourceReference is entered.
+func (s *BaseMMSParserListener) EnterResourceReference(ctx *ResourceReferenceContext) {}
+
+// ExitResourceReference is called when production resourceReference is exited.
+func (s *BaseMMSParserListener) ExitResourceReference(ctx *ResourceReferenceContext) {}
+
+// EnterVerticalAnchor is called when production verticalAnchor is entered.
+func (s *BaseMMSParserListener) EnterVerticalAnchor(ctx *VerticalAnchorContext) {}
+
+// ExitVerticalAnchor is called when production verticalAnchor is exited.
+func (s *BaseMMSParserListener) ExitVerticalAnchor(ctx *VerticalAnchorContext) {}
+
+// EnterVerticalAnchor_Absolute is called when production verticalAnchor_Absolute is entered.
+func (s *BaseMMSParserListener) EnterVerticalAnchor_Absolute(ctx *VerticalAnchor_AbsoluteContext) {}
+
+// ExitVerticalAnchor_Absolute is called when production verticalAnchor_Absolute is exited.
+func (s *BaseMMSParserListener) ExitVerticalAnchor_Absolute(ctx *VerticalAnchor_AbsoluteContext) {}
+
+// EnterVerticalAnchor_AboveBottom is called when production verticalAnchor_AboveBottom is entered.
+func (s *BaseMMSParserListener) EnterVerticalAnchor_AboveBottom(ctx *VerticalAnchor_AboveBottomContext) {
+}
+
+// ExitVerticalAnchor_AboveBottom is called when production verticalAnchor_AboveBottom is exited.
+func (s *BaseMMSParserListener) ExitVerticalAnchor_AboveBottom(ctx *VerticalAnchor_AboveBottomContext) {
+}
+
+// EnterVerticalAnchor_BelowTop is called when production verticalAnchor_BelowTop is entered.
+func (s *BaseMMSParserListener) EnterVerticalAnchor_BelowTop(ctx *VerticalAnchor_BelowTopContext) {}
+
+// ExitVerticalAnchor_BelowTop is called when production verticalAnchor_BelowTop is exited.
+func (s *BaseMMSParserListener) ExitVerticalAnchor_BelowTop(ctx *VerticalAnchor_BelowTopContext) {}

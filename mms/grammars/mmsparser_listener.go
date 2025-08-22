@@ -40,8 +40,68 @@ type MMSParserListener interface {
 	// EnterSurfaceRule_Sequence is called when entering the surfaceRule_Sequence production.
 	EnterSurfaceRule_Sequence(c *SurfaceRule_SequenceContext)
 
+	// EnterSurfaceConditionReference is called when entering the surfaceConditionReference production.
+	EnterSurfaceConditionReference(c *SurfaceConditionReferenceContext)
+
+	// EnterSurfaceConditionDeclaration is called when entering the surfaceConditionDeclaration production.
+	EnterSurfaceConditionDeclaration(c *SurfaceConditionDeclarationContext)
+
+	// EnterSurfaceCondition is called when entering the surfaceCondition production.
+	EnterSurfaceCondition(c *SurfaceConditionContext)
+
+	// EnterSurfaceCondition_AboveSurface is called when entering the surfaceCondition_AboveSurface production.
+	EnterSurfaceCondition_AboveSurface(c *SurfaceCondition_AboveSurfaceContext)
+
+	// EnterSurfaceCondition_Biome is called when entering the surfaceCondition_Biome production.
+	EnterSurfaceCondition_Biome(c *SurfaceCondition_BiomeContext)
+
+	// EnterSurfaceCondition_Hole is called when entering the surfaceCondition_Hole production.
+	EnterSurfaceCondition_Hole(c *SurfaceCondition_HoleContext)
+
+	// EnterSurfaceCondition_Noise is called when entering the surfaceCondition_Noise production.
+	EnterSurfaceCondition_Noise(c *SurfaceCondition_NoiseContext)
+
+	// EnterSurfaceCondition_Steep is called when entering the surfaceCondition_Steep production.
+	EnterSurfaceCondition_Steep(c *SurfaceCondition_SteepContext)
+
+	// EnterSurfaceCondition_StoneDepth is called when entering the surfaceCondition_StoneDepth production.
+	EnterSurfaceCondition_StoneDepth(c *SurfaceCondition_StoneDepthContext)
+
+	// EnterSurfaceCondition_Freezing is called when entering the surfaceCondition_Freezing production.
+	EnterSurfaceCondition_Freezing(c *SurfaceCondition_FreezingContext)
+
+	// EnterSurfaceCondition_VerticalGradient is called when entering the surfaceCondition_VerticalGradient production.
+	EnterSurfaceCondition_VerticalGradient(c *SurfaceCondition_VerticalGradientContext)
+
+	// EnterSurfaceCondition_AboveWater is called when entering the surfaceCondition_AboveWater production.
+	EnterSurfaceCondition_AboveWater(c *SurfaceCondition_AboveWaterContext)
+
+	// EnterSurfaceCondition_YAbove is called when entering the surfaceCondition_YAbove production.
+	EnterSurfaceCondition_YAbove(c *SurfaceCondition_YAboveContext)
+
+	// EnterSurfaceCondition_Compound__Item is called when entering the surfaceCondition_Compound__Item production.
+	EnterSurfaceCondition_Compound__Item(c *SurfaceCondition_Compound__ItemContext)
+
+	// EnterSurfaceCondition_Compound is called when entering the surfaceCondition_Compound production.
+	EnterSurfaceCondition_Compound(c *SurfaceCondition_CompoundContext)
+
 	// EnterReference is called when entering the reference production.
 	EnterReference(c *ReferenceContext)
+
+	// EnterResourceReference is called when entering the resourceReference production.
+	EnterResourceReference(c *ResourceReferenceContext)
+
+	// EnterVerticalAnchor is called when entering the verticalAnchor production.
+	EnterVerticalAnchor(c *VerticalAnchorContext)
+
+	// EnterVerticalAnchor_Absolute is called when entering the verticalAnchor_Absolute production.
+	EnterVerticalAnchor_Absolute(c *VerticalAnchor_AbsoluteContext)
+
+	// EnterVerticalAnchor_AboveBottom is called when entering the verticalAnchor_AboveBottom production.
+	EnterVerticalAnchor_AboveBottom(c *VerticalAnchor_AboveBottomContext)
+
+	// EnterVerticalAnchor_BelowTop is called when entering the verticalAnchor_BelowTop production.
+	EnterVerticalAnchor_BelowTop(c *VerticalAnchor_BelowTopContext)
 
 	// ExitNamespaceDeclaration is called when exiting the namespaceDeclaration production.
 	ExitNamespaceDeclaration(c *NamespaceDeclarationContext)
@@ -76,6 +136,66 @@ type MMSParserListener interface {
 	// ExitSurfaceRule_Sequence is called when exiting the surfaceRule_Sequence production.
 	ExitSurfaceRule_Sequence(c *SurfaceRule_SequenceContext)
 
+	// ExitSurfaceConditionReference is called when exiting the surfaceConditionReference production.
+	ExitSurfaceConditionReference(c *SurfaceConditionReferenceContext)
+
+	// ExitSurfaceConditionDeclaration is called when exiting the surfaceConditionDeclaration production.
+	ExitSurfaceConditionDeclaration(c *SurfaceConditionDeclarationContext)
+
+	// ExitSurfaceCondition is called when exiting the surfaceCondition production.
+	ExitSurfaceCondition(c *SurfaceConditionContext)
+
+	// ExitSurfaceCondition_AboveSurface is called when exiting the surfaceCondition_AboveSurface production.
+	ExitSurfaceCondition_AboveSurface(c *SurfaceCondition_AboveSurfaceContext)
+
+	// ExitSurfaceCondition_Biome is called when exiting the surfaceCondition_Biome production.
+	ExitSurfaceCondition_Biome(c *SurfaceCondition_BiomeContext)
+
+	// ExitSurfaceCondition_Hole is called when exiting the surfaceCondition_Hole production.
+	ExitSurfaceCondition_Hole(c *SurfaceCondition_HoleContext)
+
+	// ExitSurfaceCondition_Noise is called when exiting the surfaceCondition_Noise production.
+	ExitSurfaceCondition_Noise(c *SurfaceCondition_NoiseContext)
+
+	// ExitSurfaceCondition_Steep is called when exiting the surfaceCondition_Steep production.
+	ExitSurfaceCondition_Steep(c *SurfaceCondition_SteepContext)
+
+	// ExitSurfaceCondition_StoneDepth is called when exiting the surfaceCondition_StoneDepth production.
+	ExitSurfaceCondition_StoneDepth(c *SurfaceCondition_StoneDepthContext)
+
+	// ExitSurfaceCondition_Freezing is called when exiting the surfaceCondition_Freezing production.
+	ExitSurfaceCondition_Freezing(c *SurfaceCondition_FreezingContext)
+
+	// ExitSurfaceCondition_VerticalGradient is called when exiting the surfaceCondition_VerticalGradient production.
+	ExitSurfaceCondition_VerticalGradient(c *SurfaceCondition_VerticalGradientContext)
+
+	// ExitSurfaceCondition_AboveWater is called when exiting the surfaceCondition_AboveWater production.
+	ExitSurfaceCondition_AboveWater(c *SurfaceCondition_AboveWaterContext)
+
+	// ExitSurfaceCondition_YAbove is called when exiting the surfaceCondition_YAbove production.
+	ExitSurfaceCondition_YAbove(c *SurfaceCondition_YAboveContext)
+
+	// ExitSurfaceCondition_Compound__Item is called when exiting the surfaceCondition_Compound__Item production.
+	ExitSurfaceCondition_Compound__Item(c *SurfaceCondition_Compound__ItemContext)
+
+	// ExitSurfaceCondition_Compound is called when exiting the surfaceCondition_Compound production.
+	ExitSurfaceCondition_Compound(c *SurfaceCondition_CompoundContext)
+
 	// ExitReference is called when exiting the reference production.
 	ExitReference(c *ReferenceContext)
+
+	// ExitResourceReference is called when exiting the resourceReference production.
+	ExitResourceReference(c *ResourceReferenceContext)
+
+	// ExitVerticalAnchor is called when exiting the verticalAnchor production.
+	ExitVerticalAnchor(c *VerticalAnchorContext)
+
+	// ExitVerticalAnchor_Absolute is called when exiting the verticalAnchor_Absolute production.
+	ExitVerticalAnchor_Absolute(c *VerticalAnchor_AbsoluteContext)
+
+	// ExitVerticalAnchor_AboveBottom is called when exiting the verticalAnchor_AboveBottom production.
+	ExitVerticalAnchor_AboveBottom(c *VerticalAnchor_AboveBottomContext)
+
+	// ExitVerticalAnchor_BelowTop is called when exiting the verticalAnchor_BelowTop production.
+	ExitVerticalAnchor_BelowTop(c *VerticalAnchor_BelowTopContext)
 }

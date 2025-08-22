@@ -5,3 +5,5 @@ options {
 }
 
 reference: Identifier Colon Identifier;
+
+resourceReference: reference | Identifier;
