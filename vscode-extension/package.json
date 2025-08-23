@@ -13,19 +13,32 @@
     "activationEvents": [
         "onLanguage:mms"
     ],
+    "dependencies": {
+        "vscode": "^1.1.37",
+        "vscode-languageclient": "^9.0.1"
+    },
     "main": "./extension.js",
     "contributes": {
-        "languages": [{
-            "id": "mms",
-            "aliases": ["MMS", "mms"],
-            "extensions": [".mms"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "mms",
-            "scopeName": "source.mms",
-            "path": "./syntaxes/mms.tmLanguage.json"
-        }],
+        "languages": [
+            {
+                "id": "mms",
+                "aliases": [
+                    "MMS",
+                    "mms"
+                ],
+                "extensions": [
+                    ".mms"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mms",
+                "scopeName": "source.mms",
+                "path": "./syntaxes/mms.tmLanguage.json"
+            }
+        ],
         "configuration": {
             "type": "object",
             "title": "MMS Language Server Configuration",
