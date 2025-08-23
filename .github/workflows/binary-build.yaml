@@ -16,7 +16,7 @@ jobs:
         uses: cachix/install-nix-action@v27
 
       - name: Build flake package
-        run: nix build .#defaultPackage.x86_64-linux
+        run: nix build
 
       - name: Get tag name
         id: get_tag
