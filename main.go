@@ -9,7 +9,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/itsmebriand/mms/lsp"
+	two "github.com/itsmebriand/mms/lsp/2"
 	"github.com/itsmebriand/mms/mms"
 	"github.com/urfave/cli/v3"
 )
@@ -28,22 +28,29 @@ func main() {
 			},
 			{
 				Name: "lsp",
+				Flags: []cli.Flag{
+					&cli.BoolFlag{
+						Name: "stdio",
+					},
+				},
 				Description: "Start the MMS language server",
 				Action: func(c context.Context, cmd *cli.Command) error {
 					log.Println("Starting MMS language server...")
-					
+					two.Start()
+					return nil
+
 					// Create and initialize the language server
-					server := lsp.NewLanguageServer()
-					
-					// Connect standard input and output
-					if err := server.Connect(os.Stdin, os.Stdout); err != nil {
-						return fmt.Errorf("failed to connect server: %v", err)
-					}
-					
-					log.Println("MMS language server connected to stdin/stdout")
-					
-					// Run the server
-					return server.Run()
+					// server := lsp.NewLanguageServer()
+
+					// // Connect standard input and output
+					// if err := server.Connect(os.Stdin, os.Stdout); err != nil {
+					// 	return fmt.Errorf("failed to connect server: %v", err)
+					// }
+
+					// log.Println("MMS language server connected to stdin/stdout")
+
+					// // Run the server
+					// return server.Run()
 				},
 			},
 			{

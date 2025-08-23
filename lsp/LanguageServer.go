@@ -9,6 +9,8 @@ import (
 	"log"
 	"strings"
 	"sync"
+
+	mms "github.com/itsmebriand/mms/mms"
 )
 
 // LanguageServer implements the Language Server Protocol
@@ -20,6 +22,7 @@ type LanguageServer struct {
 	documents        map[string]*TextDocumentItem
 	workspaceFolders []WorkspaceFolder
 	running          bool
+	project          *mms.Project
 }
 
 // NewLanguageServer creates a new language server instance
@@ -30,6 +33,7 @@ func NewLanguageServer() *LanguageServer {
 		cancel:    cancel,
 		documents: make(map[string]*TextDocumentItem),
 		running:   false,
+		project:   mms.NewProject(),
 	}
 }
 
@@ -264,28 +268,34 @@ func (s *LanguageServer) handleTextDocumentHover(ctx context.Context, params jso
 
 // analyzeDiagnostics analyzes the document and publishes diagnostics
 func (s *LanguageServer) analyzeDiagnostics(uri DocumentURI, text string) {
-	// Simple diagnostics: check for common issues
+	// Attempt to parse document using the MMS ANTLR grammar via Project.
+	// For now, if parsing returns an error, emit a generic diagnostic at the top of the file.
+	// TODO: Wire in a proper ANTLR error listener to collect precise positions.
 	diagnostics := []Diagnostic{}
 
-	// For demonstration, check for uncommon/invalid constructs
-	lines := strings.Split(text, "\n")
-	for i, line := range lines {
-		// This is a simplistic check - in a real implementation, you would
-		// use the grammar or other parsing logic
-		if strings.Contains(line, "error") || strings.Contains(line, "invalid") {
-			diagnostics = append(diagnostics, Diagnostic{
-				Range: Range{
-					Start: Position{Line: i, Character: 0},
-					End:   Position{Line: i, Character: len(line)},
-				},
-				Severity: DiagnosticSeverityError,
-				Source:   "mms-language-server",
-				Message:  "Potential error in line",
-			})
-		}
+	if s.project == nil {
+		s.project = mms.NewProject()
 	}
 
-	// Publish diagnostics
+	if _, err := s.project.ParseLiteral(text); err != nil {
+		// Generic file-level diagnostic
+		firstLineLen := 0
+		if idx := strings.IndexRune(text, '\n'); idx >= 0 {
+			firstLineLen = idx
+		} else {
+			firstLineLen = len(text)
+		}
+		diagnostics = append(diagnostics, Diagnostic{
+			Range: Range{
+				Start: Position{Line: 0, Character: 0},
+				End:   Position{Line: 0, Character: firstLineLen},
+			},
+			Severity: DiagnosticSeverityError,
+			Source:   "mms-language-server",
+			Message:  fmt.Sprintf("Parse error: %v", err),
+		})
+	}
+
 	s.publishDiagnostics(uri, diagnostics)
 }
 
