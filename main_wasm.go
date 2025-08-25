@@ -8,7 +8,7 @@ import (
 	"log"
 	"syscall/js"
 
-	"github.com/itsmebriand/mms/mms"
+	"github.com/itsmebriand/mms/minecraft_metascript"
 )
 
 func parseLiteral(this js.Value, args []js.Value) interface{} {
@@ -16,17 +16,14 @@ func parseLiteral(this js.Value, args []js.Value) interface{} {
 		return errors.New("expected 1 argument")
 	}
 	content := args[0].String()
-	project := mms.NewProject()
+	project := minecraft_metascript.NewMMSProject()
 
-	_, err := project.ParseLiteral(content)
+	err := project.AddFile("wasm_content", content)
 	if err != nil {
 		return err
 	}
 
-	filetree, err := project.Finalize()
-	if err != nil {
-		return err
-	}
+	filetree := project.Export()
 
 	tree, err := json.Marshal(filetree)
 	if err != nil {
