@@ -3,3 +3,4 @@ result
 vscode-extension/node_modules
 .antlr
 mms_build
+gen
