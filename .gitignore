@@ -4,3 +4,4 @@ vscode-extension/node_modules
 .antlr
 mms_build
 gen
+extensions/vscode-extension/node_modules

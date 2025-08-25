@@ -1,15 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Determine the VSCode extensions folder based on platform
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    EXTENSIONS_DIR="$HOME/.windsurf/extensions/mms-language"
+    EXTENSIONS_DIR="$HOME/.vscode/extensions/mms-language"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Linux
-    EXTENSIONS_DIR="$HOME/.windsurf/extensions/mms-language"
+    EXTENSIONS_DIR="$HOME/.vscode/extensions/mms-language"
 else
     # Windows with Git Bash or similar
-    EXTENSIONS_DIR="$HOME/.windsurf/extensions/mms-language"
+    EXTENSIONS_DIR="$HOME/.vscode/extensions/mms-language"
 fi
 
 # Create the extension directory

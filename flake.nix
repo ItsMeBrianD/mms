@@ -44,7 +44,7 @@
                 src="./grammars"
                 dst="./mms"
                 ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/MMSLexer.g4 -o $dst -package grammars;
-                ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/MMSParser.g4 -lib $dst/grammars -o $dst -package grammars;
+                ${pkgs.antlr4}/bin/antlr4 -Dlanguage=Go $src/MMSParser.g4 -lib $dst/grammars -o $dst -package grammars;                
               '';
             })
             (pkgs.writeShellApplication {
@@ -69,6 +69,13 @@
 
           shellHook = ''
             exec fish
+          '';
+        };
+
+        devShells.jetbrainsPlugin = pkgs.mkShell {
+          buildInputs = [ pkgs.jdk17 pkgs.gradle ];
+          shellHook = ''
+            echo "Use: nix develop .#jetbrainsPlugin -c gradle --no-daemon buildPlugin (run from extensions/jetbrains)"
           '';
         };
 
@@ -107,6 +114,23 @@
           '';
         };
 
+        packages.jetbrainsPlugin = pkgs.stdenvNoCC.mkDerivation {
+          pname = "mms-jetbrains-plugin";
+          version = "0.1.0";
+          src = ./extensions/jetbrains;
+          nativeBuildInputs = [ pkgs.jdk17 pkgs.gradle ];
+          buildPhase = ''
+            set -eu
+            export JAVA_HOME=${pkgs.jdk17}
+            export GRADLE_USER_HOME=$TMPDIR/gradle-home
+            gradle --no-daemon buildPlugin
+          '';
+          installPhase = ''
+            set -eu
+            mkdir -p $out
+            cp -v build/distributions/*.zip $out/
+          '';
+        };
         
       }
     );
