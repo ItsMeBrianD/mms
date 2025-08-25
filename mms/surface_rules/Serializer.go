@@ -135,3 +135,21 @@ func (l *SurfaceRuleSerializer) Finalize() {
 		}
 	}
 }
+
+func (l *SurfaceRuleSerializer) GetRuleByName(namespace string, name string) *surface_rule_types.Rule {
+	if rules, ok := l.NamespaceRules[namespace]; ok {
+		if rule, ok := rules[name]; ok {
+			return &rule
+		}
+	}
+	return nil
+}
+
+func (l *SurfaceRuleSerializer) GetConditionByName(namespace string, name string) *surface_rule_types.Condition {
+	if conditions, ok := l.NamespaceConditions[namespace]; ok {
+		if condition, ok := conditions[name]; ok {
+			return &condition
+		}
+	}
+	return nil
+}

@@ -3,7 +3,7 @@ package surface
 import (
 	"errors"
 
-	"github.com/itsmebriand/mms/minecraft_metascript/mms_file"
+	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
 	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_rules"
 	"github.com/itsmebriand/mms/mms/grammars"
 )
@@ -16,7 +16,7 @@ func (s *SurfaceVisitor) ConstructSurfaceRule(ctx *grammars.SurfaceRuleContext) 
 		blockCtx := ruleCtx.(*grammars.SurfaceRule_BlockContext)
 		rule, err := surface_rules.NewBlockRule(blockCtx)
 		if err != nil {
-			s.file.AddError(err.Error(), mms_file.ErrorLevelError, blockCtx.GetStart().GetLine(), blockCtx.GetStart().GetColumn())
+			s.AddError(err.Error(), mms_errors.ErrorLevelError, blockCtx.GetStart().GetLine(), blockCtx.GetStart().GetColumn())
 			return nil, err
 		}
 		return rule, nil
@@ -24,7 +24,7 @@ func (s *SurfaceVisitor) ConstructSurfaceRule(ctx *grammars.SurfaceRuleContext) 
 		bandlandsCtx := ruleCtx.(*grammars.SurfaceRule_BandlandsContext)
 		rule, err := surface_rules.NewBandlandsRule(bandlandsCtx)
 		if err != nil {
-			s.file.AddError(err.Error(), mms_file.ErrorLevelError, bandlandsCtx.GetStart().GetLine(), bandlandsCtx.GetStart().GetColumn())
+			s.AddError(err.Error(), mms_errors.ErrorLevelError, bandlandsCtx.GetStart().GetLine(), bandlandsCtx.GetStart().GetColumn())
 			return nil, err
 		}
 		return rule, nil
@@ -32,7 +32,7 @@ func (s *SurfaceVisitor) ConstructSurfaceRule(ctx *grammars.SurfaceRuleContext) 
 		sequenceCtx := ruleCtx.(*grammars.SurfaceRule_SequenceContext)
 		rule, err := surface_rules.NewSequenceRule(sequenceCtx)
 		if err != nil {
-			s.file.AddError(err.Error(), mms_file.ErrorLevelError, sequenceCtx.GetStart().GetLine(), sequenceCtx.GetStart().GetColumn())
+			s.AddError(err.Error(), mms_errors.ErrorLevelError, sequenceCtx.GetStart().GetLine(), sequenceCtx.GetStart().GetColumn())
 			return nil, err
 		}
 		return rule, nil
@@ -40,7 +40,7 @@ func (s *SurfaceVisitor) ConstructSurfaceRule(ctx *grammars.SurfaceRuleContext) 
 		conditionalCtx := ruleCtx.(*grammars.SurfaceRule_ConditionalContext)
 		rule, err := surface_rules.NewConditionalRule(conditionalCtx, s, s)
 		if err != nil {
-			s.file.AddError(err.Error(), mms_file.ErrorLevelError, conditionalCtx.GetStart().GetLine(), conditionalCtx.GetStart().GetColumn())
+			s.AddError(err.Error(), mms_errors.ErrorLevelError, conditionalCtx.GetStart().GetLine(), conditionalCtx.GetStart().GetColumn())
 			return nil, err
 		}
 		return rule, nil
@@ -48,7 +48,7 @@ func (s *SurfaceVisitor) ConstructSurfaceRule(ctx *grammars.SurfaceRuleContext) 
 		referenceCtx := ruleCtx.(*grammars.SurfaceRuleReferenceContext)
 		rule, err := surface_rules.NewReferenceRule(referenceCtx)
 		if err != nil {
-			s.file.AddError(err.Error(), mms_file.ErrorLevelError, referenceCtx.GetStart().GetLine(), referenceCtx.GetStart().GetColumn())
+			s.AddError(err.Error(), mms_errors.ErrorLevelError, referenceCtx.GetStart().GetLine(), referenceCtx.GetStart().GetColumn())
 			return nil, err
 		}
 		return rule, nil

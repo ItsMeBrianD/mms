@@ -10,6 +10,7 @@ import (
 	"os"
 
 	"github.com/itsmebriand/mms/lsp"
+	"github.com/itsmebriand/mms/minecraft_metascript"
 	"github.com/itsmebriand/mms/mms"
 	"github.com/urfave/cli/v3"
 )
@@ -19,6 +20,27 @@ func main() {
 		Name: "mms",
 
 		Commands: []*cli.Command{
+			{
+				Name: "new",
+				Arguments: []cli.Argument{
+					&cli.StringArg{
+						Name:      "file",
+						UsageText: "The root directory or file to build",
+					},
+				},
+				Action: func(c context.Context, cmd *cli.Command) error {
+					file := cmd.StringArg("file")
+
+					if file == "" {
+						log.Fatal("file argument is required")
+					}
+
+					project := minecraft_metascript.NewMMSProject()
+					project.ParseFiles(file)
+
+					return nil
+				},
+			},
 			{
 				Name: "version",
 				Action: func(c context.Context, cmd *cli.Command) error {

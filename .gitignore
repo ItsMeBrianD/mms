@@ -1,3 +1,5 @@
 mms/grammars
 result
 vscode-extension/node_modules
+.antlr
+mms_build

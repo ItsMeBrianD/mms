@@ -1,4 +1,4 @@
-package mms_file
+package mms_errors
 
 import (
 	"fmt"

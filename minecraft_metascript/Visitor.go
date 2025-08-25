@@ -1,6 +1,7 @@
-package mms_file
+package minecraft_metascript
 
 import (
+	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
 	"github.com/itsmebriand/mms/mms/grammars"
 )
 
@@ -20,12 +21,12 @@ func (v *MMSFileVisitor) ExitNamespaceDeclaration(ctx *grammars.NamespaceDeclara
 	if id := ctx.Identifier(); id != nil {
 		v.file.namespace = id.GetText()
 	} else {
-		v.file.errors = append(v.file.errors, NewTokenError(
+		v.file.errors = append(v.file.errors, mms_errors.NewTokenError(
 			v.file.path,
 			ctx.GetSourceInterval().Start,
 			ctx.GetSourceInterval().Stop,
 			"Namespace declaration must have an identifier",
-			ErrorLevelError,
+			mms_errors.ErrorLevelError,
 		))
 	}
 }

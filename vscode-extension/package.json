@@ -11,7 +11,8 @@
         "Programming Languages"
     ],
     "activationEvents": [
-        "onLanguage:mms"
+        "onLanguage:mms",
+        "onCommand:mms.restartLangServer"
     ],
     "dependencies": {
         "vscode": "^1.1.37",
@@ -19,6 +20,14 @@
     },
     "main": "./extension.js",
     "contributes": {
+        "commands": [
+            {
+                "command": "mms.restartLangServer",
+                "title": "Restart Language Server",
+                "category": "MMS",
+                "icon": "refresh"
+            }
+        ],
         "languages": [
             {
                 "id": "mms",

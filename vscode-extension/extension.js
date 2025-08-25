@@ -1,9 +1,13 @@
 const vscode = require('vscode');
-const { LanguageClient, TransportKind } = require('vscode-languageclient/node');
+const { LanguageClient, TransportKind, RevealOutputChannelOn } = require('vscode-languageclient/node');
+/**
+ * @type {LanguageClient}
+ */
 let client;
 
 /**
  * Activates the extension
+ * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
     // Get the mms executable path from settings
@@ -16,31 +20,58 @@ function activate(context) {
     }
 
     // Define server options - we're using a stdio connection with the 'lsp' command
+    /** @type {import('vscode-languageclient/node').Executable} */
     const serverOptions = {
         command: serverPath,
         args: ['lsp'],
-        transport: TransportKind.stdio
+        transport: TransportKind.stdio,
+        options: {
+            detached: false
+        }
+
     };
 
     // Define client options - connecting to the 'mms' language
+    /** @type {import('vscode-languageclient').LanguageClientOptions} */
     const clientOptions = {
         documentSelector: [{ scheme: 'file', language: 'mms' }],
         synchronize: {
             fileEvents: vscode.workspace.createFileSystemWatcher('**/*.mms')
-        }
+        },
+        outputChannelName: "MMS Language Server",
+        revealOutputChannelOn: RevealOutputChannelOn.Info,
+        traceOutputChannel: vscode.window.createOutputChannel("MMS Language Server Trace")
     };
 
+    /**
+     * 
+     * @returns {LanguageClient}
+     */
+    const mkClient = () => {
+        return new LanguageClient(
+            'mmsLanguageServer',
+            'MMS Language Server',
+            serverOptions,
+            clientOptions
+        );
+    }
     // Create the language client
-    client = new LanguageClient(
-        'mmsLanguageServer',
-        'MMS Language Server',
-        serverOptions,
-        clientOptions
-    );
+    client = mkClient();
+
+    client.onNotification("textDocument/publishDiagnostics", (params) => {
+        console.log(params)
+    })
+
+    context.subscriptions.push(vscode.commands.registerCommand("mms.restartLangServer", () => {
+        client.info("Attempting to restart language server")
+        client.restart();
+    }))
+
 
     // Start the client
     client.start();
-    console.log('MMS Language Server started');
+    client.info("MMS Language Server started")
+
 }
 
 /**
@@ -50,6 +81,7 @@ function deactivate() {
     if (!client) {
         return undefined;
     }
+    client.info("Attempting to stop language server")
     return client.stop();
 }
 

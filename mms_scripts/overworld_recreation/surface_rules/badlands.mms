@@ -8,12 +8,12 @@ surface {
     // --- BIOME CONDITION ---
     condition InBadlands
         biome [ minecraft:badlands minecraft:eroded_badlands minecraft:wooded_badlands ]
-
+    
     // --- MAIN RULE ENTRY ---
     rule Bandlands
         if (InBadlands)
             sequence [
-                if (stone_depth floor 0 sub 0)
+                if (y_above absolute 63 0 sub)
                     sequence [
                         SkyTerracotta
                         TerracottaBands
