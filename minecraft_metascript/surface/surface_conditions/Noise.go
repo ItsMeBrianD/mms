@@ -25,6 +25,7 @@ func NewNoiseCondition(ctx *grammars.SurfaceCondition_NoiseContext) (*NoiseCondi
 }
 
 type NoiseCondition struct {
+	BaseCondition
 	NoiseRef lib.Reference
 	Min      float64
 	Max      float64

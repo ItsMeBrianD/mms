@@ -11,6 +11,7 @@ func NewSteepCondition(ctx *grammars.SurfaceCondition_SteepContext) (*SteepCondi
 }
 
 type SteepCondition struct {
+	BaseCondition
 }
 
 func (c SteepCondition) Type() ConditionType {

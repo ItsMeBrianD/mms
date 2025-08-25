@@ -2,8 +2,9 @@
   description = "DevShell with Antlr4 and Go";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d";
     flake-utils.url = "github:numtide/flake-utils";
+
   };
 
   outputs =

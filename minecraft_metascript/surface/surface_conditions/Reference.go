@@ -7,14 +7,15 @@ import (
 	"github.com/itsmebriand/mms/mms/lib"
 )
 
-func NewSurfaceConditionReference(ctx *grammars.SurfaceConditionReferenceContext) (*ConditionReference, error) {
+func NewSurfaceConditionReference(ctx *grammars.SurfaceConditionReferenceContext, defaultNamespace string) (*ConditionReference, error) {
 	return &ConditionReference{
-		Reference: lib.ParseReferential("minecraft", ctx),
+		Reference: lib.ParseReferential(defaultNamespace, ctx),
 	}, nil
 }
 
 type ConditionReference struct {
 	lib.Reference
+	BaseCondition
 }
 
 func (c ConditionReference) Type() ConditionType {

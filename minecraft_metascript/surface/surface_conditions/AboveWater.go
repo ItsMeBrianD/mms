@@ -25,6 +25,7 @@ func NewAboveWaterCondition(ctx *grammars.SurfaceCondition_AboveWaterContext) (*
 }
 
 type AboveWaterCondition struct {
+	BaseCondition
 	Offset          int
 	DepthMultiplier float64
 	Add             bool

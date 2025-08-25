@@ -11,6 +11,7 @@ func NewFreezingCondition(ctx *grammars.SurfaceCondition_FreezingContext) (*Free
 }
 
 type FreezingCondition struct {
+	BaseCondition
 }
 
 func (c FreezingCondition) Type() ConditionType {

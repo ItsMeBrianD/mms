@@ -24,6 +24,7 @@ func NewVerticalGradientCondition(ctx *grammars.SurfaceCondition_VerticalGradien
 }
 
 type VerticalGradientCondition struct {
+	BaseCondition
 	SeedText        string
 	TrueAtAndBelow  lib.VerticalAnchor
 	FalseAtAndAbove lib.VerticalAnchor

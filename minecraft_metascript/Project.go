@@ -3,28 +3,24 @@ package minecraft_metascript
 import (
 	"os"
 
-	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface"
-	"github.com/itsmebriand/mms/mms/grammars"
 	"github.com/itsmebriand/mms/mms/lib"
 )
 
 type MMSProject struct {
-	files []MMSFile
+	files   []MMSFile
+	symbols map[string]*lib.Namespace
 }
 
 func NewMMSProject() *MMSProject {
+	namespaces := make(map[string]*lib.Namespace)
 	return &MMSProject{
-		files: make([]MMSFile, 0),
+		files:   make([]MMSFile, 0),
+		symbols: namespaces,
 	}
 }
 
 func (p *MMSProject) AddFile(filepath, content string) error {
-	f := p.ParseFile(filepath, content, []func(
-		reportError func(msg string, level mms_errors.ErrorLevel, line int, column int),
-	) grammars.MMSParserListener{
-		surface.NewSurfaceVisitor,
-	})
+	f := p.ParseFile(filepath, content)
 	p.files = append(p.files, *f)
 	return nil
 }
@@ -57,9 +53,19 @@ func (p *MMSProject) ParseFiles(root string) error {
 	return nil
 }
 
-func (p MMSProject) Export() lib.FileTreeLike {
+func (p *MMSProject) Export() lib.FileTreeLike {
 	return lib.FileTreeLike{
 		Name:     "surface_rules",
 		Children: map[string]*lib.FileTreeLike{},
 	}
+}
+
+func ProjectSymbols[T any](p *MMSProject) map[string]map[string]lib.Symbol[T] {
+	out := make(map[string]map[string]lib.Symbol[T])
+	for namespace, symbols := range p.symbols {
+		namespaceSymbols := lib.AllOf[T](symbols)
+		out[namespace] = namespaceSymbols
+	}
+
+	return out
 }

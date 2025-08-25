@@ -29,6 +29,7 @@ func NewStoneDepthCondition(ctx *grammars.SurfaceCondition_StoneDepthContext) (*
 }
 
 type StoneDepthCondition struct {
+	BaseCondition
 	Depth   int
 	Add     bool
 	Range   int

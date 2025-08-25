@@ -3,56 +3,69 @@ package surface
 import (
 	"errors"
 
+	"github.com/antlr4-go/antlr/v4"
 	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
 	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_rules"
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/mms/lib"
 )
 
-func (s *SurfaceVisitor) ConstructSurfaceRule(ctx *grammars.SurfaceRuleContext) (surface_rules.SurfaceRule, error) {
-	ruleCtx := ctx.GetChild(0)
+func mkRuleSymbol(ctx *grammars.SurfaceRuleDeclarationContext, rule surface_rules.SurfaceRule, ref lib.Reference, file string) lib.Symbol[surface_rules.SurfaceRule] {
+	return lib.Symbol[surface_rules.SurfaceRule]{
+		Line:  ctx.GetStart().GetLine(),
+		Col:   ctx.GetStart().GetColumn(),
+		Ref:   ref,
+		File:  file,
+		Value: rule,
+	}
+}
 
-	switch ruleCtx.(type) {
+func (v *Visitor) ConstructSurfaceRule(ctx *grammars.SurfaceRuleContext) (surface_rules.SurfaceRule, []error) {
+	var rule surface_rules.SurfaceRule
+	var errs []error
+
+	switch ctx := ctx.GetChild(0).(type) {
 	case *grammars.SurfaceRule_BlockContext:
-		blockCtx := ruleCtx.(*grammars.SurfaceRule_BlockContext)
-		rule, err := surface_rules.NewBlockRule(blockCtx)
+		r, err := surface_rules.NewBlockRule(ctx)
+		rule = r
 		if err != nil {
-			s.AddError(err.Error(), mms_errors.ErrorLevelError, blockCtx.GetStart().GetLine(), blockCtx.GetStart().GetColumn())
-			return nil, err
+			errs = []error{err}
 		}
-		return rule, nil
 	case *grammars.SurfaceRule_BandlandsContext:
-		bandlandsCtx := ruleCtx.(*grammars.SurfaceRule_BandlandsContext)
-		rule, err := surface_rules.NewBandlandsRule(bandlandsCtx)
+		r, err := surface_rules.NewBandlandsRule(ctx)
+		rule = r
 		if err != nil {
-			s.AddError(err.Error(), mms_errors.ErrorLevelError, bandlandsCtx.GetStart().GetLine(), bandlandsCtx.GetStart().GetColumn())
-			return nil, err
+			errs = []error{err}
 		}
-		return rule, nil
 	case *grammars.SurfaceRule_SequenceContext:
-		sequenceCtx := ruleCtx.(*grammars.SurfaceRule_SequenceContext)
-		rule, err := surface_rules.NewSequenceRule(sequenceCtx)
-		if err != nil {
-			s.AddError(err.Error(), mms_errors.ErrorLevelError, sequenceCtx.GetStart().GetLine(), sequenceCtx.GetStart().GetColumn())
-			return nil, err
-		}
-		return rule, nil
+		rule, errs = surface_rules.NewSequenceRule(ctx, v)
 	case *grammars.SurfaceRule_ConditionalContext:
-		conditionalCtx := ruleCtx.(*grammars.SurfaceRule_ConditionalContext)
-		rule, err := surface_rules.NewConditionalRule(conditionalCtx, s, s)
-		if err != nil {
-			s.AddError(err.Error(), mms_errors.ErrorLevelError, conditionalCtx.GetStart().GetLine(), conditionalCtx.GetStart().GetColumn())
-			return nil, err
-		}
-		return rule, nil
+		rule, errs = surface_rules.NewConditionalRule(ctx, v, v)
 	case *grammars.SurfaceRuleReferenceContext:
-		referenceCtx := ruleCtx.(*grammars.SurfaceRuleReferenceContext)
-		rule, err := surface_rules.NewReferenceRule(referenceCtx)
+		r, err := surface_rules.NewReferenceRule(ctx)
+		rule = r
 		if err != nil {
-			s.AddError(err.Error(), mms_errors.ErrorLevelError, referenceCtx.GetStart().GetLine(), referenceCtx.GetStart().GetColumn())
-			return nil, err
+			errs = []error{err}
 		}
-		return rule, nil
+
 	}
 
-	return nil, errors.New("unknown surface rule type")
+	if rule == nil {
+		return nil, []error{errors.New("failed to parse rule")}
+	}
+
+	rule.SetLocation(
+		lib.GetRuleLocation(ctx.GetRuleContext().(antlr.ParserRuleContext)),
+	)
+
+	if len(errs) > 0 {
+		for _, err := range errs {
+			v.AddError(
+				mms_errors.SyntaxError(v.filename, lib.GetRuleLocation(ctx), err.Error()),
+			)
+		}
+		return rule, errs
+	}
+	return rule, nil
+
 }

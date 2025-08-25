@@ -8,16 +8,23 @@ import (
 	"github.com/itsmebriand/mms/mms/grammars"
 )
 
-func NewConditionalRule(ctx *grammars.SurfaceRule_ConditionalContext, ruleFactory RuleFactory, conditionFactory surface_conditions.ConditionFactory) (*ConditionalRule, error) {
+func NewConditionalRule(ctx *grammars.SurfaceRule_ConditionalContext, ruleFactory RuleFactory, conditionFactory surface_conditions.ConditionFactory) (*ConditionalRule, []error) {
 	condition, err := conditionFactory.ConstructSurfaceCondition(ctx.SurfaceCondition().(*grammars.SurfaceConditionContext))
 	if err != nil {
-		return nil, err
+		return nil, []error{err}
+	}
+	if condition == nil {
+		return nil, []error{fmt.Errorf("condition is nil")}
 	}
 
-	action, err := ruleFactory.ConstructSurfaceRule(ctx.SurfaceRule().(*grammars.SurfaceRuleContext))
-	if err != nil {
-		return nil, err
+	action, errs := ruleFactory.ConstructSurfaceRule(ctx.SurfaceRule().(*grammars.SurfaceRuleContext))
+	if errs != nil {
+		return nil, errs
 	}
+	if action == nil {
+		return nil, []error{fmt.Errorf("action is nil")}
+	}
+
 	return &ConditionalRule{
 		Negate:    ctx.Bang() != nil,
 		Condition: condition,
@@ -26,7 +33,7 @@ func NewConditionalRule(ctx *grammars.SurfaceRule_ConditionalContext, ruleFactor
 }
 
 type ConditionalRule struct {
-	SurfaceRule
+	BaseRule
 	Negate    bool
 	Condition surface_conditions.SurfaceCondition
 	Action    SurfaceRule

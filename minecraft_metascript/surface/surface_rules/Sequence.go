@@ -9,12 +9,32 @@ import (
 
 func NewSequenceRule(
 	ctx *grammars.SurfaceRule_SequenceContext,
-) (*SequenceRule, error) {
-	return &SequenceRule{}, nil
+	factory RuleFactory,
+) (*SequenceRule, []error) {
+	rules := make([]SurfaceRule, 0)
+	errors := make([]error, 0)
+	for _, childRuleCtx := range ctx.AllSurfaceRule() {
+		childRule, err := factory.ConstructSurfaceRule(childRuleCtx.(*grammars.SurfaceRuleContext))
+		if err != nil {
+			errors = append(errors, err...)
+			continue
+		}
+		rules = append(rules, childRule)
+	}
+
+	errOut := errors
+	if len(errors) == 0 {
+		errOut = nil
+	}
+	return &SequenceRule{
+		Rules: rules,
+	}, errOut
+
 }
 
 type SequenceRule struct {
-	SurfaceRule
+	BaseRule
+	Rules []SurfaceRule
 }
 
 func (r SequenceRule) Type() SurfaceRuleKind {

@@ -9,6 +9,7 @@ import (
 )
 
 type YAboveCondition struct {
+	BaseCondition
 	Anchor     lib.VerticalAnchor
 	Multiplier int
 	Add        bool

@@ -1,0 +1,77 @@
+package lib
+
+import (
+	"fmt"
+)
+
+type Symbol[K any] struct {
+	File  string
+	Line  int
+	Col   int
+	Ref   Reference
+	Value K
+}
+
+func NewNamespace() *Namespace {
+	return &Namespace{
+		symbols: make(map[string]Symbol[any]),
+	}
+}
+
+type Namespace struct {
+	symbols map[string]Symbol[any]
+}
+
+func (n *Namespace) Get(name string) (Symbol[any], bool) {
+	v, ok := n.symbols[name]
+	return v, ok
+}
+
+func (n *Namespace) Set(name string, value Symbol[any]) error {
+	if _, ok := n.symbols[name]; ok {
+		return fmt.Errorf("symbol '%s' already exists", name)
+	}
+	n.symbols[name] = value
+	return nil
+}
+
+type MergeIssue struct {
+	Location TextLocation
+	File     string
+	Message  string
+}
+
+func (n *Namespace) Merge(other *Namespace) []MergeIssue {
+	issues := make([]MergeIssue, 0)
+	for name, value := range other.symbols {
+		if _, ok := n.symbols[name]; ok {
+			issues = append(issues, MergeIssue{
+				Location: TextLocation{
+					Start: Location{
+						Column: value.Col,
+						Line:   value.Line,
+					},
+				},
+				File:    value.File,
+				Message: "Duplicate symbol",
+			},
+			)
+		}
+		n.symbols[name] = value
+	}
+
+	if len(issues) > 0 {
+		return issues
+	}
+	return nil
+}
+
+func AllOf[T any](n *Namespace) map[string]Symbol[T] {
+	out := make(map[string]Symbol[T])
+	for name, sym := range n.symbols {
+		if v, ok := sym.Value.(Symbol[T]); ok {
+			out[name] = v
+		}
+	}
+	return out
+}

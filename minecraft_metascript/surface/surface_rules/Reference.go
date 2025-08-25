@@ -9,7 +9,7 @@ import (
 )
 
 type ReferenceRule struct {
-	SurfaceRule
+	BaseRule
 	lib.Reference
 }
 

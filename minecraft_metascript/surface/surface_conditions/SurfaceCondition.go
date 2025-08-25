@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/mms/lib"
 )
 
 type ConditionType string
@@ -24,17 +25,32 @@ const (
 	ReferenceConditionType        ConditionType = "mms:__reference"
 )
 
-type SurfaceCondition interface {
-	Type() ConditionType
-}
+type (
+	SurfaceCondition interface {
+		lib.LocatedText
+		Type() ConditionType
+	}
 
-type ConditionFactory interface {
-	ConstructSurfaceCondition(*grammars.SurfaceConditionContext) (SurfaceCondition, error)
-}
+	ConditionFactory interface {
+		ConstructSurfaceCondition(*grammars.SurfaceConditionContext) (SurfaceCondition, error)
+	}
 
-type NotCondition struct {
-	SurfaceCondition
-	Invert SurfaceCondition
+	BaseCondition struct {
+		lib.LocatedText
+		location lib.TextLocation
+	}
+
+	NotCondition struct {
+		BaseCondition
+		Invert SurfaceCondition
+	}
+)
+
+func (bc *BaseCondition) GetLocation() lib.TextLocation {
+	return bc.location
+}
+func (bc *BaseCondition) SetLocation(location lib.TextLocation) {
+	bc.location = location
 }
 
 func (nc NotCondition) Type() ConditionType {

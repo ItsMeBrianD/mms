@@ -25,6 +25,7 @@ func NewCompoundCondition(ctx *grammars.SurfaceCondition_CompoundContext, factor
 }
 
 type CompoundCondition struct {
+	BaseCondition
 	Conditions []CompoundConditionItem
 }
 

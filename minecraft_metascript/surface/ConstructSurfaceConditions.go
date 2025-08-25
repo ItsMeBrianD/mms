@@ -1,34 +1,63 @@
 package surface
 
 import (
+	"github.com/antlr4-go/antlr/v4"
 	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_conditions"
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/mms/lib"
 )
 
-func (s *SurfaceVisitor) ConstructSurfaceCondition(ctx *grammars.SurfaceConditionContext) (surface_conditions.SurfaceCondition, error) {
+func mkConditionSymbol(ctx *grammars.SurfaceConditionDeclarationContext, rule surface_conditions.SurfaceCondition, ref lib.Reference, file string) lib.Symbol[surface_conditions.SurfaceCondition] {
+	return lib.Symbol[surface_conditions.SurfaceCondition]{
+		Line:  ctx.GetStart().GetLine(),
+		Col:   ctx.GetStart().GetColumn(),
+		Ref:   ref,
+		File:  file,
+		Value: rule,
+	}
+}
+
+func (v *Visitor) ConstructSurfaceCondition(ctx *grammars.SurfaceConditionContext) (surface_conditions.SurfaceCondition, error) {
+	var cond surface_conditions.SurfaceCondition
+	var err error
 	switch ctx := ctx.GetChild(0).(type) {
 	case *grammars.SurfaceCondition_AboveWaterContext:
-		return surface_conditions.NewAboveWaterCondition(ctx)
+		cond, err = surface_conditions.NewAboveWaterCondition(ctx)
 	case *grammars.SurfaceCondition_AboveSurfaceContext:
-		return surface_conditions.NewAboveSurfaceCondition(ctx)
+		cond, err = surface_conditions.NewAboveSurfaceCondition(ctx)
 	case *grammars.SurfaceCondition_BiomeContext:
-		return surface_conditions.NewBiomeCondition(ctx)
+		cond, err = surface_conditions.NewBiomeCondition(ctx)
 	case *grammars.SurfaceCondition_FreezingContext:
-		return surface_conditions.NewFreezingCondition(ctx)
+		cond, err = surface_conditions.NewFreezingCondition(ctx)
 	case *grammars.SurfaceCondition_HoleContext:
-		return surface_conditions.NewHoleCondition(ctx)
+		cond, err = surface_conditions.NewHoleCondition(ctx)
 	case *grammars.SurfaceCondition_NoiseContext:
-		return surface_conditions.NewNoiseCondition(ctx)
+		cond, err = surface_conditions.NewNoiseCondition(ctx)
 	case *grammars.SurfaceConditionReferenceContext:
-		return surface_conditions.NewSurfaceConditionReference(ctx)
+		cond, err = surface_conditions.NewSurfaceConditionReference(ctx, v.namespace)
 	case *grammars.SurfaceCondition_SteepContext:
-		return surface_conditions.NewSteepCondition(ctx)
+		cond, err = surface_conditions.NewSteepCondition(ctx)
 	case *grammars.SurfaceCondition_StoneDepthContext:
-		return surface_conditions.NewStoneDepthCondition(ctx)
+		cond, err = surface_conditions.NewStoneDepthCondition(ctx)
 	case *grammars.SurfaceCondition_VerticalGradientContext:
-		return surface_conditions.NewVerticalGradientCondition(ctx)
+		cond, err = surface_conditions.NewVerticalGradientCondition(ctx)
 	case *grammars.SurfaceCondition_YAboveContext:
-		return surface_conditions.NewYAboveCondition(ctx)
+		cond, err = surface_conditions.NewYAboveCondition(ctx)
+	case *grammars.SurfaceCondition_CompoundContext:
+		cond, err = surface_conditions.NewCompoundCondition(ctx, v)
 	}
-	return nil, nil
+
+	if cond == nil {
+		return nil, nil
+	}
+
+	cond.SetLocation(
+		lib.GetRuleLocation(ctx.GetRuleContext().(antlr.ParserRuleContext)),
+	)
+
+	if err != nil {
+		return cond, err
+	}
+
+	return cond, nil
 }

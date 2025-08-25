@@ -25,7 +25,7 @@ func NewBiomeCondition(ctx *grammars.SurfaceCondition_BiomeContext) (*BiomeCondi
 }
 
 type BiomeCondition struct {
-	SurfaceCondition
+	BaseCondition
 	biomes []string
 }
 

@@ -11,6 +11,7 @@ func NewHoleCondition(ctx *grammars.SurfaceCondition_HoleContext) (*HoleConditio
 }
 
 type HoleCondition struct {
+	BaseCondition
 }
 
 func (c HoleCondition) Type() ConditionType {

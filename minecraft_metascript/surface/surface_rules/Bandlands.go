@@ -12,7 +12,7 @@ func NewBandlandsRule(ctx *grammars.SurfaceRule_BandlandsContext) (*BandlandsRul
 }
 
 type BandlandsRule struct {
-	SurfaceRule
+	BaseRule
 }
 
 func (r BandlandsRule) Type() SurfaceRuleKind {

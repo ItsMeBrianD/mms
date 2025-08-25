@@ -21,7 +21,7 @@ func NewBlockRule(state grammars.ISurfaceRule_BlockContext) (*BlockRule, error) 
 }
 
 type BlockRule struct {
-	SurfaceRule
+	BaseRule
 
 	state block_states.BlockState
 }

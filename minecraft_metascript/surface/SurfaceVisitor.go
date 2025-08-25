@@ -1,80 +1,117 @@
 package surface
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
 	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_conditions"
 	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_rules"
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/mms/lib"
 )
 
 func NewSurfaceVisitor(
-	reportError func(msg string, level mms_errors.ErrorLevel, line, column int),
-) grammars.MMSParserListener {
-	return &SurfaceVisitor{
-		AddError: reportError,
+	reportError func(mmsError mms_errors.MMSError),
+	filename string,
+) *Visitor {
+	return &Visitor{
+		AddError:              reportError,
+		RuleDeclarations:      make(map[string]lib.Symbol[surface_rules.SurfaceRule]),
+		ConditionDeclarations: make(map[string]lib.Symbol[surface_conditions.SurfaceCondition]),
+		filename:              filename,
 	}
 }
 
-type SurfaceVisitor struct {
-	grammars.BaseMMSParserListener
-	AddError func(msg string, level mms_errors.ErrorLevel, line, column int)
+func (v *Visitor) Namespace() string {
+	return v.namespace
+}
+func (v *Visitor) SetNamespace(namespace string) {
+	v.namespace = namespace
 }
 
-func (s *SurfaceVisitor) ExitSurfaceConditionDeclaration(ctx *grammars.SurfaceConditionDeclarationContext) {
-	condition, err := s.ConstructSurfaceCondition(ctx.SurfaceCondition().(*grammars.SurfaceConditionContext))
+type Visitor struct {
+	grammars.BaseMMSParserListener
+	AddError              func(mmsError mms_errors.MMSError)
+	RuleDeclarations      map[string]lib.Symbol[surface_rules.SurfaceRule]
+	ConditionDeclarations map[string]lib.Symbol[surface_conditions.SurfaceCondition]
+	filename              string
+	namespace             string
+}
+
+func (v *Visitor) DumpDeclarations(ns *lib.Namespace) {
+	for name, rule := range v.RuleDeclarations {
+		err := ns.Set(name, lib.Symbol[any]{
+			File:  rule.File,
+			Line:  rule.Line,
+			Col:   rule.Col,
+			Ref:   rule.Ref,
+			Value: rule,
+		})
+		if err != nil {
+
+		}
+	}
+	for name, condition := range v.ConditionDeclarations {
+		err := ns.Set(name, lib.Symbol[any]{
+			File:  condition.File,
+			Line:  condition.Line,
+			Col:   condition.Col,
+			Ref:   condition.Ref,
+			Value: condition,
+		})
+		if err != nil {
+		}
+	}
+}
+
+func (v *Visitor) ExitSurfaceConditionDeclaration(ctx *grammars.SurfaceConditionDeclarationContext) {
+	condition, err := v.ConstructSurfaceCondition(ctx.SurfaceCondition().(*grammars.SurfaceConditionContext))
 	if err != nil {
-		s.AddError(err.Error(), mms_errors.ErrorLevelError, ctx.GetStart().GetLine(), ctx.GetStart().GetColumn())
+		v.AddError(
+			mms_errors.SyntaxError(
+				v.filename, lib.GetRuleLocation(ctx), err.Error(),
+			),
+		)
 		return
 	}
+
+	id := ctx.Identifier().GetText()
 
 	// TODO: Declare the condition
-	fmt.Println(condition)
-	// err = s.Namespaces[ctx.Namespace().GetText()].SurfaceConditions.Declare(ctx.Identifier().GetText(), condition)
-	if err != nil {
-		s.AddError(err.Error(), mms_errors.ErrorLevelError, ctx.GetStart().GetLine(), ctx.GetStart().GetColumn())
+	if condition, ok := v.ConditionDeclarations[id]; ok {
+		v.AddError(
+			mms_errors.DuplicateSymbolError(
+				v.filename,
+				condition.Value.GetLocation(),
+				fmt.Sprintf("Duplicate rule declaration: %v", id),
+			),
+		)
 	}
+	v.ConditionDeclarations[id] = mkConditionSymbol(ctx, condition, lib.Reference{Name: id, Namespace: v.namespace}, v.filename)
 }
 
-func (s *SurfaceVisitor) ExitSurfaceRuleDeclaration(ctx *grammars.SurfaceRuleDeclarationContext) {
-	rule, err := s.ConstructSurfaceRule(ctx.SurfaceRule().(*grammars.SurfaceRuleContext))
-	if err != nil {
-		s.AddError(err.Error(), mms_errors.ErrorLevelError, ctx.GetStart().GetLine(), ctx.GetStart().GetColumn())
+func (v *Visitor) ExitSurfaceRuleDeclaration(ctx *grammars.SurfaceRuleDeclarationContext) {
+	surfaceRuleCtx := ctx.SurfaceRule().(*grammars.SurfaceRuleContext)
+	rule, errs := v.ConstructSurfaceRule(surfaceRuleCtx)
+	if errs != nil {
+		for _, err := range errs {
+			v.AddError(
+				mms_errors.SyntaxError(
+					v.filename, lib.GetRuleLocation(ctx), err.Error(),
+				),
+			)
+		}
 		return
 	}
 
-	// TODO: Declare the rule
-	fmt.Println(rule)
-	// err = s.Namespaces[ctx.Namespace().GetText()].SurfaceRules.Declare(ctx.Identifier().GetText(), rule)
-	if err != nil {
-		s.AddError(err.Error(), mms_errors.ErrorLevelError, ctx.GetStart().GetLine(), ctx.GetStart().GetColumn())
+	if rule, ok := v.RuleDeclarations[ctx.Identifier().GetText()]; ok {
+		v.AddError(
+			mms_errors.DuplicateSymbolError(
+				v.filename,
+				rule.Value.GetLocation(),
+				fmt.Sprintf("Duplicate rule declaration: %v", ctx.Identifier().GetText()),
+			),
+		)
 	}
-}
-
-func ReplaceConditionRefernces(
-	condition surface_conditions.SurfaceCondition,
-) (surface_conditions.SurfaceCondition, error) {
-
-	return nil, errors.New("unknown surface condition type")
-}
-
-func ReplaceRuleReferences(
-	rule surface_rules.SurfaceRule,
-) (surface_rules.SurfaceRule, error) {
-	switch rule := rule.(type) {
-	case *surface_rules.BlockRule:
-		return rule, nil
-	case *surface_rules.BandlandsRule:
-		return rule, nil
-	case *surface_rules.SequenceRule:
-		return rule, nil
-	case *surface_rules.ConditionalRule:
-		return rule, nil
-	case *surface_rules.ReferenceRule:
-		fmt.Println("Rule References are broken")
-		return nil, errors.ErrUnsupported
-	}
-	return nil, errors.New("unknown surface rule type")
+	v.RuleDeclarations[ctx.Identifier().GetText()] = mkRuleSymbol(ctx, rule, lib.Reference{Name: ctx.Identifier().GetText(), Namespace: v.Namespace()}, v.filename)
 }

@@ -11,7 +11,9 @@ func NewAboveSurfaceCondition(ctx *grammars.SurfaceCondition_AboveSurfaceContext
 	return &AboveSurfaceCondition{}, nil
 }
 
-type AboveSurfaceCondition struct{}
+type AboveSurfaceCondition struct {
+	BaseCondition
+}
 
 func (c AboveSurfaceCondition) Type() ConditionType { return AboveSurfaceConditionType }
 

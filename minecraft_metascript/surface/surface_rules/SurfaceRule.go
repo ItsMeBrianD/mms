@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/mms/lib"
 )
 
 type SurfaceRuleKind string
@@ -20,10 +21,23 @@ const (
 type SurfaceRule interface {
 	json.Marshaler
 	fmt.Stringer
+	lib.LocatedText
 
 	Type() SurfaceRuleKind
 }
 
+type BaseRule struct {
+	lib.LocatedText
+	location lib.TextLocation
+}
+
+func (b *BaseRule) GetLocation() lib.TextLocation {
+	return b.location
+}
+func (b *BaseRule) SetLocation(location lib.TextLocation) {
+	b.location = location
+}
+
 type RuleFactory interface {
-	ConstructSurfaceRule(*grammars.SurfaceRuleContext) (SurfaceRule, error)
+	ConstructSurfaceRule(*grammars.SurfaceRuleContext) (SurfaceRule, []error)
 }

@@ -3,30 +3,39 @@ package minecraft_metascript
 import (
 	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
 	"github.com/itsmebriand/mms/mms/grammars"
+	"github.com/itsmebriand/mms/mms/lib"
 )
+
+type NamespaceAware interface {
+	Namespace() string
+	SetNamespace(string)
+}
 
 type MMSFileVisitor struct {
 	grammars.BaseMMSParserListener
 
-	file *MMSFile
+	file     *MMSFile
+	siblings []NamespaceAware
 }
 
-func NewMMSFileVisitor(file *MMSFile) *MMSFileVisitor {
+func NewMMSFileVisitor(file *MMSFile, siblings []NamespaceAware) *MMSFileVisitor {
 	return &MMSFileVisitor{
-		file: file,
+		file:     file,
+		siblings: siblings,
 	}
 }
 
 func (v *MMSFileVisitor) ExitNamespaceDeclaration(ctx *grammars.NamespaceDeclarationContext) {
 	if id := ctx.Identifier(); id != nil {
 		v.file.namespace = id.GetText()
+		for _, s := range v.siblings {
+			s.SetNamespace(v.file.namespace)
+		}
 	} else {
-		v.file.errors = append(v.file.errors, mms_errors.NewTokenError(
+		v.file.errors = append(v.file.errors, mms_errors.SyntaxError(
 			v.file.path,
-			ctx.GetSourceInterval().Start,
-			ctx.GetSourceInterval().Stop,
+			lib.GetRuleLocation(ctx),
 			"Namespace declaration must have an identifier",
-			mms_errors.ErrorLevelError,
 		))
 	}
 }
