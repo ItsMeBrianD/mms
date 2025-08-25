@@ -10,10 +10,6 @@
     "categories": [
         "Programming Languages"
     ],
-    "activationEvents": [
-        "onLanguage:mms",
-        "onCommand:mms.restartLangServer"
-    ],
     "dependencies": {
         "vscode": "^1.1.37",
         "vscode-languageclient": "^9.0.1"
@@ -61,6 +57,19 @@
                     "type": "string",
                     "default": "mms",
                     "description": "Path to the MMS executable"
+                }
+            }
+        }
+    },
+    "capabilities": {
+        "textDocument": {
+            "completion": {
+                "completionItem": {
+                    "snippetSupport": true,
+                    "documentationFormat": [
+                        "markdown",
+                        "plaintext"
+                    ]
                 }
             }
         }

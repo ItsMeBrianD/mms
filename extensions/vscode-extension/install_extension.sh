@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Determine the VSCode extensions folder based on platform
+# Determine the windsurf extensions folder based on platform
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
     EXTENSIONS_DIR="$HOME/.vscode/extensions/mms-language"

@@ -7,22 +7,36 @@ import (
 )
 
 type MMSProject struct {
-	files   []MMSFile
+	files   map[string]*MMSFile
 	symbols map[string]*lib.Namespace
 }
 
 func NewMMSProject() *MMSProject {
 	namespaces := make(map[string]*lib.Namespace)
 	return &MMSProject{
-		files:   make([]MMSFile, 0),
+		files:   make(map[string]*MMSFile),
 		symbols: namespaces,
 	}
 }
 
 func (p *MMSProject) AddFile(filepath, content string) error {
 	f := p.ParseFile(filepath, content)
-	p.files = append(p.files, *f)
+
+	p.files[filepath] = f
 	return nil
+}
+
+func (p *MMSProject) GetFile(filepath string) *MMSFile {
+	for _, file := range p.files {
+		if file.path == filepath {
+			return file
+		}
+	}
+	return nil
+}
+
+func (p *MMSProject) GetFiles() []MMSFile {
+	return []MMSFile{}
 }
 
 func (p *MMSProject) ParseFiles(root string) error {

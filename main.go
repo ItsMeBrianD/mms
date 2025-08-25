@@ -11,7 +11,7 @@ import (
 
 	"github.com/itsmebriand/mms/lsp"
 	"github.com/itsmebriand/mms/minecraft_metascript"
-	"github.com/itsmebriand/mms/mms"
+
 	"github.com/urfave/cli/v3"
 )
 
@@ -72,13 +72,13 @@ func main() {
 
 				Action: func(c context.Context, cmd *cli.Command) error {
 					file := cmd.StringArg("file")
-					project := mms.NewProject()
-					t, err := project.ParseFiles(file)
+					project := minecraft_metascript.NewMMSProject()
+					err := project.ParseFiles(file)
 					if err != nil {
 						return err
 					}
 
-					data, err := json.Marshal(t)
+					data, err := json.Marshal(project.Export())
 					if err != nil {
 						return err
 					}

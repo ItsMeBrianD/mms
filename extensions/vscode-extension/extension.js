@@ -1,5 +1,6 @@
 const vscode = require('vscode');
-const { LanguageClient, TransportKind, RevealOutputChannelOn } = require('vscode-languageclient/node');
+const { CompletionItemFeature } = require('vscode-languageclient/lib/common/completion');
+const { LanguageClient, TransportKind, RevealOutputChannelOn, CompletionRequest } = require('vscode-languageclient/node');
 /**
  * @type {LanguageClient}
  */
@@ -28,15 +29,15 @@ function activate(context) {
         options: {
             detached: false
         }
-
     };
 
     // Define client options - connecting to the 'mms' language
-    /** @type {import('vscode-languageclient').LanguageClientOptions} */
+    /** @type {import('vscode-languageclient/node').LanguageClientOptions} */
     const clientOptions = {
         documentSelector: [{ scheme: 'file', language: 'mms' }],
         synchronize: {
-            fileEvents: vscode.workspace.createFileSystemWatcher('**/*.mms')
+            fileEvents: vscode.workspace.createFileSystemWatcher('**/*.mms'),
+
         },
         outputChannelName: "MMS Language Server",
         revealOutputChannelOn: RevealOutputChannelOn.Info,
@@ -52,14 +53,18 @@ function activate(context) {
             'mmsLanguageServer',
             'MMS Language Server',
             serverOptions,
-            clientOptions
+            clientOptions,
         );
     }
     // Create the language client
     client = mkClient();
 
+    client.onNotification("textDocument/completion", (params) => {
+        client.info(params)
+    })
+
     client.onNotification("textDocument/publishDiagnostics", (params) => {
-        console.log(params)
+        client.info(params)
     })
 
     context.subscriptions.push(vscode.commands.registerCommand("mms.restartLangServer", () => {

@@ -37,6 +37,13 @@ func (f *MMSFile) AddError(error mms_errors.MMSError) {
 func (f *MMSFile) GetErrors() []mms_errors.MMSError {
 	return f.errors
 }
+func (f *MMSFile) GetRawContent() string {
+	return f.rawContent
+}
+
+func (f *MMSFile) GetTokenAt(position lib.Location) {
+
+}
 
 func (p *MMSProject) ParseFile(
 	path string,
@@ -47,6 +54,7 @@ func (p *MMSProject) ParseFile(
 		path:       path,
 		project:    p,
 		Symbols:    lib.NewNamespace(),
+		namespace:  "",
 	}
 
 	tokenStream := antlr.NewInputStream(content)
@@ -77,10 +85,16 @@ func (p *MMSProject) ParseFile(
 	surfaceVisitor.DumpDeclarations(f.Symbols)
 	// POST PARSE LOGIC
 
-	if _, ok := p.symbols[f.GetNamespace()]; !ok {
-		p.symbols[f.GetNamespace()] = f.Symbols
+	var namespace string
+	if f.GetNamespace() == "" {
+		namespace = "unknown"
 	} else {
-		p.symbols[f.GetNamespace()].Merge(f.Symbols)
+		namespace = f.GetNamespace()
+	}
+	if _, ok := p.symbols[namespace]; !ok {
+		p.symbols[namespace] = f.Symbols
+	} else {
+		p.symbols[namespace].Merge(f.Symbols)
 	}
 
 	if len(surfaceVisitor.RuleDeclarations) > 0 {

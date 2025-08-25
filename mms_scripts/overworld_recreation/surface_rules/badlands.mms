@@ -1,10 +1,10 @@
-namespace minecraft;
+namespace MySpace;
 
 surface {
     // --- BADLANDS SURFACE RULES ---
     // Main entry: Bandlands
     // This file defines the surface rules for the Badlands biome, including terracotta bands, sand, and stone layers.
-
+    
     // --- BIOME CONDITION ---
     condition InBadlands
         biome [ minecraft:badlands minecraft:eroded_badlands minecraft:wooded_badlands ]

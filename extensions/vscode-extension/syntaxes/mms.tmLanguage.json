@@ -2,11 +2,30 @@
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "MMS",
     "patterns": [
-        { "include": "#comments" },
-        { "include": "#keywords" },
-        { "include": "#strings" },
-        { "include": "#numbers" },
-        { "include": "#block_references" }
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#functions"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#block_references"
+        }
     ],
     "repository": {
         "comments": {
@@ -26,7 +45,15 @@
             "patterns": [
                 {
                     "name": "keyword.control.mms",
-                    "match": "\\b(rule|condition|block|biome|noise|type|scale|y_above|y_below|y_between)\\b"
+                    "match": "\\b(surface|rule|condition|sequence|block|bandlands|above_preliminary_surface|biome|hole|noise|steep|stone_depth|freezing|temperature|vertical_gradient|above_water|y_above|floor|ceiling|and|add|sub|absolute|above_bottom|below_top|namespace|if|else|in)\\b"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.other.mms",
+                    "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
                 }
             ]
         },
@@ -47,7 +74,7 @@
         },
         "block_references": {
             "name": "support.class.mms",
-            "match": "\\b(minecraft:[a-z_]+)\\b"
+            "match": "\\b([A-Za-z][A-Z0-9a-z_]+:[A-Za-z][A-Z0-9a-z_]+)\\b"
         }
     },
     "scopeName": "source.mms"
