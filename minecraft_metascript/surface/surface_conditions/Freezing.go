@@ -1,0 +1,30 @@
+package surface_conditions
+
+import (
+	"encoding/json"
+
+	"github.com/itsmebriand/mms/mms/grammars"
+)
+
+func NewFreezingCondition(ctx *grammars.SurfaceCondition_FreezingContext) (*FreezingCondition, error) {
+	return &FreezingCondition{}, nil
+}
+
+type FreezingCondition struct {
+}
+
+func (c FreezingCondition) Type() ConditionType {
+	return FreezingConditionType
+}
+
+func (c FreezingCondition) MarshalJSON() ([]byte, error) {
+	json, err := json.Marshal(struct {
+		Type ConditionType `json:"type"`
+	}{
+		Type: FreezingConditionType,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return json, nil
+}
