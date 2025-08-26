@@ -1,3 +1,4 @@
+import { asset } from '$app/paths';
 import * as v from 'valibot';
 
 export type FileTreeDir = {
@@ -62,7 +63,7 @@ export const mms = (() => {
 		},
 		configure: async () => {
 			await import('../mms.js');
-			const res = await fetch('/mms.wasm');
+			const res = await fetch(asset(`/mms.wasm`));
 			if (!res.body) throw new Error();
 			goInstance = new Go();
 			const module = await WebAssembly.instantiateStreaming(res, goInstance.importObject);

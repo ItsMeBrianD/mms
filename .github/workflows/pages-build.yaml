@@ -45,10 +45,11 @@ jobs:
         uses: oven-sh/setup-bun@v2
       - name: Install dependencies + Build
         working-directory: ./ui
+        env:
+          CI: true
         run: |
           bun install
           bun run build
-
 
         # Pages
       - name: Setup Pages
