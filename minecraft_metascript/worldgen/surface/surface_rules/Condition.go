@@ -48,19 +48,34 @@ func (r ConditionalRule) String() string {
 }
 
 func (r ConditionalRule) MarshalJSON() ([]byte, error) {
+	if compound, ok := r.Condition.(*surface_conditions.CompoundCondition); ok {
+		// We need to split out the conditions into a deep nest
+		rules := make([]SurfaceRule, len(compound.Conditions))
+		for i, condition := range compound.Conditions {
+			action := r.Action
+			if i > 0 {
+				action = rules[i-1]
+			}
+			rules[i] = &ConditionalRule{Condition: condition.Condition, Action: action, Negate: condition.Negate}
+		}
+		return json.Marshal(rules[len(rules)-1])
+	}
+
 	if r.Negate {
 		r.Negate = false
 		condition := r.Condition
 		r.Condition = surface_conditions.InvertCondition(condition)
+
 	}
 
 	return json.Marshal(struct {
-		Type      SurfaceRuleKind                     `json:"type"`
-		Condition surface_conditions.SurfaceCondition `json:"if_true"`
-		Action    SurfaceRule                         `json:"then_run"`
+		Type    SurfaceRuleKind                     `json:"type"`
+		IfTrue  surface_conditions.SurfaceCondition `json:"if_true"`
+		ThenRun SurfaceRule                         `json:"then_run"`
 	}{
-		Type:      r.Type(),
-		Condition: r.Condition,
-		Action:    r.Action,
+		Type:    ConditionalRuleKind,
+		IfTrue:  r.Condition,
+		ThenRun: r.Action,
 	})
+
 }
