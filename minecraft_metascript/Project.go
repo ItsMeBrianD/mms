@@ -3,7 +3,8 @@ package minecraft_metascript
 import (
 	"os"
 
-	"github.com/itsmebriand/mms/minecraft_metascript/surface"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/noise"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface"
 	"github.com/itsmebriand/mms/mms/lib"
 )
 
@@ -69,16 +70,18 @@ func (p *MMSProject) ParseFiles(root string) error {
 }
 
 func (p *MMSProject) Export() lib.FileTreeLike {
-	root := lib.FileTreeLike{
+	root := &lib.FileTreeLike{
 		Name:     "mms.dist",
+		IsDir:    true,
 		Children: map[string]*lib.FileTreeLike{},
 	}
 	for namespace, symbols := range p.symbols {
 		namespaceDir := root.MkDir(namespace)
 		surface.Export(symbols, namespaceDir)
+		noise.Export(symbols, namespaceDir)
 	}
 
-	return root
+	return *root
 }
 
 func ProjectSymbols[T any](p *MMSProject) map[string]map[string]lib.Symbol[T] {

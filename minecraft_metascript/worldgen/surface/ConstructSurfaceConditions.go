@@ -2,7 +2,7 @@ package surface
 
 import (
 	"github.com/antlr4-go/antlr/v4"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_conditions"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_conditions"
 	"github.com/itsmebriand/mms/mms/grammars"
 	"github.com/itsmebriand/mms/mms/lib"
 )

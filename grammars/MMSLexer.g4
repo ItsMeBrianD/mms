@@ -1,7 +1,7 @@
 lexer grammar MMSLexer;
 
 Int: '-'? [0-9]+;
-Float: ('-'? [0-9]+ '.' [0-9]+) | Int;
+Float: ('-'? [0-9]+ '.' [0-9]+);
 
 /// surface rule keywords
 Keyword_Surface: 'surface';
@@ -29,6 +29,8 @@ Keyword_And: 'and';
 Keyword_Add: 'add';
 Keyword_Sub: 'sub';
 ///
+
+Keyword_WorldGen: 'worldgen';
 
 Keyword_Absolute: 'absolute';
 Keyword_AboveBottom: 'above_bottom';

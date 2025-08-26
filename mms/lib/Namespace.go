@@ -69,9 +69,20 @@ func (n *Namespace) Merge(other *Namespace) []MergeIssue {
 func AllOf[T any](n *Namespace) map[string]Symbol[T] {
 	out := make(map[string]Symbol[T])
 	for name, sym := range n.symbols {
-		if v, ok := sym.Value.(Symbol[T]); ok {
-			out[name] = v
+		// Check if the value in the symbol is of type T
+		value, ok := sym.Value.(T)
+		if !ok {
+			continue
 		}
+		// Create a new symbol with the value cast as T
+		newSymbol := Symbol[T]{
+			File:  sym.File,
+			Line:  sym.Line,
+			Col:   sym.Col,
+			Ref:   sym.Ref,
+			Value: value,
+		}
+		out[name] = newSymbol
 	}
 	return out
 }

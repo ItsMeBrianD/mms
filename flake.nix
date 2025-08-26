@@ -110,7 +110,7 @@
           installPhase = ''
             mkdir -p $out
             mv main.wasm $out/
-            cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" $out/
+            cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" $out/
           '';
         };
 

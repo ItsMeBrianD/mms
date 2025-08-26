@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_conditions"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_rules"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_conditions"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_rules"
 	"github.com/itsmebriand/mms/mms/lib"
 )
 

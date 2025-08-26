@@ -24,9 +24,8 @@ func NewMMSFileVisitor(file *MMSFile, siblings []NamespaceAware) *MMSFileVisitor
 		siblings: siblings,
 	}
 }
-
 func (v *MMSFileVisitor) ExitNamespaceDeclaration(ctx *grammars.NamespaceDeclarationContext) {
-	if id := ctx.Identifier(); id != nil {
+	if id := ctx.ResourceReference(); id != nil {
 		v.file.namespace = id.GetText()
 		for _, s := range v.siblings {
 			s.SetNamespace(v.file.namespace)

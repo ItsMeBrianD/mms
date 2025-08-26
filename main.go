@@ -21,27 +21,6 @@ func main() {
 
 		Commands: []*cli.Command{
 			{
-				Name: "new",
-				Arguments: []cli.Argument{
-					&cli.StringArg{
-						Name:      "file",
-						UsageText: "The root directory or file to build",
-					},
-				},
-				Action: func(c context.Context, cmd *cli.Command) error {
-					file := cmd.StringArg("file")
-
-					if file == "" {
-						log.Fatal("file argument is required")
-					}
-
-					project := minecraft_metascript.NewMMSProject()
-					project.ParseFiles(file)
-
-					return nil
-				},
-			},
-			{
 				Name: "version",
 				Action: func(c context.Context, cmd *cli.Command) error {
 					log.Println("mms version 0.1.0")

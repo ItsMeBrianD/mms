@@ -112,6 +112,15 @@ type MMSParserListener interface {
 	// EnterVerticalAnchor_BelowTop is called when entering the verticalAnchor_BelowTop production.
 	EnterVerticalAnchor_BelowTop(c *VerticalAnchor_BelowTopContext)
 
+	// EnterWorldgenDeclaration is called when entering the worldgenDeclaration production.
+	EnterWorldgenDeclaration(c *WorldgenDeclarationContext)
+
+	// EnterNoiseDeclaration is called when entering the noiseDeclaration production.
+	EnterNoiseDeclaration(c *NoiseDeclarationContext)
+
+	// EnterNoiseDefinition is called when entering the noiseDefinition production.
+	EnterNoiseDefinition(c *NoiseDefinitionContext)
+
 	// ExitNamespaceDeclaration is called when exiting the namespaceDeclaration production.
 	ExitNamespaceDeclaration(c *NamespaceDeclarationContext)
 
@@ -216,4 +225,13 @@ type MMSParserListener interface {
 
 	// ExitVerticalAnchor_BelowTop is called when exiting the verticalAnchor_BelowTop production.
 	ExitVerticalAnchor_BelowTop(c *VerticalAnchor_BelowTopContext)
+
+	// ExitWorldgenDeclaration is called when exiting the worldgenDeclaration production.
+	ExitWorldgenDeclaration(c *WorldgenDeclarationContext)
+
+	// ExitNoiseDeclaration is called when exiting the noiseDeclaration production.
+	ExitNoiseDeclaration(c *NoiseDeclarationContext)
+
+	// ExitNoiseDefinition is called when exiting the noiseDefinition production.
+	ExitNoiseDefinition(c *NoiseDefinitionContext)
 }

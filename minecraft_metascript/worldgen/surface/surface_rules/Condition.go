@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_conditions"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_conditions"
 	"github.com/itsmebriand/mms/mms/grammars"
 )
 

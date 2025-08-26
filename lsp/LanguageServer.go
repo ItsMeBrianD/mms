@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/itsmebriand/mms/minecraft_metascript"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_rules"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_rules"
 	"github.com/tliron/glsp"
 	protocol "github.com/tliron/glsp/protocol_3_16"
 	"github.com/tliron/glsp/server"

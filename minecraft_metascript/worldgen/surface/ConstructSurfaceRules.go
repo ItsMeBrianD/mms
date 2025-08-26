@@ -5,7 +5,7 @@ import (
 
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_rules"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_rules"
 	"github.com/itsmebriand/mms/mms/grammars"
 	"github.com/itsmebriand/mms/mms/lib"
 )

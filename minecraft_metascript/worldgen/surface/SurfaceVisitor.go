@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_conditions"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_rules"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_conditions"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_rules"
 	"github.com/itsmebriand/mms/mms/grammars"
 	"github.com/itsmebriand/mms/mms/lib"
 )
@@ -40,27 +40,22 @@ type Visitor struct {
 
 func (v *Visitor) DumpDeclarations(ns *lib.Namespace) {
 	for name, rule := range v.RuleDeclarations {
-		err := ns.Set(name, lib.Symbol[any]{
+		ns.Set(name, lib.Symbol[any]{
 			File:  rule.File,
 			Line:  rule.Line,
 			Col:   rule.Col,
 			Ref:   rule.Ref,
-			Value: rule,
+			Value: rule.Value,
 		})
-		if err != nil {
-
-		}
 	}
 	for name, condition := range v.ConditionDeclarations {
-		err := ns.Set(name, lib.Symbol[any]{
+		ns.Set(name, lib.Symbol[any]{
 			File:  condition.File,
 			Line:  condition.Line,
 			Col:   condition.Col,
 			Ref:   condition.Ref,
-			Value: condition,
+			Value: condition.Value,
 		})
-		if err != nil {
-		}
 	}
 }
 
@@ -77,7 +72,6 @@ func (v *Visitor) ExitSurfaceConditionDeclaration(ctx *grammars.SurfaceCondition
 
 	id := ctx.Identifier().GetText()
 
-	// TODO: Declare the condition
 	if condition, ok := v.ConditionDeclarations[id]; ok {
 		v.AddError(
 			mms_errors.DuplicateSymbolError(
@@ -104,14 +98,16 @@ func (v *Visitor) ExitSurfaceRuleDeclaration(ctx *grammars.SurfaceRuleDeclaratio
 		return
 	}
 
-	if rule, ok := v.RuleDeclarations[ctx.Identifier().GetText()]; ok {
+	id := ctx.Identifier().GetText()
+	if rule, ok := v.RuleDeclarations[id]; ok {
 		v.AddError(
 			mms_errors.DuplicateSymbolError(
 				v.filename,
 				rule.Value.GetLocation(),
-				fmt.Sprintf("Duplicate rule declaration: %v", ctx.Identifier().GetText()),
+				fmt.Sprintf("Duplicate rule declaration: %v", id),
 			),
 		)
 	}
-	v.RuleDeclarations[ctx.Identifier().GetText()] = mkRuleSymbol(ctx, rule, lib.Reference{Name: ctx.Identifier().GetText(), Namespace: v.Namespace()}, v.filename)
+	v.RuleDeclarations[id] = mkRuleSymbol(ctx, rule, lib.Reference{Name: id, Namespace: v.Namespace()}, v.filename)
+	fmt.Println("Found Rule -- ", id)
 }

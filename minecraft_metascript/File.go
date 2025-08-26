@@ -2,14 +2,13 @@ package minecraft_metascript
 
 import (
 	"log"
-	"os"
-	"strings"
 
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_conditions"
-	"github.com/itsmebriand/mms/minecraft_metascript/surface/surface_rules"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/noise"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_conditions"
+	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/surface/surface_rules"
 	"github.com/itsmebriand/mms/mms/grammars"
 	"github.com/itsmebriand/mms/mms/lib"
 )
@@ -71,10 +70,12 @@ func (p *MMSProject) ParseFile(
 	parser := grammars.NewMMSParser(antlr.NewCommonTokenStream(lexer, 0))
 
 	surfaceVisitor := surface.NewSurfaceVisitor(f.AddError, path)
+	noiseVisitor := noise.NewNoiseVisitor(f.AddError, path)
 
-	fileVisitor := NewMMSFileVisitor(f, []NamespaceAware{surfaceVisitor})
+	fileVisitor := NewMMSFileVisitor(f, []NamespaceAware{surfaceVisitor, noiseVisitor})
 	parser.AddParseListener(fileVisitor)
 	parser.AddParseListener(surfaceVisitor)
+	parser.AddParseListener(noiseVisitor)
 
 	// Register error listener with the parser
 	parser.RemoveErrorListeners()
@@ -83,6 +84,7 @@ func (p *MMSProject) ParseFile(
 	f.tree = parser.MmsFile()
 
 	surfaceVisitor.DumpDeclarations(f.Symbols)
+	noiseVisitor.DumpDeclarations(f.Symbols)
 	// POST PARSE LOGIC
 
 	var namespace string
@@ -118,32 +120,6 @@ func (p *MMSProject) ParseFile(
 			} else {
 				rule.Value = replacement
 				surfaceVisitor.RuleDeclarations[name] = rule
-			}
-		}
-	}
-	if len(surfaceVisitor.ConditionDeclarations) > 0 {
-		log.Println("Found Surface Conditions: ")
-		for _, condition := range surfaceVisitor.ConditionDeclarations {
-			log.Println(condition)
-		}
-	}
-	debugEnv := os.Getenv("debug")
-	if strings.Contains(debugEnv, "mms") {
-		if f.errors != nil {
-			for _, err := range f.errors {
-				log.Println(err)
-			}
-		}
-		if len(surfaceVisitor.RuleDeclarations) > 0 {
-			log.Println("Found Surface Rules: ")
-			for _, rule := range surfaceVisitor.RuleDeclarations {
-				log.Println(rule)
-			}
-		}
-		if len(surfaceVisitor.ConditionDeclarations) > 0 {
-			log.Println("Found Surface Conditions: ")
-			for _, condition := range surfaceVisitor.ConditionDeclarations {
-				log.Println(condition)
 			}
 		}
 	}

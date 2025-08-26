@@ -249,3 +249,21 @@ func (s *BaseMMSParserListener) EnterVerticalAnchor_BelowTop(ctx *VerticalAnchor
 
 // ExitVerticalAnchor_BelowTop is called when production verticalAnchor_BelowTop is exited.
 func (s *BaseMMSParserListener) ExitVerticalAnchor_BelowTop(ctx *VerticalAnchor_BelowTopContext) {}
+
+// EnterWorldgenDeclaration is called when production worldgenDeclaration is entered.
+func (s *BaseMMSParserListener) EnterWorldgenDeclaration(ctx *WorldgenDeclarationContext) {}
+
+// ExitWorldgenDeclaration is called when production worldgenDeclaration is exited.
+func (s *BaseMMSParserListener) ExitWorldgenDeclaration(ctx *WorldgenDeclarationContext) {}
+
+// EnterNoiseDeclaration is called when production noiseDeclaration is entered.
+func (s *BaseMMSParserListener) EnterNoiseDeclaration(ctx *NoiseDeclarationContext) {}
+
+// ExitNoiseDeclaration is called when production noiseDeclaration is exited.
+func (s *BaseMMSParserListener) ExitNoiseDeclaration(ctx *NoiseDeclarationContext) {}
+
+// EnterNoiseDefinition is called when production noiseDefinition is entered.
+func (s *BaseMMSParserListener) EnterNoiseDefinition(ctx *NoiseDefinitionContext) {}
+
+// ExitNoiseDefinition is called when production noiseDefinition is exited.
+func (s *BaseMMSParserListener) ExitNoiseDefinition(ctx *NoiseDefinitionContext) {}

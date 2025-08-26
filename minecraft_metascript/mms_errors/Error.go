@@ -113,11 +113,25 @@ func (l *ErrorListener) SyntaxError(recognizer antlr.Recognizer, symbol interfac
 }
 
 func (l *ErrorListener) ReportAmbiguity(parser antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex int, exact bool, ambigAlts *antlr.BitSet, configs *antlr.ATNConfigSet) {
-	log.Println(">>>", "ReportAmbiguity")
+	alternativeRules := make([]string, 0)
+
+	for _, state := range configs.GetStates().Values() {
+		alternativeRules = append(alternativeRules, parser.GetRuleNames()[state.GetRuleIndex()])
+	}
+
+	log.Println(fmt.Sprintf("[WARN]: Ambiguity detected %-s", alternativeRules))
+
 }
 
 func (l *ErrorListener) ReportAttemptingFullContext(parser antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex int, exact *antlr.BitSet, configs *antlr.ATNConfigSet) {
-	log.Println(">>>", "ReportAttemptingFullContext")
+
+	alternativeRules := make([]string, 0)
+
+	for _, state := range configs.GetStates().Values() {
+		alternativeRules = append(alternativeRules, parser.GetRuleNames()[state.GetRuleIndex()])
+	}
+
+	log.Println(fmt.Sprintf("[WARN]: Attempting Full Context %-s", alternativeRules))
 }
 
 func (l *ErrorListener) ReportContextSensitivity(parser antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex int, prediction int, configs *antlr.ATNConfigSet) {
