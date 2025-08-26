@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { debounce } from 'es-toolkit';
 	import Editor from '../lib/Editor.svelte';
-	import FileTree from '../lib/FileTree.svelte';
+	import Preview from '../lib/Preview.svelte';
+	import { mms } from '../lib/MMSInterop.svelte';
 
 	let fileContent = $state('namespace my_first_datapack;');
 	let goInstance = $state<Go | null>(null);
-	let projectFiles = $state<any | null>(null);
 
 	const refresh = debounce((str: string) => {
 		parseLiteral(str);
@@ -18,13 +18,9 @@
 	});
 
 	async function onMmsLoad() {
-		window.parseLiteralCallback = (project: string) => {
-			projectFiles = JSON.parse(project);
-		};
 		const res = await fetch('/mms.wasm');
 		if (!res.body) throw new Error();
 		goInstance = new Go();
-		goInstance.argv = ['_', 'wasm-mode'];
 		const module = await WebAssembly.instantiateStreaming(res, goInstance.importObject);
 
 		goInstance.run(module.instance).catch(() => {
@@ -37,7 +33,7 @@
 	<script src="/mms.js" defer onload={onMmsLoad}></script>
 </svelte:head>
 
-<section class="grid min-h-svh grid-rows-[auto_1fr_1fr]">
+<section class="grid min-h-svh grid-rows-[auto_1fr]">
 	<header class="px-2 py-1">
 		<h1 class="text-xl font-bold">Minecraft Metascript Demo Editor</h1>
 		<p class="max-w-[100ch] text-xs">
@@ -53,8 +49,6 @@
 	<div class="flex flex-col">
 		<h2 class="px-2 py-1 text-sm font-bold">MMS Source Code</h2>
 		<Editor bind:value={fileContent} />
+		<Preview files={mms.projectFiles} symbols={mms.projectSymbols} />
 	</div>
-	{#if projectFiles}
-		<FileTree tree={projectFiles} />
-	{/if}
 </section>

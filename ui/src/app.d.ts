@@ -13,7 +13,7 @@ declare global {
 	// Courtesy of mms.js (wasm_exec.js from go)
 	var Go: typeof import("@types/golang-wasm-exec").Go;
 	var parseLiteral: (content: string) => void;
-	var parseLiteralCallback: (serializedFiletree: string) => void;
+	var parseLiteralCallback: (serializedFiletree: string, serializedFileSymbols: string) => void;
 }
 
 export {};

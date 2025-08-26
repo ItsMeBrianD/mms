@@ -27,6 +27,7 @@ const (
 
 type (
 	SurfaceCondition interface {
+		json.Marshaler
 		lib.LocatedText
 		Type() ConditionType
 	}

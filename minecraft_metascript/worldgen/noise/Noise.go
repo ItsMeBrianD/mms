@@ -1,6 +1,7 @@
 package noise
 
 import (
+	"encoding/json"
 	"math"
 	"strconv"
 
@@ -8,8 +9,22 @@ import (
 )
 
 type Noise struct {
-	FirstOctave float64   `json:"firstOctave"`
-	Amplitudes  []float64 `json:"amplitudes"`
+	json.Marshaler
+	FirstOctave float64
+	Amplitudes  []float64
+}
+
+func (n Noise) MarshalJSON() ([]byte, error) {
+	if n.Amplitudes == nil {
+		n.Amplitudes = make([]float64, 0)
+	}
+	return json.MarshalIndent(struct {
+		FirstOctave float64   `json:"firstOctave"`
+		Amplitudes  []float64 `json:"amplitudes"`
+	}{
+		FirstOctave: n.FirstOctave,
+		Amplitudes:  n.Amplitudes,
+	}, "", "  ")
 }
 
 func NewNoise(ctx *grammars.NoiseDefinitionContext) (*Noise, error) {

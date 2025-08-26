@@ -17,6 +17,7 @@ func mkRuleSymbol(ctx *grammars.SurfaceRuleDeclarationContext, rule surface_rule
 		Ref:   ref,
 		File:  file,
 		Value: rule,
+		Kind:  lib.SymbolKindSurfaceRule,
 	}
 }
 

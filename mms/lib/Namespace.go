@@ -1,33 +1,43 @@
 package lib
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
-type Symbol[K any] struct {
-	File  string
-	Line  int
-	Col   int
-	Ref   Reference
-	Value K
+type SymbolKind string
+
+const (
+	SymbolKindNoise            = "WorldGen__Noise"
+	SymbolKindSurfaceRule      = "WorldGen__SurfaceRule"
+	SymbolKindSurfaceCondition = "WorldGen__SurfaceCondition"
+)
+
+type Symbol[K json.Marshaler] struct {
+	File  string     `json:"source"`
+	Line  int        `json:"line"`
+	Col   int        `json:"col"`
+	Ref   Reference  `json:"reference"`
+	Value K          `json:"value"`
+	Kind  SymbolKind `json:"kind"`
 }
 
 func NewNamespace() *Namespace {
 	return &Namespace{
-		symbols: make(map[string]Symbol[any]),
+		symbols: make(map[string]Symbol[json.Marshaler]),
 	}
 }
 
 type Namespace struct {
-	symbols map[string]Symbol[any]
+	symbols map[string]Symbol[json.Marshaler]
 }
 
-func (n *Namespace) Get(name string) (Symbol[any], bool) {
+func (n *Namespace) Get(name string) (Symbol[json.Marshaler], bool) {
 	v, ok := n.symbols[name]
 	return v, ok
 }
 
-func (n *Namespace) Set(name string, value Symbol[any]) error {
+func (n *Namespace) Set(name string, value Symbol[json.Marshaler]) error {
 	if _, ok := n.symbols[name]; ok {
 		return fmt.Errorf("symbol '%s' already exists", name)
 	}
@@ -66,7 +76,7 @@ func (n *Namespace) Merge(other *Namespace) []MergeIssue {
 	return nil
 }
 
-func AllOf[T any](n *Namespace) map[string]Symbol[T] {
+func AllOf[T json.Marshaler](n *Namespace) map[string]Symbol[T] {
 	out := make(map[string]Symbol[T])
 	for name, sym := range n.symbols {
 		// Check if the value in the symbol is of type T
@@ -81,6 +91,7 @@ func AllOf[T any](n *Namespace) map[string]Symbol[T] {
 			Col:   sym.Col,
 			Ref:   sym.Ref,
 			Value: value,
+			Kind:  sym.Kind,
 		}
 		out[name] = newSymbol
 	}

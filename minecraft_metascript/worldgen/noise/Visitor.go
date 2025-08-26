@@ -1,6 +1,7 @@
 package noise
 
 import (
+	"encoding/json"
 	"log"
 
 	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
@@ -29,12 +30,13 @@ type Visitor struct {
 
 func (v *Visitor) DumpDeclarations(ns *lib.Namespace) {
 	for name, rule := range v.NoiseDeclarations {
-		ns.Set(name, lib.Symbol[any]{
+		ns.Set(name, lib.Symbol[json.Marshaler]{
 			Value: rule.Value,
 			File:  rule.File,
 			Ref:   rule.Ref,
 			Line:  rule.Line,
 			Col:   rule.Col,
+			Kind:  rule.Kind,
 		})
 	}
 }
@@ -64,5 +66,6 @@ func (v *Visitor) ExitNoiseDeclaration(ctx *grammars.NoiseDeclarationContext) {
 		},
 		Line: ctx.GetStart().GetLine(),
 		Col:  ctx.GetStart().GetColumn(),
+		Kind: lib.SymbolKindNoise,
 	}
 }

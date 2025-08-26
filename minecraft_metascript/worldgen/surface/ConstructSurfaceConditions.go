@@ -14,6 +14,7 @@ func mkConditionSymbol(ctx *grammars.SurfaceConditionDeclarationContext, rule su
 		Ref:   ref,
 		File:  file,
 		Value: rule,
+		Kind:  lib.SymbolKindSurfaceCondition,
 	}
 }
 

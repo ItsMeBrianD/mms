@@ -1,8 +1,6 @@
 package minecraft_metascript
 
 import (
-	"log"
-
 	"github.com/antlr4-go/antlr/v4"
 	"github.com/itsmebriand/mms/minecraft_metascript/mms_errors"
 	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/noise"
@@ -100,7 +98,6 @@ func (p *MMSProject) ParseFile(
 	}
 
 	if len(surfaceVisitor.RuleDeclarations) > 0 {
-		log.Println("Found Surface Rules: ")
 		for name, rule := range surfaceVisitor.RuleDeclarations {
 			replacement, errs := surface.ReplaceRuleReferences(
 				rule.Value,

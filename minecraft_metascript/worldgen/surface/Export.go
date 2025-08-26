@@ -10,29 +10,37 @@ import (
 )
 
 func exportRules(ns *lib.Namespace, rootDir *lib.FileTreeLike) error {
-	rules := make(map[string]surface_rules.SurfaceRule)
+	rulesDir := rootDir.MkDir("surface_rules", nil)
+
 	for name, rule := range lib.AllOf[surface_rules.SurfaceRule](ns) {
-		rules[name] = rule.Value
+		str, err := json.MarshalIndent(rule.Value, "", "  ")
+		if err != nil {
+			return err
+		}
+		rulesDir.MkFile(
+			name+".json",
+			string(str),
+			rule,
+		)
 	}
-	rulesString, err := json.Marshal(rules)
-	if err != nil {
-		return err
-	}
-	rootDir.MkFile("surface_rules.json", string(rulesString))
 
 	return nil
 }
 
 func exportConditions(ns *lib.Namespace, rootDir *lib.FileTreeLike) error {
-	rules := make(map[string]surface_conditions.SurfaceCondition)
-	for name, rule := range lib.AllOf[surface_conditions.SurfaceCondition](ns) {
-		rules[name] = rule.Value
+	conditionsDir := rootDir.MkDir("surface_conditions", nil)
+
+	for name, condition := range lib.AllOf[surface_conditions.SurfaceCondition](ns) {
+		str, err := json.MarshalIndent(condition.Value, "", "  ")
+		if err != nil {
+			return err
+		}
+		conditionsDir.MkFile(
+			name+".json",
+			string(str),
+			condition,
+		)
 	}
-	rulesString, err := json.Marshal(rules)
-	if err != nil {
-		return err
-	}
-	rootDir.MkFile("surface_conditions.json", string(rulesString))
 
 	return nil
 }
@@ -42,7 +50,7 @@ func Export(ns *lib.Namespace, rootDir *lib.FileTreeLike) error {
 		return errors.New("root must be a directory")
 	}
 
-	debugDir := rootDir.MkDir("_debug")
+	debugDir := rootDir.MkDir("_debug", nil)
 	exportRules(ns, debugDir)
 	exportConditions(ns, debugDir)
 

@@ -1,6 +1,7 @@
 package minecraft_metascript
 
 import (
+	"encoding/json"
 	"os"
 
 	"github.com/itsmebriand/mms/minecraft_metascript/worldgen/noise"
@@ -76,7 +77,7 @@ func (p *MMSProject) Export() lib.FileTreeLike {
 		Children: map[string]*lib.FileTreeLike{},
 	}
 	for namespace, symbols := range p.symbols {
-		namespaceDir := root.MkDir(namespace)
+		namespaceDir := root.MkDir(namespace, nil)
 		surface.Export(symbols, namespaceDir)
 		noise.Export(symbols, namespaceDir)
 	}
@@ -84,7 +85,7 @@ func (p *MMSProject) Export() lib.FileTreeLike {
 	return *root
 }
 
-func ProjectSymbols[T any](p *MMSProject) map[string]map[string]lib.Symbol[T] {
+func ProjectSymbols[T json.Marshaler](p *MMSProject) map[string]map[string]lib.Symbol[T] {
 	out := make(map[string]map[string]lib.Symbol[T])
 	for namespace, symbols := range p.symbols {
 		namespaceSymbols := lib.AllOf[T](symbols)
