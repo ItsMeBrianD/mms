@@ -8,7 +8,10 @@
 
 	let { node }: { node: LeafNode } = $props();
 
-	const random = new deepslate.LegacyRandom(BigInt(Math.floor(performance.now())));
+	const random = new deepslate.XoroshiroRandom([
+		BigInt(Math.floor(performance.now())),
+		BigInt(Math.floor(performance.timeOrigin))
+	]);
 
 	$effect(() => {
 		if (!canvas) {

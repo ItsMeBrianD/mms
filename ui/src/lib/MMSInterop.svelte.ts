@@ -48,24 +48,7 @@ const fileTreeItemSchema: v.GenericSchema<unknown, FileTreeItem> = v.union([
 export const mms = (() => {
 	let projectFiles = $state<v.InferOutput<typeof fileTreeItemSchema> | null>(null);
 	let projectSymbols = $state<any | null>(null);
-
-	if (typeof window !== 'undefined') {
-		window.parseLiteralCallback = (project: string, symbols: string) => {
-			// IMPORTANT!
-			// Any uncaught errors here will crash the MMS process
-			try {
-				const filesRes = v.safeParse(fileTreeItemSchema, JSON.parse(project));
-				if (filesRes.success) projectFiles = filesRes.output;
-				else {
-					console.error('Failed to parse project files', filesRes.issues);
-				}
-
-				projectSymbols = JSON.parse(symbols);
-			} catch (e) {
-				console.error(e);
-			}
-		};
-	}
+	let goInstance = $state<Go | null>(null);
 
 	return {
 		get projectFiles() {
@@ -73,6 +56,37 @@ export const mms = (() => {
 		},
 		get projectSymbols() {
 			return projectSymbols;
+		},
+		get goInstance() {
+			return goInstance;
+		},
+		configure: async () => {
+			await import('../mms.js');
+			const res = await fetch('/mms.wasm');
+			if (!res.body) throw new Error();
+			goInstance = new Go();
+			const module = await WebAssembly.instantiateStreaming(res, goInstance.importObject);
+
+			goInstance.run(module.instance).catch(() => {
+				console.error('mms failed');
+			});
+			if (typeof window !== 'undefined') {
+				window.parseLiteralCallback = (project: string, symbols: string) => {
+					// IMPORTANT!
+					// Any uncaught errors here will crash the MMS process
+					try {
+						const filesRes = v.safeParse(fileTreeItemSchema, JSON.parse(project));
+						if (filesRes.success) projectFiles = filesRes.output;
+						else {
+							console.error('Failed to parse project files', filesRes.issues);
+						}
+
+						projectSymbols = JSON.parse(symbols);
+					} catch (e) {
+						console.error(e);
+					}
+				};
+			}
 		}
 	};
 })();

@@ -3,35 +3,20 @@
 	import Editor from '../lib/Editor.svelte';
 	import Preview from '../lib/Preview.svelte';
 	import { mms } from '../lib/MMSInterop.svelte';
+	import { onMount } from 'svelte';
 
 	let fileContent = $state('namespace my_first_datapack;');
-	let goInstance = $state<Go | null>(null);
 
 	const refresh = debounce((str: string) => {
 		parseLiteral(str);
-		console.debug('Updated project files');
 	}, 500);
 	$effect(() => {
-		if (goInstance) {
+		if (mms.goInstance) {
 			refresh(fileContent);
 		}
 	});
-
-	async function onMmsLoad() {
-		const res = await fetch('/mms.wasm');
-		if (!res.body) throw new Error();
-		goInstance = new Go();
-		const module = await WebAssembly.instantiateStreaming(res, goInstance.importObject);
-
-		goInstance.run(module.instance).catch(() => {
-			console.error('mms failed');
-		});
-	}
+	onMount(() => mms.configure().catch((e) => console.error('Failed to configure MMS Runtime', e)));
 </script>
-
-<svelte:head>
-	<script src="/mms.js" defer onload={onMmsLoad}></script>
-</svelte:head>
 
 <section class="grid min-h-svh grid-rows-[auto_1fr]">
 	<header class="px-2 py-1">
