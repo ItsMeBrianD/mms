@@ -5,7 +5,23 @@
 	import { mms } from '../lib/MMSInterop.svelte';
 	import { onMount } from 'svelte';
 
-	let fileContent = $state('namespace my_first_datapack;');
+	let fileContent = $state(`
+namespace example_project;
+
+worldgen {
+	noise MyNoisePattern -4 [ 2 5 ]
+}
+
+surface {
+	rule MySurfaceRule block stone
+
+	condition OnlyForest biome [ minecraft:forest ]
+	condition OnlyPlains biome [ minecraft:plains ]
+
+	rule WoodInForests if (OnlyForest) block wood
+	rule LavaHoles if ( and ( hole ) ) block lava
+}
+	`);
 
 	const refresh = debounce((str: string) => {
 		parseLiteral(str);

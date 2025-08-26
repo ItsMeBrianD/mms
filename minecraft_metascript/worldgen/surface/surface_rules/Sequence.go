@@ -47,8 +47,10 @@ func (r SequenceRule) String() string {
 
 func (r SequenceRule) MarshalJSON() ([]byte, error) {
 	return json.Marshal(struct {
-		Type SurfaceRuleKind `json:"type"`
+		Type     SurfaceRuleKind `json:"type"`
+		Sequence []SurfaceRule   `json:"sequence"`
 	}{
-		Type: r.Type(),
+		Type:     r.Type(),
+		Sequence: r.Rules,
 	})
 }

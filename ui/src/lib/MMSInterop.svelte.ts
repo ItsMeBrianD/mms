@@ -51,6 +51,46 @@ export const mms = (() => {
 	let projectSymbols = $state<any | null>(null);
 	let goInstance = $state<Go | null>(null);
 
+	let mmsImported = false;
+
+	const configure = async () => {
+		if (!mmsImported) await import('../mms.js').then(() => (mmsImported = true));
+		const res = await fetch(asset(`/mms.wasm`));
+		if (!res.body) throw new Error();
+		goInstance = new Go();
+		const module = await WebAssembly.instantiateStreaming(res, goInstance.importObject);
+
+		const originalExit = goInstance.exit;
+
+		goInstance.exit = (...args) => {
+			originalExit(...args);
+			// TODO: Improve this behavior
+			setTimeout(configure, 1000);
+		};
+
+		goInstance.run(module.instance).catch(() => {
+			console.error('mms failed');
+		});
+
+		if (typeof window !== 'undefined') {
+			window.parseLiteralCallback = (project: string, symbols: string) => {
+				// IMPORTANT!
+				// Any uncaught errors here will crash the MMS process
+				try {
+					const filesRes = v.safeParse(fileTreeItemSchema, JSON.parse(project));
+					if (filesRes.success) projectFiles = filesRes.output;
+					else {
+						console.error('Failed to parse project files', filesRes.issues);
+					}
+
+					projectSymbols = JSON.parse(symbols);
+				} catch (e) {
+					console.error(e);
+				}
+			};
+		}
+	};
+
 	return {
 		get projectFiles() {
 			return projectFiles;
@@ -61,33 +101,6 @@ export const mms = (() => {
 		get goInstance() {
 			return goInstance;
 		},
-		configure: async () => {
-			await import('../mms.js');
-			const res = await fetch(asset(`/mms.wasm`));
-			if (!res.body) throw new Error();
-			goInstance = new Go();
-			const module = await WebAssembly.instantiateStreaming(res, goInstance.importObject);
-
-			goInstance.run(module.instance).catch(() => {
-				console.error('mms failed');
-			});
-			if (typeof window !== 'undefined') {
-				window.parseLiteralCallback = (project: string, symbols: string) => {
-					// IMPORTANT!
-					// Any uncaught errors here will crash the MMS process
-					try {
-						const filesRes = v.safeParse(fileTreeItemSchema, JSON.parse(project));
-						if (filesRes.success) projectFiles = filesRes.output;
-						else {
-							console.error('Failed to parse project files', filesRes.issues);
-						}
-
-						projectSymbols = JSON.parse(symbols);
-					} catch (e) {
-						console.error(e);
-					}
-				};
-			}
-		}
+		configure
 	};
 })();

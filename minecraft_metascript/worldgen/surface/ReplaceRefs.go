@@ -81,27 +81,24 @@ func ReplaceRuleReferences(
 		}
 		return rule, nil
 	case *surface_rules.ConditionalRule:
-		if rule.Condition.Type() == surface_conditions.ReferenceConditionType {
-			resolvedCondition, err := ReplaceConditionReferences(
-				rule.Condition,
-				conditions, rules, defaultNamespace,
-			)
-			if err != nil {
-				return nil, err
-			}
-			rule.Condition = resolvedCondition
+		resolvedCondition, err := ReplaceConditionReferences(
+			rule.Condition,
+			conditions, rules, defaultNamespace,
+		)
+		if err != nil {
+			return nil, err
 		}
+		rule.Condition = resolvedCondition
 
-		if rule.Action.Type() == surface_rules.ReferenceRuleKind {
-			resolvedAction, err := ReplaceRuleReferences(
-				rule.Action,
-				conditions, rules, defaultNamespace,
-			)
-			if err != nil {
-				return nil, err
-			}
-			rule.Action = resolvedAction
+		resolvedAction, err := ReplaceRuleReferences(
+			rule.Action,
+			conditions, rules, defaultNamespace,
+		)
+		if err != nil {
+			return nil, err
 		}
+		rule.Action = resolvedAction
+
 		return rule, nil
 	case *surface_rules.ReferenceRule:
 		namespace := rule.Namespace
