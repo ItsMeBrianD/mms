@@ -47,7 +47,7 @@ jobs:
         working-directory: ./ui
         run: |
           bun install
-          bun build
+          bun run build
 
 
         # Pages
