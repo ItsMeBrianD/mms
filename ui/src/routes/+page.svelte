@@ -19,7 +19,7 @@ surface {
 	condition OnlyPlains biome [ minecraft:plains ]
 
 	rule WoodInForests if (OnlyForest) block wood
-	rule LavaHoles if ( and ( hole ) ) block lava
+	rule LavaHoles if ( and ( OnlyForest OnlyPlains hole ) ) block lava
 }
 	`);
 
